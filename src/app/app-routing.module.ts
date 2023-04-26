@@ -7,6 +7,11 @@ import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
+import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
+
+import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
+import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,6 +22,9 @@ const routes: Routes = [
   {path: "details", component:DetailsComponent},
   {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent},
+  { path: 'AllLiv', component: GetAllLivraisonComponent },
+  { path: 'addLiv', component: AddLivraisonComponent },
+  { path: 'updateLiv/:id', component: UpdateLivraisonComponent }
 
 ];
 
