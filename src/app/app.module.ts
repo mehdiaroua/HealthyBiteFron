@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './headers/navbar/navbar.component';
@@ -13,6 +13,10 @@ import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
+import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
+import { UpdaterepasComponent } from './ProduitRepas/updaterepas/updaterepas.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,12 +28,17 @@ import { HttpClientModule } from '@angular/common/http';
     DetailsComponent,
     PanierComponent,
     PaiementComponent,
-    DetailsRecetteComponent
+    DetailsRecetteComponent,
+    AddrepasComponent,
+    RepasRestaurantComponent,
+    UpdaterepasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

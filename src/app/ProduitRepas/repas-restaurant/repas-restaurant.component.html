@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="title">
+    <h3>Tables</h3>
+  </div>
+  <div class="row">
+        <div class="col-md-12">
+            <h4>Simple Table</h4>
+        </div>
+        <div class="col-lg-8 col-md-10 ml-auto mr-auto">
+        <h4><small>Simple With Actions</small></h4>
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th>Name</th>
+                        <th>Job Position</th>
+                        <th>Since</th>
+                        <th class="text-right">Salary</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rep of repas">
+                        <td class="text-center">1</td>
+                        <td>{{ rep.nom }}</td>
+                        <td>{{ rep.prix }}</td>
+                        <td>{{ rep.description }}</td>
+                        <td class="text-right">€ 99,225</td>
+                        <td class="td-actions text-right">
+
+                            <button (click)="updateRepas(rep)" type="button" rel="tooltip" class="btn btn-success btn-just-icon btn-sm" data-original-title="" title="">
+                              <i class="material-icons">update</i>
+                            </button>
+                            <button (click)="deleteRepas(rep)" type="button" rel="tooltip" class="btn btn-danger btn-just-icon btn-sm" data-original-title="" title="">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            </div>
+
+<!--<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prix</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rep of repas">
+      <td>{{ rep.nom }}</td>
+      <td>{{ rep.prix }}</td>
+      <td>{{ rep.description }}</td>
+      <td>
+        <button (click)="updateRepas(rep)">Modifier</button>
+        <button (click)="deleteRepas(rep)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>-->
