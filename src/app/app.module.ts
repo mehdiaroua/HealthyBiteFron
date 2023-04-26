@@ -13,6 +13,7 @@ import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddLivraisonComponent } from './commande/add-livraison/add-livraison.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     DetailsComponent,
     PanierComponent,
     PaiementComponent,
-    DetailsRecetteComponent
+    DetailsRecetteComponent,
+    AddLivraisonComponent
   ],
   imports: [
     BrowserModule,
