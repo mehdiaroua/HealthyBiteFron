@@ -29,8 +29,8 @@ export class AppService {
   }
 
   // Update Livraison - Update
-  updateLivraison(id: number, livraison: Livraison): Observable<any> {
-    return this.httpClient.put<any>(`${this.URL}updateLivraison/${id}`, livraison);
+  updateLivraison(livraison: Livraison): Observable<any> {
+    return this.httpClient.put<any>(`${this.URL}updateLivraison`, livraison);
   }
 
   // Delete Livraison - Delete

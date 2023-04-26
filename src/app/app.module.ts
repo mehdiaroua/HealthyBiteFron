@@ -14,7 +14,8 @@ import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormGroup, FormControl, FormsModule } from '@angular/forms';
+import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,15 @@ import { FormsModule } from '@angular/forms';
     PanierComponent,
     PaiementComponent,
     DetailsRecetteComponent,
-    AddLivraisonComponent
+    AddLivraisonComponent,
+    UpdateLivraisonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule,FormsModule ,
+    FormGroup, FormControl
   ],
   providers: [],
   bootstrap: [AppComponent]
