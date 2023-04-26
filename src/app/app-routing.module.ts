@@ -7,6 +7,8 @@ import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
+import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
+import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path: "details", component:DetailsComponent},
   {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent},
+  {path: "repas/addRepas", component:AddrepasComponent},
+  {path: "repas/restaurant", component:RepasRestaurantComponent},
 
 ];
 
