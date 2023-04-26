@@ -14,6 +14,7 @@ import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
