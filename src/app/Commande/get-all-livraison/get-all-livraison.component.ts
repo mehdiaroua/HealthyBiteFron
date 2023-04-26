@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppSerice } from 'app/appservice';
+import { AppService } from 'src/app/AppService';
+
 
 @Component({
   selector: 'get-all-livraison',
   templateUrl: './get-all-livraison.component.html',
   styleUrls: ['./get-all-livraison.component.css'],
-  providers: [AppSerice],
+  providers: [AppService],
 })
 export class GetAllLivraisonComponent implements OnInit {
 
@@ -14,7 +15,7 @@ export class GetAllLivraisonComponent implements OnInit {
   Livraisons: any[] | undefined
   url: string = "http://localhost:8080/";
 
-  constructor(private service: AppSerice, private router: Router) { 
+  constructor(private service: AppService, private router: Router) { 
    
   }
 
@@ -25,9 +26,9 @@ export class GetAllLivraisonComponent implements OnInit {
     })
   }
 
-  deleteLivraison(id: number){
+  deletelivraison(id: number){
     this.service.deleteLivraisonById(id).subscribe(data => {
-      this.Livraisons = this.Livraisons.filter(Livraison => Livraison.id !== id);
+      this.Livraisons = this.Livraisons?.filter(Livraison => Livraison.id !== id);
     })
     
       setTimeout(()=>{
@@ -36,7 +37,7 @@ export class GetAllLivraisonComponent implements OnInit {
   
   }
 
-  updateUser(id: number){
+  updateLivraison(id: number){
     this.router.navigate(['update', id]);
   }
 
