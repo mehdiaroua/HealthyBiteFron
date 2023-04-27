@@ -13,7 +13,7 @@ export class RepasProduitService {
   constructor(private httpClient: HttpClient) { }
 
 
-  addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, user: number, image: File): Observable<Repas> {
+  addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File): Observable<Repas> {
     const formData = new FormData();
     formData.append('nom', nom);
     formData.append('description', description);
@@ -22,7 +22,7 @@ export class RepasProduitService {
     formData.append('allergene', allergene);
     formData.append('objectifType', objectifType);
     formData.append('categRepas', categRepas);
-    formData.append('user', user.toString());
+    //formData.append('user', user);
     formData.append('image', image, image.name);
 
     return this.httpClient.post<Repas>(`${environment.api}test/addRepasWithImg`, formData);

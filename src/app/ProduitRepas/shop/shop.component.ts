@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 
 import { RepasProduitService } from 'src/app/repas-produit.service';
@@ -11,16 +12,17 @@ import { RepasProduitService } from 'src/app/repas-produit.service';
 })
 export class ShopComponent implements OnInit{
   repas!:Repas[];
-constructor(private repasProduit:RepasProduitService){}
+constructor(private repasProduit:RepasProduitService, private R:Router){}
   ngOnInit(){
 
     this.repasProduit.getAllRepas().subscribe(data => {
       this.repas = data;
       console.log(this.repas);
     });
-
-
-
      }
+
+     showDetails(id : number){
+      this.R.navigate(['products/productDetails', id]);
+    }
 
 }

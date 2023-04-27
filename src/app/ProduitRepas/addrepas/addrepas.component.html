@@ -1,18 +1,47 @@
-<h1>Ajouter Repas</h1>
-<div style="margin-top: 5%;">
-<form #addRepasForm="ngForm" (ngSubmit)="onSubmit(addRepasForm)">
+<form (submit)="onSubmit()" enctype="multipart/form-data">
   <div class="form-group">
-    <label for="nom">Nom</label>
-    <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="repas.nom" required>
+    <label for="nom">Nom :</label>
+    <input type="text" class="form-control" id="nom" [(ngModel)]="repas.nom" name="nom" required>
   </div>
   <div class="form-group">
-    <label for="prix">Prix</label>
-    <input type="number" class="form-control" id="prix" name="prix" [(ngModel)]="repas.prix" required>
+    <label for="description">Description :</label>
+    <input type="text" class="form-control" id="description" [(ngModel)]="repas.description" name="description" required>
   </div>
   <div class="form-group">
-    <label for="description">Description</label>
-    <textarea class="form-control" id="description" name="description" [(ngModel)]="repas.description" required></textarea>
+    <label for="prix">Prix :</label>
+    <input type="number" class="form-control" id="prix" [(ngModel)]="repas.prix" name="prix" required>
+  </div>
+  <div class="form-group">
+    <label for="ingredient">Ingrédient :</label>
+    <input type="text" class="form-control" id="ingredient" [(ngModel)]="repas.ingredient" name="ingredient" required>
+  </div>
+  <div class="form-group">
+    <label for="allergene">Allergène :</label>
+    <input type="text" class="form-control" id="allergene" [(ngModel)]="repas.allergene" name="allergene" required>
+  </div>
+  <div class="form-group">
+    <label for="objectifType">Objectif type :</label>
+    <select class="form-control" id="objectifType" [(ngModel)]="repas.objectifType" name="objectifType" required>
+      <option value="Prendre_Poids">Prise de masse</option>
+      <option value="Perdre_Poids">Perte de poids</option>
+      <option value="Maintenir_Poids">Equilibré</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="categRepas">Catégorie :</label>
+    <select class="form-control" id="categRepas" [(ngModel)]="repas.categorieRepas" name="categRepas" required>
+      <option value="petitdejeuner">Petit déjeuner</option>
+      <option value="dejeuner">Déjeuner</option>
+      <option value="diner">Dîner</option>
+      <option value="dessert">Dessert</option>
+    </select>
+  </div>
+
+  
+
+  <div class="form-group">
+    <label for="image">Image :</label>
+    <input type="file" class="form-control-file" id="image" (change)="onFileSelected($event)" required>
   </div>
   <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
-</div>

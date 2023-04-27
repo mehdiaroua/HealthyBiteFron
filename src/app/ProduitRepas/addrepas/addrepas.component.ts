@@ -11,16 +11,25 @@ import { RepasProduitService } from 'src/app/repas-produit.service';
 })
 export class AddrepasComponent {
   repas: Repas = new Repas();
-constructor(private repasService:RepasProduitService,private R:Router){}
+  submitted = false;
+  imageFile!: File;
+constructor(private repasService:RepasProduitService,private router:Router){}
 
 
-onSubmit(addRepasForm: NgForm) {
- /* this.repasService.addRepas(this.repas)
-    .subscribe(data => {
-      console.log(data);
-      this.repas = new Repas();
-      addRepasForm.resetForm();
-    }, error => console.log(error));*/
+save() {
+  this.repasService.addRepasAndImage(this.repas.nom, this.repas.description, this.repas.prix, this.repas.ingredient, this.repas.allergene, this.repas.objectifType, this.repas.categorieRepas,  this.imageFile)
+    .subscribe(data => console.log(data), error => console.log(error));
+  this.repas = new Repas();
+  this.router.navigate(['/shop']);
+}
+
+onSubmit() {
+  this.submitted = true;
+  this.save();
+}
+
+onFileSelected(event: any) {
+  this.imageFile = event.target.files[0];
 }
 
 }

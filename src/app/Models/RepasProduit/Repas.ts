@@ -11,7 +11,7 @@ export class Repas {
     objectifType!:ObjectifType;
     img!:string;
     categorieRepas!:CategRepas;
-    //user!:User;
+    user!:number;
     nutrition!:Nutrition;
     image_data!:ArrayBuffer;
     imageUrl!: string;
