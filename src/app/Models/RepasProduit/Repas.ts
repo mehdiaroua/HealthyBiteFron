@@ -13,6 +13,9 @@ export class Repas {
     categorieRepas!:CategRepas;
     //user!:User;
     nutrition!:Nutrition;
+    image_data!:ArrayBuffer;
+    imageUrl!: string;
+    imageBase64!:String;
 
 
 

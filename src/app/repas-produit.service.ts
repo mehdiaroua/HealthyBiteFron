@@ -12,9 +12,20 @@ export class RepasProduitService {
   listRepas:Repas[]=[];
   constructor(private httpClient: HttpClient) { }
 
- 
-  addRepas(repas: Repas): Observable<Repas> {
-    return this.httpClient.post<Repas>(`${environment.api}test/addRepas`, repas);
+
+  addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, user: number, image: File): Observable<Repas> {
+    const formData = new FormData();
+    formData.append('nom', nom);
+    formData.append('description', description);
+    formData.append('prix', prix.toString());
+    formData.append('ingredient', ingredient);
+    formData.append('allergene', allergene);
+    formData.append('objectifType', objectifType);
+    formData.append('categRepas', categRepas);
+    formData.append('user', user.toString());
+    formData.append('image', image, image.name);
+
+    return this.httpClient.post<Repas>(`${environment.api}test/addRepasWithImg`, formData);
   }
 
   updateRepas(rep:Repas){
