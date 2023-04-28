@@ -10,6 +10,9 @@ import { RepasProduitService } from 'src/app/repas-produit.service';
 })
 export class DetailsComponent implements OnInit {
 
+
+
+  selectedProduct!: Repas;
   repas!: Repas;
   constructor(private repasProduit:RepasProduitService, private route: ActivatedRoute){}
 
@@ -18,7 +21,10 @@ ngOnInit(){
   const id = +this.route.snapshot.params['id'];
   this.repasProduit.getRepasById(id).subscribe(
     repas => this.repas = repas
+
   );
+  console.log(this.repas);
+
 }
 
 

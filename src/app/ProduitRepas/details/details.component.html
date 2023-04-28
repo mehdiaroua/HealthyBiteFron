@@ -78,7 +78,7 @@
               <div class="product__details__pic">
                   <div class="product__details__pic__item">
                       <img class="product__details__pic__item--large"
-                          src="../../../assets/img/product/details/product-details-1.jpg" alt="">
+                      [src]="'data:image/jpeg;base64,' + repas.imageBase64" alt="hello">
                   </div>
                   <div class="product__details__pic__slider owl-carousel">
                       <img data-imgbigurl="../../../assets/img/product/details/product-details-2.jpg"
@@ -138,11 +138,11 @@
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                              aria-selected="false">Information</a>
+                              aria-selected="false">Ingredients</a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                              aria-selected="false">Reviews <span>(1)</span></a>
+                              aria-selected="false">Valeurs Nutritionnelles </a>
                       </li>
                   </ul>
                   <div class="tab-content">
@@ -166,67 +166,44 @@
                               <h6>Valeurs Nutritionnelles</h6>
 
 
+                              <table class="table table-striped table-hover">
+                                <thead>
+                                  <tr>
 
-	<div class="section over-hide">
-		<div class="container">
-			<div class="row full-height justify-content-center">
-				<div class="col-12 text-center align-self-center py-5">
-					<div class="section text-center py-5 py-md-0">
-			          	<input class="pricing" type="checkbox" id="pricing" name="pricing"/>
-			          	<label for="pricing"><span class="block-diff">kayaking<span class="float-right">camping</span></span></label>
-						<div class="card-3d-wrap mx-auto">
-							<div class="card-3d-wrapper">
-								<div class="card-front">
-									<div class="pricing-wrap">
-										<h4 class="mb-5">Kayaking</h4>
-										<h2 class="mb-2"><sup>$</sup>39 / 4<sup>hrs</sup></h2>
-										<p class="mb-4">per person</p>
-										<p class="mb-1"><i class="uil uil-location-pin-alt size-22"></i></p>
-										<p class="mb-4">Drina, Serbia</p>
-										<a href="#0" class="link">Choose Date</a>
-										<div class="img-wrap img-2">
-											<img src="https://www.bhf.org.uk/-/media/images/information-support/heart-matters/2023/february/nutrition/easy-recipes-4ingredients-ss_no_exp-620x400.png?h=400&w=620&rev=c506cc7cf8b9442cb55d7e5f5e78ca3c&hash=CF6EBFF238F47527DE92EE80D176C570" alt="">
-										</div>
-										<div class="img-wrap img-1">
-											<img src="https://assets.codepen.io/1462889/kayak.png" alt="">
-										</div>
-										<div class="img-wrap img-3">
-											<img src="https://assets.codepen.io/1462889/water.png" alt="">
-										</div>
-										<div class="img-wrap img-6">
-											<img src="https://assets.codepen.io/1462889/Stone.png" alt="">
-										</div>
-			      					</div>
-			      				</div>
-								<div class="card-back">
-									<div class="pricing-wrap">
-										<h4 class="mb-5">Camping</h4>
-										<h2 class="mb-2"><sup>$</sup>29 / 8<sup>hrs</sup></h2>
-										<p class="mb-4">per person</p>
-										<p class="mb-1"><i class="uil uil-location-pin-alt size-22"></i></p>
-										<p class="mb-4">Tara, Serbia</p>
-										<a href="#0" class="link">Choose Date</a>
-										<div class="img-wrap img-2">
-											<img src="https://assets.codepen.io/1462889/grass.png" alt="">
-										</div>
-										<div class="img-wrap img-4">
-											<img src="https://assets.codepen.io/1462889/camp.png" alt="">
-										</div>
-										<div class="img-wrap img-5">
-											<img src="https://assets.codepen.io/1462889/Ivy.png" alt="">
-										</div>
-										<div class="img-wrap img-7">
-											<img src="https://assets.codepen.io/1462889/IvyRock.png" alt="">
-										</div>
-			      					</div>
-			      				</div>
-			      			</div>
-			      		</div>
-			      	</div>
-		      	</div>
-	      	</div>
-	    </div>
-	</div>
+                                    <th>Energies</th>
+                                    <th>Acides</th>
+                                    <th>Glucides</th>
+                                    <th>Sucre</th>
+                                    <th>fibre</th>
+                                    <th>calories</th>
+                                    <th>Proteines</th>
+                                    <th>Lipides</th>
+                                    <th>Sel</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+
+                                    <td>{{repas.nutrition.energies}}</td>
+                                    <td>{{repas.nutrition.acides}}</td>
+                                    <td> {{repas.nutrition.glucides}}</td>
+                                    <td>{{repas.nutrition.sucres}}</td>
+                                    <td>{{repas.nutrition.fibre}}</td>
+                                    <td>{{repas.nutrition.calories}}</td>
+                                    <td>{{repas.nutrition.proteines}}</td>
+                                    <td>{{repas.nutrition.lipides}}</td>
+                                    <td>{{repas.nutrition.sel}}</td>
+
+                                  </tr>
+                                  </tbody>
+                                  </table>
+
+
+
+
+
+
+
                           </div>
                       </div>
                   </div>
