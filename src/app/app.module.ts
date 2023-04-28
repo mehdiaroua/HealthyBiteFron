@@ -18,6 +18,11 @@ import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 import { UpdaterepasComponent } from './ProduitRepas/updaterepas/updaterepas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddpostComponent } from './post-comment/addpost/addpost.component';
+import { UpdatepostComponent } from './post-comment/updatepost/updatepost.component';
+import { FeedComponent } from './post-comment/feed/feed.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,10 +35,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PanierComponent,
     PaiementComponent,
     DetailsRecetteComponent,
-  
+    FeedComponent,
     AddrepasComponent,
     RepasRestaurantComponent,
-    UpdaterepasComponent
+    UpdaterepasComponent,
+    AddpostComponent,
+    UpdatepostComponent
   ],
   imports: [
     BrowserModule,
