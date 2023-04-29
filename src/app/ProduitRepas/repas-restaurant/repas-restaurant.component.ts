@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repas-produit.service';
+import { AddrepasComponent } from '../addrepas/addrepas.component';
 
 @Component({
   selector: 'app-repas-restaurant',
   templateUrl: './repas-restaurant.component.html',
   styleUrls: ['./repas-restaurant.component.css'],
-  providers:[MessageService,ConfirmationService]
+  providers:[MessageService,ConfirmationService,DialogService]
 })
 export class RepasRestaurantComponent implements OnInit{
 
@@ -27,13 +30,18 @@ export class RepasRestaurantComponent implements OnInit{
 
     statuses!: any[];
     imageFile!: File;
-  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService){}
+    ref!: DynamicDialogRef;
+  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService){}
 
   ngOnInit(): void {
     this.repasService.getAllRepas()
     .subscribe(repas => this.repas = repas);
     console.log(this.repas);
   }
+
+  show() {
+    this.ref = this.dialogService.open(AddrepasComponent, { header: 'Add a Product'});
+}
 
   getAllRepas(): void {
     this.repasService.getAllRepas()

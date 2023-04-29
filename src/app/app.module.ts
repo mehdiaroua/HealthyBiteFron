@@ -23,6 +23,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { TagModule } from 'primeng/tag';
     TooltipModule,
     FileUploadModule,
     TagModule,
+    DynamicDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
