@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, Renderer2, NgModule, OnInit } from '@angular/core';
 import { Post } from 'src/app/Models/PostComment/Post';
 import { PostService } from 'src/app/post.service';
 import { BrowserModule } from '@angular/platform-browser'
@@ -6,6 +6,10 @@ import { BrowserModule } from '@angular/platform-browser'
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
+  template: `
+    <button (click)="toggleDarkTheme()">Toggle Dark Theme</button>
+    <div>Hello World!</div>
+  `,
   styleUrls: ['./feed.component.css']
 })
 
@@ -13,7 +17,9 @@ export class FeedComponent implements OnInit {
   posts: Post[] = [];
   currentPage = 1;
   postsPerPage = 5;
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, private renderer: Renderer2) { }
+  isDarkTheme = false;
+
 
   ngOnInit() {
     this.getAllPosts();
@@ -27,6 +33,17 @@ export class FeedComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
+  
+
+  toggleDarkTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+
+    if (this.isDarkTheme) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.renderer.removeClass(document.body, 'dark-theme');
+    }
+  }
 
   previousPage() {
     this.currentPage--;
