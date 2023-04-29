@@ -214,7 +214,11 @@ a:focus, a:hover{
     margin-bottom: 20px;
 }
 
-
+.createPost{
+      display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .stories-wrapper{
     display: flex;
@@ -293,7 +297,9 @@ a:focus, a:hover{
 .post-text{
     width: 100%;
     position: relative;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
+     display: flex;
+  justify-content: center;
 }
 
 .post-text img{
@@ -332,6 +338,21 @@ a:focus, a:hover{
     color: #fff;
 }
 
+.delete-icon {
+  color: red;
+}
+
+.edit-icon {
+  color: rgb(35, 118, 182);
+}
+
+.show-icon {
+  color: rgb(72, 217, 127);
+}
+
+
+
+
 /* facebook post 01 start */
 
 .fb-post1{
@@ -369,7 +390,7 @@ a:focus, a:hover{
     border-bottom: 3px solid #7fad39;
 }
 .fb-p1-main{
-display: inline-block;
+    display: inline-block;
 	padding: 15px 15px 0 15px;
 	background: #fff;
 	margin: 0 0 20px 0;
@@ -380,13 +401,91 @@ display: inline-block;
     overflow: auto;
     width: 100%;
     height: auto;
+  overflow: auto;
+  width: 100%;
+  height: auto;
+  position: relative;
+
+}
+
+
+.fb-p1-main button {
+  float: right;
+  margin-top: -5px;
 }
 .post-title{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     margin: 15px 0;
+    
 }
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    --c: #7fad39;
+    color: var(--c);
+    font-size: 16px;
+    border: 0.3em solid var(--c);
+    border-radius: 0.5em;
+    width: 12em;
+    height: 3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 3em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+    margin: 1em;
+}
+
+nav ul li span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: var(--c);
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+
+nav ul li:hover {
+    color: black;
+}
+
+nav ul li:hover span {
+    transform: translateY(0) scale(2);
+}
+
+nav ul li span:nth-child(1) {
+    --n: 1;
+}
+
+nav ul li span:nth-child(2) {
+    --n: 2;
+}
+
+nav ul li span:nth-child(3) {
+    --n: 3;
+}
+
+nav ul li span:nth-child(4) {
+    --n: 4;
+}
+
+
 .post-title img{
     width: 50px;
     border-radius: 50px;

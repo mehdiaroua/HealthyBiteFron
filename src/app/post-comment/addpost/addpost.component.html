@@ -1,1 +1,14 @@
-<p>addpost works!</p>
+<div class="create-post">
+    <h3 class="mini-heading">Create Post</h3>
+    <form (submit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" [(ngModel)]="post.title" required>
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" [(ngModel)]="post.content" required></textarea>
+        </div>
+        <button type="submit">Add Post</button>
+    </form>
+</div>

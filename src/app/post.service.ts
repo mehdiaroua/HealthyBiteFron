@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
@@ -12,9 +13,17 @@ export class PostService {
     listPost: Post[] = [];
     constructor(private httpClient: HttpClient) { }
 
-    addPost(post: Post): Observable<Post> {
-        return this.httpClient.post<Post>(`${environment.api}test/addPost`, post);
+    addPost(title: string, content: string): Observable<Post> {
+        const post = { title, content };
+        return this.httpClient.post<Post>(`${environment.api}test/addPost`, post).pipe(
+            catchError((error: any) => {
+                console.log(error);
+                return throwError(error);
+            })
+        );
     }
+
+
 
     updatePost(post: Post) {
         return this.httpClient.post<Post>(environment.api + "test/updatePost", post);
