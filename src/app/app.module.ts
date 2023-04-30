@@ -12,6 +12,22 @@ import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
+import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DashboardComponent } from './UserBack/dashboard.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -24,13 +40,28 @@ import { DetailsRecetteComponent } from './recetteConseil/details-recette/detail
     DetailsComponent,
     PanierComponent,
     PaiementComponent,
-    DetailsRecetteComponent
+    DetailsRecetteComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotpasswordComponent,
+    ResetPasswordComponent,
+    DashboardComponent,
+  
+        
+   
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule
+
+       
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
