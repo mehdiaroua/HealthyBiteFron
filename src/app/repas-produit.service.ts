@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Repas } from './Models/RepasProduit/Repas';
+import { Repas } from './models commandeLivraison/RepasProduit/Repas';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
