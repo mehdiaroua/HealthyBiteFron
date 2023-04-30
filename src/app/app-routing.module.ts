@@ -11,6 +11,8 @@ import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-l
 
 import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
 import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
+import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
+import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 
 
 
@@ -25,12 +27,15 @@ const routes: Routes = [
   {path: "checkout", component:PaiementComponent},
   { path: 'aaa', component: GetAllLivraisonComponent },
   { path: 'bbb', component: AddlivraisonComponent },
-  { path: 'updateLiv/:id', component: UpdateLivraisonComponent }
+  { path: 'updateLiv/:id', component: UpdateLivraisonComponent },
+  {path: "repas/addRepas", component:AddrepasComponent},
+  {path: "repas/restaurant", component:RepasRestaurantComponent},
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+  
 })
 export class AppRoutingModule { }

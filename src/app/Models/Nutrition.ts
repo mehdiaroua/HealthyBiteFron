@@ -1,7 +1,5 @@
 import { Repas } from "./Repas";
 
-
-
 export class Nutrition {
     id!:number;
     energies!:number;

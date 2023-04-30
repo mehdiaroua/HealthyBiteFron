@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repas-produit.service';
 import { AddrepasComponent } from '../addrepas/addrepas.component';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { Repas } from 'src/app/Models/Repas';
 
 @Component({
   selector: 'app-repas-restaurant',
   templateUrl: './repas-restaurant.component.html',
-  styleUrls: ['./repas-restaurant.component.css'],
   providers:[MessageService,ConfirmationService,DialogService]
 })
 export class RepasRestaurantComponent implements OnInit{

@@ -27,6 +27,9 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
+import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -42,12 +45,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DetailsRecetteComponent,
     AddlivraisonComponent,
     UpdateLivraisonComponent,
-    GetAllLivraisonComponent
+    GetAllLivraisonComponent,
+    RepasRestaurantComponent,
+    AddrepasComponent
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -60,7 +64,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     FileUploadModule,
     TagModule,
     DynamicDialogModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
