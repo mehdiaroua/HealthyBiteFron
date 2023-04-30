@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repas-produit.service';
 
 @Component({
   selector: 'app-addrepas',
   templateUrl: './addrepas.component.html',
-  styleUrls: ['./addrepas.component.css']
+  styleUrls: ['./addrepas.component.css'],
+  providers:[MessageService]
 })
 export class AddrepasComponent {
   repas: Repas = new Repas();
   submitted = false;
   imageFile!: File;
-constructor(private repasService:RepasProduitService,private router:Router){}
+  uploadedFiles: any[] = [];
+constructor(private repasService:RepasProduitService,private router:Router, private messageService:MessageService){}
 
 
 save() {
@@ -31,5 +34,7 @@ onSubmit() {
 onFileSelected(event: any) {
   this.imageFile = event.target.files[0];
 }
+
+
 
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repas-produit.service';
 import { AddrepasComponent } from '../addrepas/addrepas.component';
+import { Router } from '@angular/router';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-repas-restaurant',
@@ -14,9 +15,10 @@ import { AddrepasComponent } from '../addrepas/addrepas.component';
 })
 export class RepasRestaurantComponent implements OnInit{
 
+  clonedProducts: { [s: string]: Repas } = {};
 
   repas!: Repas[];
-
+  rep!: Repas;
 
   productDialog!: boolean;
 
@@ -31,36 +33,65 @@ export class RepasRestaurantComponent implements OnInit{
     statuses!: any[];
     imageFile!: File;
     ref!: DynamicDialogRef;
-  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService){}
+    id!:number;
+  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router){}
 
   ngOnInit(): void {
-    this.repasService.getAllRepas()
-    .subscribe(repas => this.repas = repas);
-    console.log(this.repas);
+    this.id=2; //this.id = getUserId(); obtenir l'id de l'utilisateur
+
+    this.repasService.getRepasByUserId(this.id)
+      .subscribe(repas => {
+        this.repas = repas;
+
+      });
   }
 
   show() {
     this.ref = this.dialogService.open(AddrepasComponent, { header: 'Add a Product'});
 }
-
-  getAllRepas(): void {
-    this.repasService.getAllRepas()
-      .subscribe(repas => this.repas = repas);
-  }
-
-  deleteRepas(repas: Repas): void {
-    this.repas = this.repas.filter(r => r !== repas);
-    this.repasService.deleteRepas(repas).subscribe();
-  }
-
-  updateRepas(repas: Repas): void {
-    this.repasService.updateRepas(repas).subscribe(updatedRepas => {
-      const index = this.repas.findIndex(r => r.id === updatedRepas.id);
-      if (index !== -1) {
-        this.repas[index] = updatedRepas;
+/*deleteRepas(repas: Repas): void {
+  this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + repas.nom + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+          this.repasService.deleteRepas(repas).subscribe(
+              () => {
+                  this.repas = this.repas.filter((val) => val.id !== repas.id);
+                  this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'repas Deleted', life: 3000 });
+              },
+              (error) => {
+                  console.log('Error deleting repas:', error);
+                  this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error deleting repas', life: 3000 });
+              }
+          );
       }
-    });
-  }
+  });
+}*/
+
+deleteRepas(repas: Repas): void {
+  this.confirmationService.confirm({
+    message: 'Are you sure you want to delete ' + repas.nom + '?',
+    header: 'Confirm',
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+      this.repasService.deleteRepas(repas).subscribe(
+        () => {
+          this.repas = this.repas.filter((val) => val.id !== repas.id);
+          this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content' });
+          console.log('Repas deleted successfully');
+          this.router.navigate(['/repas/restaurant']);
+        },
+        (error) => {
+          console.log('Error deleting repas:', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error deleting repas', life: 3000 });
+        }
+      );
+    }
+  });
+}
+
+
 
   openNew() {
 
@@ -81,24 +112,9 @@ deleteSelectedProducts() {
     });
 }
 
-editProduct(product: Repas) {
-    this.product = { ...product };
-    this.productDialog = true;
-}
 
-deleteProduct(product: Repas) {
-    this.confirmationService.confirm({
-        message: 'Are you sure you want to delete ' + product.nom + '?',
-        header: 'Confirm',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-            this.products = this.products.filter((val) => val.id !== product.id);
-            this.repasService.deleteRepas(product).subscribe();
 
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        }
-    });
-}
+
 
 hideDialog() {
     this.productDialog = false;
@@ -107,11 +123,7 @@ hideDialog() {
 
 saveProduct() {
     this.submitted = true;
-
-
           //  this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-
-
         this.products = [...this.products];
         this.productDialog = false;
         this.repasService.addRepasAndImage(this.product.nom, this.product.description, this.product.prix, this.product.ingredient, this.product.allergene, this.product.objectifType, this.product.categorieRepas,  this.imageFile)
@@ -144,6 +156,55 @@ createId(): string {
     }
     return id;
 }
+
+
+onRowEditInit(repas: Repas) {
+  this.clonedProducts[repas.id] = { ...repas };
+}
+updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File) {
+  this.repasService.updateRepasAndImage(id, nom, description, prix, ingredient, allergene, objectifType, categRepas, image).subscribe(
+    (repas) => console.log(repas),
+    (error) => console.log(error)
+  );
+}
+
+onRowEditSave(repas: Repas) {
+  if (repas.prix > 0) {
+    delete this.clonedProducts[repas.id];
+
+    if (this.imageFile) {
+      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas, this.imageFile).subscribe(
+        () => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Repas is updated' });
+          //this.imageFile = null; // reset image file after update
+        },
+        (error) => {
+          console.log('Error updating repas:', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error updating repas', life: 3000 });
+        }
+      );
+    } else {
+      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas,this.imageFile).subscribe(
+        () => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Repas is updated' });
+        },
+        (error) => {
+          console.log('Error updating repas:', error);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Error updating repas', life: 3000 });
+        }
+      );
+    }
+  } else {
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Invalid Price' });
+  }
+}
+
+
+onRowEditCancel(repas: Repas, index: number) {
+  this.repas[index] = this.clonedProducts[repas.id];
+  delete this.clonedProducts[repas.id];
+}
+
 
 
 }
