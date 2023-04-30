@@ -1,0 +1,41 @@
+  <!--Main Content-->
+    <div class="my-5">
+      <div class="mx-auto w-25 " style="max-width:100%;">
+        <h2 class="text-center mb-3">Add Livraison</h2>
+        <form [formGroup]="formLivraison" >
+          <!--Adresse-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="adresse" class="form-label">adresse</label>
+              <input id="adresse"  formControlName="adresse" type="text" name="adresse" class="form-control" placeholder="adresse" required>
+            </div>
+          </div>
+
+          
+          <!--EtatLivraison-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="etat" class="form-label">Etat Livraison</label>
+              <input id="etat" type="text" name="etat"  formControlName="etat" class="form-control" placeholder="Etat Livraison" required>
+            </div>
+          </div>
+         
+          <!--deliveryTimeSlot-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="deliveryTimeSlot" class="form-label">deliveryTimeSlot</label>
+              <textarea id="deliveryTimeSlot" type="text" name="deliveryTimeSlot"  formControlName="deliveryTimeSlot" class="form-control" placeholder="New Delhi, India" rows="3" required></textarea>
+            </div>
+          </div>
+         
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <input [disabled]="!formLivraison.valid" (click)="onSubmit()" class="btn btn-primary w-100" type="submit" value="Submit">
+            </div>
+          </div>
+
+          <div>
+            
+          </div>
+        </form>
+    

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './headers/navbar/navbar.component';
@@ -13,9 +13,10 @@ import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.component';
-import { ReactiveFormsModule,FormGroup, FormControl, FormsModule } from '@angular/forms';
+
+import { ReactiveFormsModule,FormGroup, FormControl } from '@angular/forms';
 import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
+import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
 
 
 @NgModule({
@@ -30,17 +31,16 @@ import { UpdateLivraisonComponent } from './Commande/update-livraison/update-liv
     PanierComponent,
     PaiementComponent,
     DetailsRecetteComponent,
-    AddLivraisonComponent,
+    AddlivraisonComponent,
     UpdateLivraisonComponent
 
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule,FormsModule ,
-    FormGroup, FormControl,   
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

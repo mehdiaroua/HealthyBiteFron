@@ -10,7 +10,8 @@ import { DetailsRecetteComponent } from './recetteConseil/details-recette/detail
 import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
 
 import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
-import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.component';
+import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
+
 
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
   {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent},
   { path: '', component: GetAllLivraisonComponent },
-  { path: 'addLiv', component: AddLivraisonComponent },
+  { path: 'addLiv', component: AddlivraisonComponent },
   { path: 'updateLiv/:id', component: UpdateLivraisonComponent }
 
 ];
