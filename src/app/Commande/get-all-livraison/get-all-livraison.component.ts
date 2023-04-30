@@ -13,7 +13,7 @@ export class GetAllLivraisonComponent implements OnInit {
 
 
   Livraisons: any[] | undefined
-  url: string = "http://localhost:8080/";
+  url: string = "http://localhost:8080/api/";
 
   constructor(private service: AppService, private router: Router) { 
    

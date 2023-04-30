@@ -1,37 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Livraisons</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/add">Add livraison</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+
     <!--Main Content-->
     <div class="mt-5">
         <h1 class="text-center">View Livraisons</h1>
         <div class="container">
             <!--Add livraison Button-->
             <div class="my-3">
-                <a href="/add"><button type="button" class="btn btn-primary">Add livraison</button></a>
+                <a href="/bbb"><button type="button" class="btn btn-primary">Add livraison</button></a>
             </div>
             <table class="table border" >
                 <thead>
@@ -44,8 +18,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let livraison of Livraisons">
-                    
+                 
+                    <div *ngFor="let livraison of Livraisons">
+                      <tr>
                     <td>{{livraison.adresse}}</td>
                     <td>{{livraison.etat}}</td>
                     <td>{{livraison.deliveryTimeSlot}}</td>
@@ -58,11 +33,10 @@
                           <button class="btn btn-danger" (click)="deletelivraison(livraison.id)" type="button">Delete</button>
                         </div>
                     </td>
-                  </tr>
+                  </div>
                 </tbody>
+                
               </table>
         </div>
     </div>
-</body>
-</html>
 

@@ -23,8 +23,8 @@ const routes: Routes = [
   {path: "details", component:DetailsComponent},
   {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent},
-  { path: '', component: GetAllLivraisonComponent },
-  { path: 'addLiv', component: AddlivraisonComponent },
+  { path: 'aaa', component: GetAllLivraisonComponent },
+  { path: 'bbb', component: AddlivraisonComponent },
   { path: 'updateLiv/:id', component: UpdateLivraisonComponent }
 
 ];

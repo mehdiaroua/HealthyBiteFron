@@ -30,18 +30,18 @@ export class AddlivraisonComponent {
 
   }
   save() {
-    this.service.addLivraison(this.livraison.etatCommande, this.livraison.adresseLivraison, this.livraison.deliveryTimeSlot)
+    this.service.addLivraison(this.formLivraison.value.etatCommande, this.formLivraison.value.adresseLivraison, this.formLivraison.value.deliveryTimeSlot)
       .subscribe(
         data => console.log(data),
         error => console.log(error)
       );
   
-    this.livraison = new Livraison();
-    this.router.navigate(['/shop']);
+    // this.livraison = new Livraison();
+    // this.router.navigate(['/shop']);
   }
   onSubmit() {
-    // this.submitted = true;
-    // this.save();
+    this.submitted = true;
+     this.save();
     console.log("form value :" , this.formLivraison.value)
   }
 }

@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule,FormGroup, FormControl } from '@angular/forms';
 import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
 import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
+import { CommonModule } from '@angular/common';
+import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.comp
     PaiementComponent,
     DetailsRecetteComponent,
     AddlivraisonComponent,
-    UpdateLivraisonComponent
+    UpdateLivraisonComponent,
+    GetAllLivraisonComponent
 
   ],
   imports: [
@@ -40,7 +43,8 @@ import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.comp
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
 
   ],
   providers: [],
