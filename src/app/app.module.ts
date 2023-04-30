@@ -17,6 +17,7 @@ import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.co
 import { ReactiveFormsModule,FormGroup, FormControl, FormsModule } from '@angular/forms';
 import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,13 +32,16 @@ import { UpdateLivraisonComponent } from './Commande/update-livraison/update-liv
     DetailsRecetteComponent,
     AddLivraisonComponent,
     UpdateLivraisonComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     HttpClientModule,
+    AppRoutingModule,
     ReactiveFormsModule,FormsModule ,
-    FormGroup, FormControl
+    FormGroup, FormControl,   
+    FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
