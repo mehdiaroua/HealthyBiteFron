@@ -1,0 +1,50 @@
+<form (submit)="onSubmit()" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="nom">Nom :</label>
+    <input type="text" class="form-control" id="nom" [(ngModel)]="repas.nom" name="nom" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description :</label>
+
+    <textarea name="description" id="description" cols="30" rows="10" class="form-control" [(ngModel)]="repas.description" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="prix">Prix :</label>
+    <input type="number" class="form-control" id="prix" [(ngModel)]="repas.prix" name="prix" required>
+  </div>
+  <div class="form-group">
+    <label for="ingredient">Ingrédient :</label>
+    <input type="text" class="form-control" id="ingredient" [(ngModel)]="repas.ingredient" name="ingredient" required>
+  </div>
+  <div class="form-group">
+    <label for="allergene">Allergène :</label>
+    <input type="text" class="form-control" id="allergene" [(ngModel)]="repas.allergene" name="allergene" required>
+  </div>
+  <div class="form-group">
+    <label for="objectifType">Objectif type :</label>
+    <select class="form-control" id="objectifType" [(ngModel)]="repas.objectifType" name="objectifType" required>
+      <option value="Prendre_Poids">Prise de masse</option>
+      <option value="Perdre_Poids">Perte de poids</option>
+      <option value="Maintenir_Poids">Equilibré</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="categRepas">Catégorie :</label>
+    <select class="form-control" id="categRepas" [(ngModel)]="repas.categorieRepas" name="categRepas" required>
+      <option value="petitdejeuner">Petit déjeuner</option>
+      <option value="dejeuner">Déjeuner</option>
+      <option value="diner">Dîner</option>
+      <option value="dessert">Dessert</option>
+    </select>
+  </div>
+
+
+
+  <div class="form-group">
+    <label for="image">Image :</label>
+    <input type="file" class="form-control-file" id="image" (change)="onFileSelected($event)" required>
+  </div>
+
+ 
+  <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
