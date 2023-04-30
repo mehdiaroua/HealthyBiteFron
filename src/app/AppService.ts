@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { Livraison } from './models commandeLivraison/Livraison';
-import { EtatCommande } from './models commandeLivraison/EtatCommande';
-import { AdresseLivraison } from './models commandeLivraison/AdresseLivraison';
+import { Livraison } from './Models/Livraison';
+import { EtatCommande } from './Models/EtatCommande';
+import { AdresseLivraison } from './Models/AdresseLivraison';
 
 @Injectable({
   providedIn: 'root'

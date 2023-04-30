@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/AppService';
-import { Livraison } from 'src/app/models commandeLivraison/Livraison';
+import { Livraison } from 'src/app/Models/Livraison';
 
 @Component({
   selector: 'app-addlivraison',

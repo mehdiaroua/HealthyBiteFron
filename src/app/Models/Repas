@@ -1,6 +1,8 @@
-import {ObjectifType} from './ObjectifType'
-import { CategRepas } from './CategRepas';
-import { Nutrition } from './Nutrition';
+import { CategRepas } from "./CategRepas";
+import { Nutrition } from "./Nutrition";
+import { ObjectifType } from "./ObjectifType";
+
+
 export class Repas {
     id!:number;
     nom!:string;

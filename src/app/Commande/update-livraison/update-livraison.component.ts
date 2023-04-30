@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { AppService } from 'src/app/AppService';
-import { Livraison } from '../../models commandeLivraison/Livraison';
+import { Livraison } from '../../Models/Livraison';
 
 
 @Component({
