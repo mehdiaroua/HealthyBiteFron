@@ -1,5 +1,5 @@
-export interface AdresseLivraison {
-    id:number
+export class AdresseLivraison {
+    id!:number;
     
     
   

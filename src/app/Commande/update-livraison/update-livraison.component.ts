@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, Validators ,ReactiveFormsModule,FormsModule, FormGroup } from '@angular/forms';
 
 import { AppService } from 'src/app/AppService';
 import { Livraison } from '../../models/Livraison';
@@ -23,13 +22,9 @@ export class UpdateLivraisonComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.params['id'];
-    this.form = new FormGroup({
-      adresse: new FormControl('', [Validators.required]),
-      etat: new FormControl('', [Validators.required]),
-      deliveryTimeSlot: new FormControl('', [Validators.required])
-    });
     this.service.getLivraisonById(id).subscribe(data => {
       this.livraison = data
+      console.log(this.livraison)
     })
   }
 

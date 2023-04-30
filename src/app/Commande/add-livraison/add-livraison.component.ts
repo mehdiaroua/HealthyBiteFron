@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/AppService';
+import { Livraison } from 'src/app/models/Livraison';
+
 
 
 @Component({
@@ -11,25 +13,27 @@ import { AppService } from 'src/app/AppService';
   providers: [AppService],
 })
 export class AddLivraisonComponent implements OnInit {
-
+  livraison : Livraison = new Livraison() ;
+  submitted = false;
+ 
   constructor(private service: AppService, private router: Router) { }
-  data: any
-  
-  form = new FormGroup({
-    adresse: new FormControl('', [Validators.required]),
-    etat: new FormControl('', [Validators.required]),
-    deliveryTimeSlot: new FormControl('', [Validators.required]),
-  })
   ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
-  submit(){
-    this.data = this.form.value
-    console.log(this.data)
+  data: any
 
-    this.service.addLivraison(this.data).subscribe(data => {
-      console.log(data)
-    })
-    this.router.navigate(['/']);
-  }
+
+save() {
+  this.service.addLivraison(this.livraison) .subscribe(data => console.log(data), error => console.log(error));
+  this.livraison = new Livraison();
+  this.router.navigate(['/shop']);
+}
+
+onSubmit() {
+  this.submitted = true;
+  this.save();
+}
+
+
 
 }
