@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './headers/navbar/navbar.component';
@@ -13,7 +13,22 @@ import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AddLivraisonComponent } from './commande/add-livraison/add-livraison.component';
+import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
+import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { TooltipModule } from 'primeng/tooltip';
+import { FileUploadModule } from 'primeng/fileupload';
+import { TagModule } from 'primeng/tag';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
+import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
+import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,12 +41,23 @@ import { AddLivraisonComponent } from './commande/add-livraison/add-livraison.co
     PanierComponent,
     PaiementComponent,
     DetailsRecetteComponent,
-    AddLivraisonComponent
+    AddrepasComponent,
+    ProduitFournisseurComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    TableModule,
+    ToastModule,
+    ToolbarModule,
+    TooltipModule,
+    FileUploadModule,
+    TagModule,
+    DynamicDialogModule,
+    ConfirmDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

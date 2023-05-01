@@ -7,6 +7,11 @@ import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
+import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
+import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
+import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
+import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
+import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -14,9 +19,14 @@ const routes: Routes = [
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},
-  {path: "details", component:DetailsComponent},
+ {path: 'shop/:id', component:DetailsComponent},
   {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent},
+  {path: "repas/addRepas", component:AddrepasComponent},
+  {path: "produit/addProduit", component:AddproduitComponent},
+  {path: "repas/restaurant", component:RepasRestaurantComponent},
+  {path: "produit/fournisseur", component:ProduitFournisseurComponent},
+  {path: "produitShop", component:ProduitShopComponent},
 
 ];
 
