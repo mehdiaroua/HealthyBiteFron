@@ -51,6 +51,8 @@ import { RouterModule } from '@angular/router';
 
   ],
   imports: [
+    RouterModule,
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -64,8 +66,7 @@ import { RouterModule } from '@angular/router';
     FileUploadModule,
     TagModule,
     DynamicDialogModule,
-    ConfirmDialogModule,
-    RouterModule
+    ConfirmDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
