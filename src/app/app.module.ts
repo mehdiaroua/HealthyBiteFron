@@ -12,10 +12,10 @@ import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
-import { HttpClientModule } from '@angular/common/http';
+
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -27,6 +27,21 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
 import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
 import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
+import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+
+
+import { RouterModule } from '@angular/router';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DashboardComponent } from './UserBack/dashboard.component';
+
+
 
 
 @NgModule({
@@ -57,9 +72,18 @@ import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/
     FileUploadModule,
     TagModule,
     DynamicDialogModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    LoginComponent,
+    RegisterComponent,
+    ForgotpasswordComponent,
+    ResetPasswordComponent,
+    DashboardComponent,
+    AppRoutingModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+ 
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

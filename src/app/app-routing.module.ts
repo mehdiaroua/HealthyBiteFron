@@ -12,10 +12,18 @@ import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
 import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
 import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './User/auth.guard';
+
+import { RegisterComponent } from './register/register.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { RoleGuard } from './User/role.guard';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DashboardComponent } from './UserBack/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {path: "home", component:HomeComponent},
+  {path: "home", component:HomeComponent,canActivate:[AuthGuard]},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},
@@ -27,6 +35,24 @@ const routes: Routes = [
   {path: "repas/restaurant", component:RepasRestaurantComponent},
   {path: "produit/fournisseur", component:ProduitFournisseurComponent},
   {path: "produitShop", component:ProduitShopComponent},
+  {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
+  {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
+  {path: "details", component:DetailsComponent,canActivate:[AuthGuard]},
+  {path: "panier", component:PanierComponent,canActivate:[AuthGuard]},
+  {path: "checkout", component:PaiementComponent},
+  {path: "dash", component:DashboardComponent,canActivate:[AuthGuard]},
+  {path: "login", component:LoginComponent},
+  {path: "register", component:RegisterComponent},
+  {path: "forgot", component:ForgotpasswordComponent},
+  {path: "reset", component:ResetPasswordComponent}
+
+
+
+
+
+
+
+
 
 ];
 
