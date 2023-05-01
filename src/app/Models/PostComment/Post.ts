@@ -6,8 +6,8 @@ export class Post {
     content!: string;
     addedDate!: Date;
     imageData!: string; // Change from File to string
-    tags!: Tag[];
-
+    // tags!: Tag[];
+    image!: File;
 
 
 }

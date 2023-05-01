@@ -21,10 +21,10 @@ import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-
 import { UpdaterepasComponent } from './ProduitRepas/updaterepas/updaterepas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddpostComponent } from './post-comment/addpost/addpost.component';
-import { UpdatepostComponent } from './post-comment/updatepost/updatepost.component';
 import { FeedComponent } from './post-comment/feed/feed.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
+import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +43,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     RepasRestaurantComponent,
     UpdaterepasComponent,
     AddpostComponent,
-    UpdatepostComponent
-  ],
+    PostDetailsComponent,
+    UpdatePostComponent,
+    ],
   imports: [
     BrowserModule,
     MatButtonModule,

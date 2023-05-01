@@ -10,20 +10,36 @@ import { PostService } from 'src/app/post.service';
 })
 export class AddpostComponent {
   post: Post = new Post();
+  selectedFile: File | null = null;
   submitted = false;
   constructor(private postService: PostService, private router: Router) { }
 
 
-  save() {
-    this.postService.addPost(this.post.title, this.post.content)
+
+  save(formData: FormData) {
+    this.postService.addPost(formData)
       .subscribe(() => {
         this.post = new Post();
+        this.selectedFile = null;
         this.router.navigate(['/post/posts']);
       }, error => console.log(error));
   }
 
-  onSubmit() {
+
+   onSubmit() {
     this.submitted = true;
-    this.save();
+    const formData = new FormData();
+    formData.append('title', this.post.title);
+    formData.append('content', this.post.content);
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+    }
+    this.save(formData);
   }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+  
+  
 }

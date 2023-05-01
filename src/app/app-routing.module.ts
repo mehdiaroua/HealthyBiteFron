@@ -10,6 +10,8 @@ import { DetailsRecetteComponent } from './recetteConseil/details-recette/detail
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 import { FeedComponent } from './post-comment/feed/feed.component';
+import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
+import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,6 +25,8 @@ const routes: Routes = [
   { path: "repas/addRepas", component: AddrepasComponent },
   { path: "repas/restaurant", component: RepasRestaurantComponent },
   { path: "post/posts", component: FeedComponent },
+  { path: 'posts/:id', component: PostDetailsComponent },
+{ path: 'posts/update/:id', component: UpdatePostComponent }
 
 
 ];
