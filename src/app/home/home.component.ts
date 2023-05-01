@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RepasProduitService } from '../repas-produit.service';
+import { RepasProduitService } from '../repasProduit.service';
 import { Repas } from '../Models/RepasProduit/Repas';
 import { RepasWithImageUrl } from '../Models/RepasProduit/RepasWithImageUrl';
+import { Produit } from '../Models/RepasProduit/Produit';
+import { ProduitService } from '../produit.service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,7 @@ import { RepasWithImageUrl } from '../Models/RepasProduit/RepasWithImageUrl';
 })
 export class HomeComponent implements OnInit{
   repas!:Repas[];
+  produit!:Produit[];
 constructor(private repasProduit:RepasProduitService){}
 
   ngOnInit(){
@@ -20,6 +23,11 @@ constructor(private repasProduit:RepasProduitService){}
       console.log(this.repas);
     });
 
+
+    this.repasProduit.getAllProduit().subscribe(data => {
+      this.produit = data;
+      console.log(this.repas);
+    });
 
 
      }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
-import { RepasProduitService } from 'src/app/repas-produit.service';
+import { RepasProduitService } from 'src/app/repasProduit.service';
 import { AddrepasComponent } from '../addrepas/addrepas.component';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -126,7 +126,7 @@ saveProduct() {
           //  this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
         this.products = [...this.products];
         this.productDialog = false;
-        this.repasService.addRepasAndImage(this.product.nom, this.product.description, this.product.prix, this.product.ingredient, this.product.allergene, this.product.objectifType, this.product.categorieRepas,  this.imageFile)
+        this.repasService.addRepasAndImage(this.product.nom, this.product.description, this.product.prix, this.product.ingredient, this.product.allergene, this.product.objectifType, this.product.categorieRepas,  this.imageFile,this.product.user)
     .subscribe(data => console.log(data), error => console.log(error));
   this.product = new Repas();
   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
@@ -161,8 +161,8 @@ createId(): string {
 onRowEditInit(repas: Repas) {
   this.clonedProducts[repas.id] = { ...repas };
 }
-updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File) {
-  this.repasService.updateRepasAndImage(id, nom, description, prix, ingredient, allergene, objectifType, categRepas, image).subscribe(
+updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:number) {
+  this.repasService.updateRepasAndImage(id, nom, description, prix, ingredient, allergene, objectifType, categRepas, image,user).subscribe(
     (repas) => console.log(repas),
     (error) => console.log(error)
   );
@@ -173,7 +173,7 @@ onRowEditSave(repas: Repas) {
     delete this.clonedProducts[repas.id];
 
     if (this.imageFile) {
-      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas, this.imageFile).subscribe(
+      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas, this.imageFile,repas.user).subscribe(
         () => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Repas is updated' });
           //this.imageFile = null; // reset image file after update
@@ -184,7 +184,7 @@ onRowEditSave(repas: Repas) {
         }
       );
     } else {
-      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas,this.imageFile).subscribe(
+      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas,this.imageFile,repas.user).subscribe(
         () => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Repas is updated' });
         },

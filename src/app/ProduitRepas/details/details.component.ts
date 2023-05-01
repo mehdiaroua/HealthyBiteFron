@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
-import { RepasProduitService } from 'src/app/repas-produit.service';
+import { RepasProduitService } from 'src/app/repasProduit.service';
 
 @Component({
   selector: 'app-details',

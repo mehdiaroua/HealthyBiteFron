@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
-import { RepasProduitService } from 'src/app/repas-produit.service';
+import { RepasProduitService } from 'src/app/repasProduit.service';
 
 @Component({
   selector: 'app-addrepas',
@@ -20,7 +20,7 @@ constructor(private repasService:RepasProduitService,private router:Router, priv
 
 
 save() {
-  this.repasService.addRepasAndImage(this.repas.nom, this.repas.description, this.repas.prix, this.repas.ingredient, this.repas.allergene, this.repas.objectifType, this.repas.categorieRepas,  this.imageFile)
+  this.repasService.addRepasAndImage(this.repas.nom, this.repas.description, this.repas.prix, this.repas.ingredient, this.repas.allergene, this.repas.objectifType, this.repas.categorieRepas,  this.imageFile,this.repas.user)
     .subscribe(data => console.log(data), error => console.log(error));
   this.repas = new Repas();
   this.router.navigate(['/shop']);

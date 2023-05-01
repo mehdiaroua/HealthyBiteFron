@@ -15,7 +15,6 @@ import { DetailsRecetteComponent } from './recetteConseil/details-recette/detail
 import { HttpClientModule } from '@angular/common/http';
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
-import { UpdaterepasComponent } from './ProduitRepas/updaterepas/updaterepas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
@@ -25,6 +24,10 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
+import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
+import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     DetailsRecetteComponent,
     AddrepasComponent,
     RepasRestaurantComponent,
-    UpdaterepasComponent
+    ProduitShopComponent,
+    AddproduitComponent,
+    ProduitFournisseurComponent
+
   ],
   imports: [
     BrowserModule,
