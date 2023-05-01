@@ -1,4 +1,3 @@
-import { Role } from './../Class/user';
 import {  User } from '../Class/user';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
@@ -17,9 +16,10 @@ export class UserService {
   login(User:any){
     return this.http.post(this.baseurl,User)
   }
-  signup(signupData: any): Observable<any> {
+  signup(signupData:any): Observable<any> {
     return this.http.post(`http://localhost:8080/api/auth/signup`, signupData);
   }
+  
   isLoggedIn(){
     return localStorage.getItem('token')!=null;
   }
@@ -48,6 +48,11 @@ return false;
         })
       );
     }
+    
+    
+    
+    
+    
 
     resetPasswordBySms(user: User, code: string, newPassword: string): Observable<any> {
       const url = `http://localhost:8080/api/test/resetbysms/${code}/${newPassword}`;

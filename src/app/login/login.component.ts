@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
     
     
     private navigateToUserRole() {
-      const role = this.currentUser.roles[0].name;
+      const role = this.currentUser.role[0].name;
       switch (role) {
         case ERole.ROLE_ADMIN:
           this.route.navigate(['/dash']);
