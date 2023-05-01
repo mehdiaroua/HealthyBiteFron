@@ -37,19 +37,26 @@ export class PostService {
   //   );
   // }
 
-   updatePostAndImage(id: number, content: string, title: string, image: File): Observable<Post> {
-    const formData = new FormData();
-    formData.append('id', id.toString());
-    formData.append('content', content);
-    formData.append('title', title);
+  updatePostAndImage(id: number, title: string, content: string, image?: File): Observable<Post> {
+  const formData = new FormData();
+  formData.append('id', id.toString());
+  formData.append('title', title);
+  formData.append('content', content);
+  if (image) {
     formData.append('image', image, image.name);
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
-
-    return this.httpClient.put<Post>(`${environment.api}test/updatePostWithImg`, formData, { headers });
   }
+  const headers = new HttpHeaders();
+  headers.append('Content-Type', 'multipart/form-data');
+  headers.append('Accept', 'application/json');
 
+return this.httpClient.put<Post>(`${environment.api}test/updatePostWithImg`, formData, { headers })
+  .pipe(
+    catchError(error => {
+      console.log(error);
+      return throwError(error);
+    })
+  );
+}
 
   getAllPosts() {
     return this.httpClient.get<Post[]>(environment.api + 'test/getAllPost');
