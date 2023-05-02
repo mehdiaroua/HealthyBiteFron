@@ -22,7 +22,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { DashboardComponent } from './UserBack/dashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: "home", component:HomeComponent,canActivate:[AuthGuard]},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
@@ -40,11 +40,13 @@ const routes: Routes = [
   {path: "details", component:DetailsComponent,canActivate:[AuthGuard]},
   {path: "panier", component:PanierComponent,canActivate:[AuthGuard]},
   {path: "checkout", component:PaiementComponent},
-  {path: "dash", component:DashboardComponent,canActivate:[AuthGuard]},
+  {path: "dash", component:DashboardComponent,canActivate:[RoleGuard]},
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
   {path: "forgot", component:ForgotpasswordComponent},
   {path: "reset", component:ResetPasswordComponent}
+
+
 
 
 

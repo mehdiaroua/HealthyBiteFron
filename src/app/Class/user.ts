@@ -1,19 +1,15 @@
+
+
 export class User {
-  id!: number;
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  phone: string = '';
+  username!: string;
+  email!: string;
+  password!: string;
+  phone!: string;
   code: string ='';
-  roles: Role[] = [];
   age!: number;
   enabled!: boolean;
-
-  
-  
- 
+  role!: Role[];
 }
-
 export enum ERole {
   ROLE_USER = 'ROLE_USER',
   ROLE_MODERATOR = 'ROLE_MODERATOR',
@@ -23,7 +19,8 @@ export enum ERole {
 }
 
 export class Role {
-  id: number = 0;
-  name: ERole = ERole.ROLE_USER;
+  id!: number;
+  name!: ERole;
 }
+
 

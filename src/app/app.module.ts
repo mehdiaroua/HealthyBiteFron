@@ -65,7 +65,10 @@ import { DashboardComponent } from './UserBack/dashboard.component';
     RegisterComponent,
     ForgotpasswordComponent,
     ResetPasswordComponent,
-    DashboardComponent,
+    DashboardComponent
+
+
+
   ],
   imports: [
     BrowserModule,

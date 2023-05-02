@@ -4,12 +4,18 @@ import { ERole, Role, User } from '../Class/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Chart, ChartType } from 'chart.js';
+import { StorageService } from '../service/storage.service';
+
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit{
+  Roles: Role[] = [];
+  data: any;
   isEditing = false; // add a new variable to track editing mode
   selectedUser!: User;
   username!: string;
@@ -22,9 +28,11 @@ export class DashboardComponent implements OnInit{
   ];
   users: any[] = [];
 
-  constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private storage:StorageService) { }
 
   ngOnInit(): void {
+this.user=this.storage.getUser();
+console.log(this.user);
     this.userService.getAllUsers().subscribe(data => {
       console.log(data); // check if data is being retrieved correctly
 
@@ -136,4 +144,5 @@ export class DashboardComponent implements OnInit{
           console.log(error);
         });
   }
+  
 }
