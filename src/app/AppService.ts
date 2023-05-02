@@ -14,11 +14,12 @@ export class AppService {
   constructor(private httpClient: HttpClient) { }
 
 
-  addLivraison(etat : EtatCommande, adresse: AdresseLivraison, time: string): Observable<any> {
+  addLivraison(etat : EtatCommande, adresse: AdresseLivraison, dateLivraison: string,collectionPoint: string): Observable<any> {
     const livraison = {
       etat: etat,
       adresseLivraison: adresse,
-      dateLivraison: time
+      dateLivraison: dateLivraison,
+      collectionPoint:collectionPoint
     };
    
     return this.httpClient.post<any>(`${this.URL}addLivraison`, livraison);

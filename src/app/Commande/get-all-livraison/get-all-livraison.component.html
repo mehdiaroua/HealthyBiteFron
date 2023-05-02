@@ -11,19 +11,22 @@
                 <thead>
                   <tr>
                    
-                    <th scope="col">adresse</th>
-                    <th scope="col">etat</th>
-                    <th scope="col">deliveryTimeSlot</th>
+                    <th>adresse</th>
+                    <th>etat</th>
+                    <th>deliveryTimeSlot</th>
+                    <th>collectionPoint</th>
+                    <th></th>
                  
                   </tr>
                 </thead>
                 <tbody>
                  
-                    <div *ngFor="let livraison of Livraisons">
-                      <tr>
+                 
+                      <tr *ngFor="let livraison of Livraisons">
                     <td>{{livraison.adresse}}</td>
                     <td>{{livraison.etat}}</td>
                     <td>{{livraison.deliveryTimeSlot}}</td>
+                    <td>{{livraison.collectionPoint}}</td>
                   
                     <td>
                         <div class="d-inline mx-2">
@@ -33,7 +36,7 @@
                           <button class="btn btn-danger" (click)="deletelivraison(livraison.id)" type="button">Delete</button>
                         </div>
                     </td>
-                  </div>
+                </tr>
                 </tbody>
                 
               </table>

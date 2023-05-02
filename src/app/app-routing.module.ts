@@ -30,6 +30,8 @@ const routes: Routes = [
   { path: 'updateLiv/:id', component: UpdateLivraisonComponent },
   {path: "repas/addRepas", component:AddrepasComponent},
   {path: "repas/restaurant", component:RepasRestaurantComponent},
+  {path: "paiement", component:PaiementComponent},
+  
 
 ];
 
