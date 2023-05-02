@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ERole, User } from '../Class/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { StorageService } from '../service/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  form: any = {
+    username: null,
+    password: null
+  };
+  user: User = new User();
+
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+
   
   formSubmitted = false;
 
@@ -18,27 +30,17 @@ export class LoginComponent implements OnInit {
     
     currentUser!: User;
     reponsedata: any;
-    errorMessage: string = '';
   
-  user: User = new User();
- 
-  signupForm: FormGroup;
-  password: any;
-  username: any;
+  
+  
   userService: any;
     
 
-    constructor(private service:UserService, private route:Router, private formBuilder: FormBuilder,private http: HttpClient) {
-      this.signupForm = this.formBuilder.group({
-        username: ['', Validators.required],
-        email: ['', Validators.required],
-        password: ['', Validators.required],
-        phone: ['', Validators.required],
-        role: [[{id: 1, name: ERole.ROLE_ADMIN}], Validators.required]
-      });
+    constructor(private service:UserService, private route:Router, private formBuilder: FormBuilder,private http: HttpClient, private storageService: StorageService) {
+      
     }
-    getCurrentUser() {
-      const token = localStorage.getItem('token');
+   /* getCurrentUser() {
+      const token = sessionStorage.getItem('token');
       if (token) {
         const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
         this.http.get<User>('http://localhost:8080/api/auth/user', { headers }).subscribe(
@@ -51,10 +53,10 @@ export class LoginComponent implements OnInit {
           }
         );
       }
-    }
+    }*/
     
     
-    private navigateToUserRole() {
+    public navigateToUserRole() {
       const role = this.currentUser.role[0].name;
       switch (role) {
         case ERole.ROLE_ADMIN:
@@ -78,11 +80,10 @@ export class LoginComponent implements OnInit {
     
     
     ngOnInit() {
-        var body = document.getElementsByTagName('body')[0];
-        body.classList.add('login-page');
-
-        var navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.add('navbar-transparent');
+      if (this.storageService.isLoggedIn()) {
+        this.isLoggedIn = true;
+        this.roles = this.storageService.getUser().roles;
+      }
     }
     ngOnDestroy(){
         var body = document.getElementsByTagName('body')[0];
@@ -97,21 +98,26 @@ export class LoginComponent implements OnInit {
     goToForgot() {
       this.route.navigate(['/forgot']);
     }
-    login() {
-      const user = {
-        username: this.username,
-        password: this.password
-      };
-       
+    onSubmit(): void {
+      const { username, password } = this.form;
   
-    
-      this.service.login(user).subscribe(data => {
-        if (data != null) {
-          this.reponsedata = data;
-          localStorage.setItem('token', this.reponsedata.accessToken);
-          this.getCurrentUser(); // Get the current user information
+      this.service.login(username, password).subscribe({
+        next: (data: any) => {
+          this.storageService.saveUser(data);
+  
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.roles = this.storageService.getUser().roles;
+
+        },
+        error: (err: { error: { message: string; }; }) => {
+          this.errorMessage = err.error.message;
+          this.isLoginFailed = true;
         }
       });
+    }
+    reloadPage(): void {
+      window.location.reload();
     }
       
       

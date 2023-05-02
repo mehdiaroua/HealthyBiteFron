@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: "details", component:DetailsComponent,canActivate:[AuthGuard]},
   {path: "panier", component:PanierComponent,canActivate:[AuthGuard]},
   {path: "checkout", component:PaiementComponent},
-  {path: "dash", component:DashboardComponent,canActivate:[AuthGuard]},
+  {path: "dash", component:DashboardComponent,canActivate:[RoleGuard]},
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
   {path: "forgot", component:ForgotpasswordComponent},
