@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AppService } from 'src/app/AppService';
+import { AppService } from 'src/app/LivraisonService';
 import { Livraison } from '../../Models/Livraison';
 
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppService } from 'src/app/AppService';
+import { AppService } from 'src/app/LivraisonService';
 import { Livraison } from 'src/app/Models/Livraison';
 
 @Component({
@@ -26,8 +26,13 @@ export class AddlivraisonComponent {
     this.formLivraison = this.form.group({
       etatCommande: ['', [Validators.required]],
       adresseLivraison: ['', [Validators.required]],
-      deliveryTimeSlot: ['', [Validators.required]]})
-
+      deliveryTimeSlot: ['', [Validators.required]], currentLocation: ['', [Validators.required]],
+      // lastUpdatedAt: ['', [Validators.required]],
+      // alternateAddress: ['', [Validators.required]],
+      // collectionPoint: ['', [Validators.required]],
+      // expressDeliveryFee: ['', [Validators.required]]
+    })
+     
   }
   save() {
     this.service.addLivraison(this.formLivraison.value.etatCommande, this.formLivraison.value.adresseLivraison, this.formLivraison.value.deliveryTimeSlot)

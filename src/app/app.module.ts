@@ -30,6 +30,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RouterModule } from '@angular/router';
+import { AddcollectionPointComponent } from './commande/addcollection-point/addcollection-point.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { RouterModule } from '@angular/router';
     UpdateLivraisonComponent,
     GetAllLivraisonComponent,
     RepasRestaurantComponent,
-    AddrepasComponent
+    AddrepasComponent,
+    AddcollectionPointComponent
 
   ],
   imports: [
