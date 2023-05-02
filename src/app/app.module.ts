@@ -25,6 +25,7 @@ import { FeedComponent } from './post-comment/feed/feed.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
 import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
+import { CommentsComponent } from './post-comment/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UpdatePostComponent } from './post-comment/update-post/update-post.comp
     AddpostComponent,
     PostDetailsComponent,
     UpdatePostComponent,
+    CommentsComponent,
     ],
   imports: [
     BrowserModule,

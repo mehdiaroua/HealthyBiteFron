@@ -12,6 +12,7 @@ import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-
 import { FeedComponent } from './post-comment/feed/feed.component';
 import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
 import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
+import { CommentsComponent } from './post-comment/comments/comments.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,7 +27,9 @@ const routes: Routes = [
   { path: "repas/restaurant", component: RepasRestaurantComponent },
   { path: "post/posts", component: FeedComponent },
   { path: 'posts/:id', component: PostDetailsComponent },
-{ path: 'posts/update/:id', component: UpdatePostComponent }
+  { path: 'posts/update/:id', component: UpdatePostComponent },
+  { path: 'posts/comments', component: CommentsComponent }
+
 
 
 ];

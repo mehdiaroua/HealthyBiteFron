@@ -77,7 +77,7 @@
                         <div class="createPost">
                             <h3 class="mini-headign"></h3>
                             <div class="post-text">
-                                <p  placeholder="" (click)="openCreatePostModal()">What's on your mind?</p>
+                                <p placeholder="" (click)="openCreatePostModal()">What's on your mind?</p>
                                 <!-- <nav>
                                     <ul>
                                         <li >
@@ -104,21 +104,23 @@
                                 </div>
                                 <div class="fb-p1-main"
                                     *ngFor="let post of posts.slice((currentPage-1)*postsPerPage, currentPage*postsPerPage)">
-                                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
                                         <mat-icon>more_vert</mat-icon>
                                     </button>
                                     <mat-menu #menu="matMenu">
                                         <button mat-menu-item>
-                                            <mat-icon class="delete-icon" (click)="deletePost(post)" >delete_forever</mat-icon>
+                                            <mat-icon class="delete-icon"
+                                                (click)="deletePost(post)">delete_forever</mat-icon>
                                             <span>delete</span>
                                         </button>
-<a [routerLink]="['/posts/update', post.id]">
-                                               <button mat-menu-item >
-                                            <mat-icon class="edit-icon">edit</mat-icon>
-                                            <span>edit</span>
-                                        </button>
+                                        <a [routerLink]="['/posts/update', post.id]">
+                                            <button mat-menu-item>
+                                                <mat-icon class="edit-icon">edit</mat-icon>
+                                                <span>edit</span>
+                                            </button>
                                         </a>
-                                     
+
                                         <a href="/posts/{{ post.id }}">
                                             <button mat-menu-item>
                                                 <mat-icon class="show-icon">pageview</mat-icon>
@@ -136,17 +138,17 @@
                                             <li><span>{{post.addedDate}}</span></li>
                                         </ul>
                                         <p style="  font-weight: bold;">{{post.title}}
-                                            
+
                                         </p>
-                                        
-                                        
+
+
                                     </div>
                                     <div class="post-images">
-                                       
+
 
                                         <div class="post-images2">
                                             <p>{{post.content}}
-                                            
+
                                             </p>
                                             <img [src]="postImageURL(post.imageData)" alt="post images 04">
                                         </div>
@@ -159,10 +161,100 @@
                                                 <img src="/assets/images/like.png" alt="like">
                                                 <span>22k like</span>
                                             </li>
-                                            <li><i class="fa fa-comment-dots"></i> <span>555 comments</span></li>
-                                            <li><i class="fa fa-share-from-square"></i> <span>254 share</span></li>
+                                            <li><i (click)="toggleClicked(post.id)" class="fa fa-comment"></i>
+                                                {{ isClicked(post.id) ? 'Hide Comments' : 'Show Comments' }}
+                                            </li>
                                         </ul>
                                     </div>
+                                    <!-- <div class="comments-section">
+                                        <h3>Comments</h3>
+                                        <ul class="comments-list" *ngFor="let comment of post.comments">
+                                            <li class="comment">
+                                                <div class="profile">
+                                                    <img src="/assets/images/user.jpg" alt="user" class="">
+                                                    <h3>Eya Mastour</h3>
+                                                </div>
+                                                <div class="comment-text">
+                                                    <p>This is a comment.</p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                    <!-- <div class="comments-section">
+                                        <ul class="comments-list" *ngFor="let comment of post.comments">
+                                            <li class="comment">
+                                                <div class="profile">
+                                                    <img src="/assets/images/user.jpg" alt="user" class="">
+                                                    <h3>Eya Mastour</h3>
+                                                </div>
+                                                <div class="comment-text">
+                                                    <p>{{ comment.content }}</p>
+                                                </div>
+                                                <div class="replies-section">
+                                                    <ul class="replies-list" *ngIf="comment.replies">
+                                                        <li class="reply" *ngFor="let reply of comment.replies">
+                                                            <div class="profile">
+                                                                <img src="/assets/images/user.jpg" alt="user" class="">
+                                                            </div>
+                                                            <div class="reply-text">
+                                                                <p>{{ reply.content }}</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+
+
+                                    <!-- Contenedor Principal -->
+                                    <div *ngIf="isClicked(post.id)" class="comments-container">
+                                        <ul id="comments-list" class="comments-list">
+                                            <li *ngFor="let comment of post.comments">
+                                                <div class="comment-main-level">
+                                                    <!-- Avatar -->
+                                                    <div class="comment-avatar"><img src="/assets/images/us3.png"
+                                                            alt=""></div>
+                                                    <!-- Contenedor del Comentario -->
+                                                    <div class="comment-box">
+                                                        <div class="comment-head">
+                                                            <h6 class="comment-name by-author"><a
+                                                                    href="http://creaticode.com/blog">Agustin Ortiz</a>
+                                                            </h6>
+                                                            <i class="fa fa-reply"></i>
+                                                            <i class="fa fa-heart"></i>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <p>{{ comment.content }}</p>
+                                                        </div>
+                                                        <!-- Respuestas de los comentarios -->
+                                                        <ul class="comments-list reply-list">
+                                                            <li *ngFor="let reply of comment.replies">
+                                                                <!-- Avatar -->
+                                                                <div class="comment-avatar"><img
+                                                                        src="/assets/images/us4.png" alt=""></div>
+                                                                <!-- Contenedor del Comentario -->
+                                                                <div class="comment-box">
+                                                                    <div class="comment-head">
+                                                                        <h6 class="comment-name"><a
+                                                                                href="http://creaticode.com/blog">Lorena
+                                                                                Rojero</a></h6>
+                                                                        <i class="fa fa-reply"></i>
+                                                                        <i class="fa fa-heart"></i>
+                                                                    </div>
+                                                                    <div class="comment-content">
+                                                                        <p>{{ reply.content }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
                                 </div>
                             </div>
                             <div class="pagination-buttons">

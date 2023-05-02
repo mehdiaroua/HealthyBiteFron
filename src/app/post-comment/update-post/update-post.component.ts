@@ -10,7 +10,7 @@ import { PostService } from 'src/app/post.service';
 })
 export class UpdatePostComponent implements OnInit {
    post!: Post;
-  imageFile!: File;
+   imageFile!: File;
 
   constructor(private postService: PostService,
               private router: Router,
