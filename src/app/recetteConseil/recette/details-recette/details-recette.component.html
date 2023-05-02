@@ -1,0 +1,15 @@
+<div class="row">
+  <h5>Details de la recette</h5>
+</div>
+<div class="row">
+  <div class="blog__item__text">
+    <p>Nom {{ recette.nom }}</p>
+  </div>
+</div>
+<div class="row" *ngIf="ingredients.length > 0; else noIngredients"></div>
+
+<ng-template #noIngredients>
+  <div class="blog__item__text">
+    <p>Pas d'ingredients encore</p>
+  </div>
+</ng-template>
