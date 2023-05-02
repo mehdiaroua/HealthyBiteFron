@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { Produit } from './Models/RepasProduit/Produit';
 import { User } from './Class/user';
 import { UserService } from './service/user.service';
+import { StorageService } from './service/storage.service';
+import { CategProduit } from './Models/RepasProduit/CategProduit';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +18,11 @@ export class RepasProduitService {
   listProduit:Produit[]=[];
    id!:number
 user!: any;
-  constructor(private httpClient: HttpClient,private userService:UserService) { }
+  constructor(private httpClient: HttpClient,private userService:UserService, private storage: StorageService) { }
 
 
-  addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:User): Observable<Repas> {
-    this.user = this.userService.getCurrentUser();
+  addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File): Observable<Repas> {
+    this.user = this.storage.getUser();
     const formData = new FormData();
     formData.append('nom', nom);
     formData.append('description', description);
@@ -30,11 +32,13 @@ user!: any;
     formData.append('objectifType', objectifType);
     formData.append('categRepas', categRepas);
     formData.append('image', image, image.name);
-    formData.append('userId', user.id.toString());
+    formData.append('user', this.user.id.toString());
+
     return this.httpClient.post<Repas>(`${environment.api}test/addRepasWithImg`, formData);
   }
 
-  updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:User): Observable<Repas> {
+  updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File): Observable<Repas> {
+    this.user = this.storage.getUser();
     const formData = new FormData();
     formData.append('id', id.toString());
     formData.append('nom', nom);
@@ -45,7 +49,7 @@ user!: any;
     formData.append('objectifType', objectifType);
     formData.append('categRepas', categRepas);
     formData.append('image', image, image.name);
-    formData.append('user', user.id.toString());
+    formData.append('user', this.user.id.toString());
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
@@ -58,7 +62,7 @@ user!: any;
   }
 
  getAllRepas(){
-  return this.httpClient.get<Repas[]>(environment.api+"test/getAllRepas")
+  return this.httpClient.get<Repas[]>(environment.api+"test/getAllRepasAndImage")
  }
 
  deleteRepas(repas: Repas): Observable<any> {
@@ -84,34 +88,36 @@ user!: any;
 
 
 
-  addProduitAndImage(nom: string, description: string, prix: number, ingredient: string, categProduit: string, image: File): Observable<Produit> {
-    const formData = new FormData();
-    formData.append('nom', nom);
-    formData.append('description', description);
-    formData.append('prix', prix.toString());
-    formData.append('ingredient', ingredient);
-    formData.append('categProduit', categProduit);
-   // formData.append('user', user);
-    formData.append('image', image, image.name);
+ addProduitAndImage(nom: string, description: string, prix: number, ingredient: string,  categProduit: CategProduit, image: File): Observable<Produit> {
+  this.user = this.storage.getUser();
+  const formData = new FormData();
+  formData.append('nom', nom);
+  formData.append('description', description);
+  formData.append('prix', prix.toString());
+  formData.append('ingredient', ingredient);
+  formData.append('categProduit', categProduit);
+  formData.append('image', image, image.name);
+  formData.append('user', this.user.id.toString());
 
-    return this.httpClient.post<Produit>(`${environment.api}test/addProduitWithImg`, formData);
-  }
+  return this.httpClient.post<Produit>(`${environment.api}test/addProduitWithImg`, formData);
+}
 
-  updateProduitAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, categProduit: string, image: File): Observable<Produit> {
-    const formData = new FormData();
-    formData.append('id', id.toString());
-    formData.append('nom', nom);
-    formData.append('description', description);
-    formData.append('prix', prix.toString());
-    formData.append('ingredient', ingredient);
-    formData.append('categProduit', categProduit);
-    formData.append('image', image, image.name);
-    const headers = new HttpHeaders();
-    headers.append('Content-Type', 'multipart/form-data');
-    headers.append('Accept', 'application/json');
+updateProduitAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, categProduit: CategProduit, image: File): Observable<Produit> {
+  this.user = this.storage.getUser();
+  const formData = new FormData();
+  formData.append('id', id.toString());
+  formData.append('nom', nom);
+  formData.append('description', description);
+  formData.append('prix', prix.toString());
+  formData.append('ingredient', ingredient);
+  formData.append('categProduit', categProduit);
+  formData.append('image', image, image.name);
+  formData.append('user', this.user.id.toString());
+  const headers = new HttpHeaders();
 
-    return this.httpClient.put<Produit>(`${environment.api}test/updateProduitWithImg`, formData, { headers });
-  }
+  return this.httpClient.put<Produit>(`${environment.api}test/updateProduitWithImg`, formData, { headers });
+}
+
 
   getProduitById(id:number){
     return this.httpClient.get<Produit>(environment.api+"test/getProduitById"+`/${id}`);

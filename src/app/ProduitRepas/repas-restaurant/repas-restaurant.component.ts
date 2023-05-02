@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { User } from 'src/app/Class/user';
 import { UserService } from 'src/app/service/user.service';
+import { StorageService } from 'src/app/service/storage.service';
+import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
 
 @Component({
   selector: 'app-repas-restaurant',
@@ -37,13 +39,14 @@ export class RepasRestaurantComponent implements OnInit{
     ref!: DynamicDialogRef;
     id!:number;
     user!:any;
-  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router, private userService:UserService){}
+  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router, private userService:StorageService){}
 
   ngOnInit(): void {
     //this.id=2; //this.id = getUserId(); obtenir l'id de l'utilisateur
-    this.user= this.userService.getCurrentUser();
+    this.user= this.userService.getUser();
+    console.log(this.user);
 
-    this.repasService.getRepasByUserId(this.id)
+    this.repasService.getRepasByUserId(this.userService.getUser().id)
       .subscribe(repas => {
         this.repas = repas;
 
@@ -82,7 +85,7 @@ deleteRepas(repas: Repas): void {
       this.repasService.deleteRepas(repas).subscribe(
         () => {
           this.repas = this.repas.filter((val) => val.id !== repas.id);
-          this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content' });
+          this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Repas supprimé avec Succées' });
           console.log('Repas deleted successfully');
           this.router.navigate(['/repas/restaurant']);
         },
@@ -124,42 +127,7 @@ hideDialog() {
     this.productDialog = false;
     this.submitted = false;
 }
-save() {
-  //const user = this.userService.getCurrentUser();
-  if (!this.user) {
-    console.log('User not logged in');
-    return;
-  }
 
-  if (!this.imageFile) {
-    console.log('No image selected');
-    return;
-  }
-
-  this.submitted = true;
-
-  this.repasService.addRepasAndImage(
-    this.rep.nom,
-    this.rep.description,
-    this.rep.prix,
-    this.rep.ingredient,
-    this.rep.allergene,
-    this.rep.objectifType,
-    this.rep.categorieRepas,
-    this.imageFile,
-    this.user
-  ).subscribe(
-    (data) => {
-      console.log(data);
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-      this.router.navigate(['/shop']);
-    },
-    (error) => {
-      console.log(error);
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Product Creation Failed', life: 3000 });
-    }
-  );
-}
 
 
 
@@ -203,8 +171,8 @@ createId(): string {
 onRowEditInit(repas: Repas) {
   this.clonedProducts[repas.id] = { ...repas };
 }
-updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:User) {
-  this.repasService.updateRepasAndImage(id, nom, description, prix, ingredient, allergene, objectifType, categRepas, image,user).subscribe(
+updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: CategProduit, image: File) {
+  this.repasService.updateRepasAndImage(id, nom, description, prix, ingredient, allergene, objectifType, categRepas, image).subscribe(
     (repas) => console.log(repas),
     (error) => console.log(error)
   );
@@ -215,7 +183,7 @@ onRowEditSave(repas: Repas) {
     delete this.clonedProducts[repas.id];
 
     if (this.imageFile) {
-      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas, this.imageFile,repas.user).subscribe(
+      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas, this.imageFile).subscribe(
         () => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Repas is updated' });
           //this.imageFile = null; // reset image file after update
@@ -226,7 +194,7 @@ onRowEditSave(repas: Repas) {
         }
       );
     } else {
-      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas,this.imageFile,repas.user).subscribe(
+      this.repasService.updateRepasAndImage(repas.id,repas.nom, repas.description, repas.prix, repas.ingredient, repas.allergene, repas.objectifType, repas.categorieRepas,this.imageFile).subscribe(
         () => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Repas is updated' });
         },

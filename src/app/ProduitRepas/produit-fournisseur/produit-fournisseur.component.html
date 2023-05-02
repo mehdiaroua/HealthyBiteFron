@@ -94,11 +94,8 @@
 
 <td>
   <p-cellEditor>  <ng-template pTemplate="input">
-    <select class="form-control" id="categProduit" [(ngModel)]="produit.categorieProduit" name="categProduit" required>
-      <option value="proteienes">Proteines</option>
-      <option value="vitamines">Vitamines</option>
-      <option value="acide">Acides</option>
-
+    <select class="form-control" id="categProduit" [(ngModel)]="produit.categProduit" name="categProduit" required>
+      <option *ngFor="let categ of categProduitValues()" [value]="categ">{{categ}}</option>
     </select>
 </ng-template>
   <ng-template pTemplate="output">

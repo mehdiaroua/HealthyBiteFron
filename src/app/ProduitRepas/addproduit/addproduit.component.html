@@ -20,11 +20,8 @@
 
   <div class="form-group">
     <label for="categproduit">Catégorie :</label>
-    <select class="form-control" id="categProduit" [(ngModel)]="produit.categorieProduit" name="categProduit" required>
-      <option value="proteines">Proteines</option>
-      <option value="vitamines">vitamines</option>
-      <option value="acides">Acides</option>
-
+    <select class="form-control" id="categProduit" [(ngModel)]="produit.categProduit" name="categProduit" required>
+      <option *ngFor="let categ of categProduitValues()" [value]="categ">{{categ}}</option>
     </select>
   </div>
 

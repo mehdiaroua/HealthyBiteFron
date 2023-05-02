@@ -23,7 +23,7 @@ import { DashboardComponent } from './UserBack/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: "home", component:HomeComponent,canActivate:[AuthGuard]},
+  {path: "home", component:HomeComponent},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},
@@ -37,9 +37,9 @@ const routes: Routes = [
   {path: "produitShop", component:ProduitShopComponent},
   {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
   {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
-  {path: "details", component:DetailsComponent,canActivate:[AuthGuard]},
-  {path: "panier", component:PanierComponent,canActivate:[AuthGuard]},
-  {path: "checkout", component:PaiementComponent},
+  {path: "details", component:DetailsComponent},
+  {path: "panier", component:PanierComponent},
+  {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
   {path: "dash", component:DashboardComponent,canActivate:[RoleGuard]},
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},

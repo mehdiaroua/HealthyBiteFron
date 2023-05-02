@@ -6,6 +6,8 @@ import { Produit } from 'src/app/Models/RepasProduit/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { AddproduitComponent } from '../addproduit/addproduit.component';
 import { UserService } from 'src/app/service/user.service';
+import { StorageService } from 'src/app/service/storage.service';
+import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
 
 @Component({
   selector: 'app-produit-fournisseur',
@@ -33,16 +35,16 @@ export class ProduitFournisseurComponent implements OnInit{
     imageFile!: File;
     ref!: DynamicDialogRef;
     id!:any;
-
+    user!:any;
   currentUser!:any;
-    constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:UserService){}
+    constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:StorageService){}
 
     ngOnInit(): void {
-this.currentUser = this.userService.getCurrentUser();
+      this.user= this.userService.getUser();
 
-      this.id=this.userService.getCurrentUser(); //this.id = getUserId(); obtenir l'id de l'utilisateur
+      //this.id = getUserId(); obtenir l'id de l'utilisateur
 
-      this.repasService.getProduitByUserId(this.id)
+      this.repasService.getProduitByUserId(this.userService.getUser().id)
         .subscribe(produits => {
           this.produit = produits;
 
@@ -111,7 +113,7 @@ this.currentUser = this.userService.getCurrentUser();
             //  this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
           this.products = [...this.products];
           this.productDialog = false;
-          this.repasService.addProduitAndImage(this.product.nom, this.product.description, this.product.prix, this.product.ingredient,  this.product.categorieProduit,  this.imageFile)
+          this.repasService.addProduitAndImage(this.product.nom, this.product.description, this.product.prix, this.product.ingredient,  this.product.categProduit,  this.imageFile)
       .subscribe(data => console.log(data), error => console.log(error));
     this.product = new Produit();
     this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
@@ -146,9 +148,9 @@ this.currentUser = this.userService.getCurrentUser();
   onRowEditInit(produit: Produit) {
     this.clonedProducts[produit.id] = { ...produit };
   }
-  updateProduitAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categProduit: string, image: File) {
+  updateProduitAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, categProduit: CategProduit, image: File) {
     this.repasService.updateProduitAndImage(id, nom, description, prix, ingredient, categProduit, image).subscribe(
-      (repas) => console.log(repas),
+      (produit) => console.log(produit),
       (error) => console.log(error)
     );
   }
@@ -158,7 +160,7 @@ this.currentUser = this.userService.getCurrentUser();
       delete this.clonedProducts[produit.id];
 
       if (this.imageFile) {
-        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient, produit.categorieProduit, this.imageFile).subscribe(
+        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient, produit.categProduit, this.imageFile).subscribe(
           () => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'produit is updated' });
             //this.imageFile = null; // reset image file after update
@@ -169,7 +171,7 @@ this.currentUser = this.userService.getCurrentUser();
           }
         );
       } else {
-        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient,   produit.categorieProduit,this.imageFile).subscribe(
+        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient,   produit.categProduit,this.imageFile).subscribe(
           () => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Produit is updated' });
           },
@@ -190,7 +192,11 @@ this.currentUser = this.userService.getCurrentUser();
     delete this.clonedProducts[produit.id];
   }
 
-
+  categProduitValues(): string[] {
+    return Object.keys(CategProduit).filter(
+      (type) => isNaN(<any>type) && type !== 'values'
+    );
+  }
 
   }
 

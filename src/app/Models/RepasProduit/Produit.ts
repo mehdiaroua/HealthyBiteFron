@@ -8,7 +8,7 @@ export class Produit {
     prix!:number;
     ingredient!:string;
     img!:string;
-    categorieProduit!:CategProduit;
+    categProduit!:CategProduit;
     user!:number;
     nutrition!:Nutrition;
     image_data!:ArrayBuffer;

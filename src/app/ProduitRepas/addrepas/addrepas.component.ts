@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repasProduit.service';
+import { StorageService } from 'src/app/service/storage.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -18,35 +19,23 @@ export class AddrepasComponent implements OnInit{
   imageFile!: File;
   uploadedFiles: any[] = [];
   user!:any;
-constructor(private repasService:RepasProduitService,private router:Router, private messageService:MessageService,private userService:UserService){}
+constructor(private repasService:RepasProduitService,private router:Router, private messageService:MessageService,private userService:StorageService){}
 ngOnInit(){
-this.user = this.userService.getCurrentUser();
+this.user = this.userService.getUser();
 console.log(this.user);
 
 }
-
 save() {
-
-
-  const formData = new FormData();
-  formData.append('nom', this.repas.nom);
-  formData.append('description', this.repas.description);
-  formData.append('prix', this.repas.prix.toString());
-  formData.append('ingredient', this.repas.ingredient);
-  formData.append('allergene', this.repas.allergene);
-  formData.append('objectifType', this.repas.objectifType);
-  formData.append('categRepas', this.repas.categorieRepas);
-  formData.append('image', this.imageFile, this.imageFile.name);
-  formData.append('user', JSON.stringify(this.user));
-  this.repasService.addRepasAndImage(this.repas.nom, this.repas.description, this.repas.prix, this.repas.ingredient, this.repas.allergene, this.repas.objectifType, this.repas.categorieRepas, this.imageFile, this.user)
+  this.repasService.addRepasAndImage(this.repas.nom, this.repas.description, this.repas.prix, this.repas.ingredient, this.repas.allergene, this.repas.objectifType,this.repas.categorieRepas, this.imageFile)
     .subscribe(data => console.log(data), error => console.log(error));
   this.repas = new Repas();
-  this.router.navigate(['/shop']);
+  this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'repas Ajouté avec Succés' });
 }
 
 onSubmit() {
   this.submitted = true;
   this.save();
+  this.router.navigate(['/repas/restaurant']);
 }
 
 onFileSelected(event: any) {
