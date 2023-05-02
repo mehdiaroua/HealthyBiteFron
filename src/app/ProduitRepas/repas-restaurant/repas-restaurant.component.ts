@@ -6,6 +6,8 @@ import { RepasProduitService } from 'src/app/repasProduit.service';
 import { AddrepasComponent } from '../addrepas/addrepas.component';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { User } from 'src/app/Class/user';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-repas-restaurant',
@@ -34,10 +36,12 @@ export class RepasRestaurantComponent implements OnInit{
     imageFile!: File;
     ref!: DynamicDialogRef;
     id!:number;
-  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router){}
+    user!:any;
+  constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router, private userService:UserService){}
 
   ngOnInit(): void {
-    this.id=2; //this.id = getUserId(); obtenir l'id de l'utilisateur
+    //this.id=2; //this.id = getUserId(); obtenir l'id de l'utilisateur
+    this.user= this.userService.getCurrentUser();
 
     this.repasService.getRepasByUserId(this.id)
       .subscribe(repas => {
@@ -120,8 +124,46 @@ hideDialog() {
     this.productDialog = false;
     this.submitted = false;
 }
+save() {
+  //const user = this.userService.getCurrentUser();
+  if (!this.user) {
+    console.log('User not logged in');
+    return;
+  }
 
-saveProduct() {
+  if (!this.imageFile) {
+    console.log('No image selected');
+    return;
+  }
+
+  this.submitted = true;
+
+  this.repasService.addRepasAndImage(
+    this.rep.nom,
+    this.rep.description,
+    this.rep.prix,
+    this.rep.ingredient,
+    this.rep.allergene,
+    this.rep.objectifType,
+    this.rep.categorieRepas,
+    this.imageFile,
+    this.user
+  ).subscribe(
+    (data) => {
+      console.log(data);
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+      this.router.navigate(['/shop']);
+    },
+    (error) => {
+      console.log(error);
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Product Creation Failed', life: 3000 });
+    }
+  );
+}
+
+
+
+/*saveProduct() {
     this.submitted = true;
           //  this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
         this.products = [...this.products];
@@ -130,7 +172,7 @@ saveProduct() {
     .subscribe(data => console.log(data), error => console.log(error));
   this.product = new Repas();
   this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    }
+    }*/
 
 onFileSelected(event: any) {
   this.imageFile = event.target.files[0];
@@ -161,7 +203,7 @@ createId(): string {
 onRowEditInit(repas: Repas) {
   this.clonedProducts[repas.id] = { ...repas };
 }
-updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:number) {
+updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:User) {
   this.repasService.updateRepasAndImage(id, nom, description, prix, ingredient, allergene, objectifType, categRepas, image,user).subscribe(
     (repas) => console.log(repas),
     (error) => console.log(error)

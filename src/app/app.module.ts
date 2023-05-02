@@ -57,8 +57,15 @@ import { DashboardComponent } from './UserBack/dashboard.component';
     PaiementComponent,
     DetailsRecetteComponent,
     AddrepasComponent,
-    ProduitFournisseurComponent
-
+    ProduitFournisseurComponent,
+    RepasRestaurantComponent,
+    ProduitShopComponent,
+    AddproduitComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotpasswordComponent,
+    ResetPasswordComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,16 +80,12 @@ import { DashboardComponent } from './UserBack/dashboard.component';
     TagModule,
     DynamicDialogModule,
     ConfirmDialogModule,
-    LoginComponent,
-    RegisterComponent,
-    ForgotpasswordComponent,
-    ResetPasswordComponent,
-    DashboardComponent,
+
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule
   ],
- 
+
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })

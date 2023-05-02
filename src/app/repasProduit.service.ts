@@ -5,6 +5,8 @@ import { Repas } from './Models/RepasProduit/Repas';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Produit } from './Models/RepasProduit/Produit';
+import { User } from './Class/user';
+import { UserService } from './service/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,12 @@ export class RepasProduitService {
   listRepas:Repas[]=[];
   listProduit:Produit[]=[];
    id!:number
-  constructor(private httpClient: HttpClient) { }
+user!: any;
+  constructor(private httpClient: HttpClient,private userService:UserService) { }
 
 
-  addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:number): Observable<Repas> {
+  addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:User): Observable<Repas> {
+    this.user = this.userService.getCurrentUser();
     const formData = new FormData();
     formData.append('nom', nom);
     formData.append('description', description);
@@ -26,12 +30,11 @@ export class RepasProduitService {
     formData.append('objectifType', objectifType);
     formData.append('categRepas', categRepas);
     formData.append('image', image, image.name);
-    formData.append('user', user.toString());
-
+    formData.append('userId', user.id.toString());
     return this.httpClient.post<Repas>(`${environment.api}test/addRepasWithImg`, formData);
   }
 
-  updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:number): Observable<Repas> {
+  updateRepasAndImage(id: number, nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File,user:User): Observable<Repas> {
     const formData = new FormData();
     formData.append('id', id.toString());
     formData.append('nom', nom);
@@ -42,7 +45,7 @@ export class RepasProduitService {
     formData.append('objectifType', objectifType);
     formData.append('categRepas', categRepas);
     formData.append('image', image, image.name);
-    formData.append('user', user.toString());
+    formData.append('user', user.id.toString());
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');

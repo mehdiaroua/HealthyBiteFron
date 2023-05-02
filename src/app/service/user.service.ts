@@ -1,9 +1,10 @@
-import { Role } from './../Class/user';
+import { ERole, Role } from './../Class/user';
 import {  User } from '../Class/user';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,57 @@ export class UserService {
   baseurl='http://localhost:8080/api/auth/signin';
   otherurl='http://localhost:8080/api/test';
 
+  data : Date = new Date();
 
-  constructor(private http:HttpClient) { }
+  currentUser!: User;
+  reponsedata: any;
+
+
+  constructor(private http:HttpClient,private route:Router) { }
+
+
+  getCurrentUser(): User | void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      this.http.get<User>('http://localhost:8080/api/auth/user', { headers }).subscribe(
+        data => {
+          this.currentUser = data;
+          console.log(data);
+          this.navigateToUserRole();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }else {
+      console.log('Token not found in localStorage');
+      return
+      ;}
+  }
+
+  private navigateToUserRole() {
+    const role = this.currentUser.roles[0].name;
+    switch (role) {
+      case ERole.ROLE_ADMIN:
+        this.route.navigate(['/dash']);
+        break;
+      case ERole.ROLE_MODERATOR:
+        this.route.navigate(['/moderator']);
+        break;
+      case ERole.ROLE_RESTAURANT:
+        this.route.navigate(['repas/restaurant']);
+        break;
+      case ERole.ROLE_FOURNISSEUR:
+        this.route.navigate(['/fournisseur']);
+        break;
+      default:
+        this.route.navigate(['/home']);
+        break;
+    }
+  }
+
+
   login(User:any){
     return this.http.post(this.baseurl,User)
   }
@@ -23,13 +73,13 @@ export class UserService {
   isLoggedIn(){
     return localStorage.getItem('token')!=null;
   }
-  
+
   GetToken(){
     return localStorage.getItem('token')||'';
 
 
   }
-  
+
   HaveAcces(){
     var loggintoken=localStorage.getItem('token')||'';
     var _extractedtoken=loggintoken.split('.')[1];

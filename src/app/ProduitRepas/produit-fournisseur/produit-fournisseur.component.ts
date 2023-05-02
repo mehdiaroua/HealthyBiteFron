@@ -5,6 +5,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Produit } from 'src/app/Models/RepasProduit/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { AddproduitComponent } from '../addproduit/addproduit.component';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-produit-fournisseur',
@@ -31,13 +32,15 @@ export class ProduitFournisseurComponent implements OnInit{
     statuses!: any[];
     imageFile!: File;
     ref!: DynamicDialogRef;
-    id!:number;
+    id!:any;
 
-
-    constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router){}
+  currentUser!:any;
+    constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:UserService){}
 
     ngOnInit(): void {
-      this.id=2; //this.id = getUserId(); obtenir l'id de l'utilisateur
+this.currentUser = this.userService.getCurrentUser();
+
+      this.id=this.userService.getCurrentUser(); //this.id = getUserId(); obtenir l'id de l'utilisateur
 
       this.repasService.getProduitByUserId(this.id)
         .subscribe(produits => {
