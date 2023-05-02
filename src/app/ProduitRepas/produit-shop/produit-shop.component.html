@@ -1,0 +1,96 @@
+
+
+
+
+
+<section class="breadcrumb-section set-bg" style="background-image: url(https://ochsner-craft.s3.amazonaws.com/blog/articles/_930x524_crop_center-center_75_none/healthy-food.jpg);">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <div class="breadcrumb__text">
+                  <h2>Organi Shop</h2>
+                  <div class="breadcrumb__option">
+                      <a href="./index.html">Home</a>
+                      <span>Shop</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="light">
+  <div class="container py-2">
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">Les complements Alimentaires</div>
+
+    <div *ngFor="let produits of produit" class="row">
+      <div class="col-md-12">
+        <article class="postcard light blue">
+          <a class="postcard__img_link" href="#">
+            <img class="postcard__img" [src]="'data:image/jpeg;base64,' + produits.imageBase64" alt="hello" alt="Image Title" />
+          </a>
+
+          <div class="postcard__text t-dark">
+            <h1 class="postcard__title blue"><a href="#">{{produits.nom}}</a></h1>
+            <div class="postcard__subtitle small">
+              <time datetime="2020-05-25 12:00:00">
+                <i class="fas fa-calendar-alt mr-2"></i>{{produits.categProduit}}
+              </time>
+            </div>
+            <div class="postcard__bar"></div>
+            <div class="postcard__preview-txt">{{produits.description}}</div>
+            <h4>Ingredients</h4>
+            <div class="postcard__preview-txt">{{produits.ingredient}}</div>
+            <ul class="postcard__tagbox">
+              <li class="tag__item"><i class="pi pi-dollar" style="font-size: 1rem"></i>{{produits.prix}}</li>
+
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <div class="postcard light blue">
+              <div class="card-body">
+                <h5 class="card-title" style="color: rgb(60, 112, 113);font-weight: bold;">Informations nutritionnelles</h5>
+                <ul class="card-text" style="color: black;">
+                  <li class="pi pi-check-circle">   Calories: {{produits.nutrition.calories}}</li><br/>
+                  <li class="pi pi-check-circle">  Protein: {{produits.nutrition.proteines}} g</li><br/>
+                  <li class="pi pi-check-circle">  Fat: {{produits.nutrition.acides}} g</li><br/>
+                  <li class="pi pi-check-circle">  Carbohydrates: {{produits.nutrition.sel}} g</li><br/>
+                </ul>
+
+              </div>
+
+            </div>
+            <div class="container">
+              <div class="btn"><a href="#"><i class="fa fa-shopping-cart" style="font-size: 2em;"></i></a></div>
+          </div>
+          </div>
+
+
+
+        </article>
+
+      </div>
+
+    </div>
+</div>
+</section>

@@ -1,8 +1,7 @@
-import { CategRepas } from "./CategRepas";
-import { Nutrition } from "./Nutrition";
-import { ObjectifType } from "./ObjectifType";
-
-
+import {ObjectifType} from './ObjectifType'
+import { CategRepas } from './CategRepas';
+import { Nutrition } from './Nutrition';
+import { User } from 'src/app/Class/user';
 export class Repas {
     id!:number;
     nom!:string;

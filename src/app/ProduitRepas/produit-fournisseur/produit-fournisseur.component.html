@@ -11,9 +11,10 @@
                       <span>All departments</span>
                   </div>
                   <ul>
-                    <li><a href="#" routerLink="/repas/restaurant">Restaurant</a></li>
-                    <li><a href="#" routerLink="/dash">User</a></li>
-                    <li><a href="#" routerLink="/produit/fournisseur">Fournisseur</a></li>
+                      <li><a href="#" routerLink="/repas/restaurant">Restaurant</a></li>
+                      <li><a href="#" routerLink="/dash">User</a></li>
+                      <li><a href="#" routerLink="/produit/fournisseur">Fournisseur</a></li>
+                    
                   </ul>
               </div>
           </div>
@@ -28,6 +29,8 @@
                     </form>
                     </div>
                   </div>
+
+
 
 <p-toolbar styleClass="mb-4 gap-2">
     <ng-template pTemplate="left">
@@ -44,7 +47,7 @@
 
 <p-table
     #dt
-    [value]="repas"
+    [value]="produit"
     [paginator]="true"
     [rows]="10"
     editMode="row"
@@ -62,42 +65,40 @@
             <th style="width:20%">Description</th>
             <th pSortableColumn="prix" style="width:20%">Price <p-sortIcon field="prix"></p-sortIcon></th>
             <th style="width:20%">Ingredient</th>
-            <th style="width:20%">Allergene</th>
-            <th style="width:20%">Objectif du Repas</th>
-            <th style="width:20%">Categorie du Repas</th>
+            <th style="width:20%">Categorie du Produit</th>
             <th style="width:20%">Image</th>
 
             <th></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-repas let-editing="editing" let-ri="rowIndex">
-      <tr [pEditableRow]="repas">
+    <ng-template pTemplate="body" let-produit let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="produit">
         <td>
         <p-cellEditor>
           <ng-template pTemplate="input">
-            <input pInputText type="text" [(ngModel)]="repas.nom">
+            <input pInputText type="text" [(ngModel)]="produit.nom">
         </ng-template>
           <ng-template pTemplate="output">
-          {{repas.nom}}
+          {{produit.nom}}
       </ng-template>
         </p-cellEditor>
       </td>
       <td>
     <p-cellEditor>  <ng-template pTemplate="input">
-      <input pInputText type="text" [(ngModel)]="repas.description">
+      <input pInputText type="text" [(ngModel)]="produit.description">
   </ng-template>
     <ng-template pTemplate="output">
-    {{repas.description}}
+    {{produit.description}}
 </ng-template>
      </p-cellEditor>
     </td>
        <td>
       <p-cellEditor>
         <ng-template pTemplate="input">
-          <input pInputText type="text" [(ngModel)]="repas.prix">
+          <input pInputText type="text" [(ngModel)]="produit.prix">
       </ng-template>
         <ng-template pTemplate="output">
-        {{repas.prix | currency: 'USD'}}
+        {{produit.prix | currency: 'USD'}}
     </ng-template>
    </p-cellEditor>
   </td>
@@ -105,49 +106,24 @@
 
       <td>
   <p-cellEditor>  <ng-template pTemplate="input">
-    <input pInputText type="text" [(ngModel)]="repas.ingredient">
+    <input pInputText type="text" [(ngModel)]="produit.ingredient">
 </ng-template>
   <ng-template pTemplate="output">
-  {{repas.ingredient}}
-</ng-template> </p-cellEditor>
-</td>
-
-  <td>
-  <p-cellEditor>  <ng-template pTemplate="input">
-    <input pInputText type="text" [(ngModel)]="repas.allergene">
-</ng-template>
-  <ng-template pTemplate="output">
-  {{repas.allergene}}
+  {{produit.ingredient}}
 </ng-template> </p-cellEditor>
 </td>
 
 
-  <td>
-  <p-cellEditor>  <ng-template pTemplate="input">
-    <select class="form-control" id="objectifType" [(ngModel)]="repas.objectifType" name="objectifType" required>
-      <option value="Prendre_Poids">Prise de masse</option>
-      <option value="Perdre_Poids">Perte de poids</option>
-      <option value="Maintenir_Poids">Equilibré</option>
-    </select>
-</ng-template>
-  <ng-template pTemplate="output">
-  {{repas.objectifType}}
-</ng-template> </p-cellEditor>
-</td>
 
-<input type="text" [(ngModel)]="repas.user" name="user" id="user" [value]="2" hidden/>
 
 <td>
   <p-cellEditor>  <ng-template pTemplate="input">
-    <select class="form-control" id="categRepas" [(ngModel)]="repas.categorieRepas" name="categRepas" required>
-      <option value="petitdejeuner">Petit déjeuner</option>
-      <option value="dejeuner">Déjeuner</option>
-      <option value="diner">Dîner</option>
-      <option value="dessert">Dessert</option>
+    <select class="form-control" id="categProduit" [(ngModel)]="produit.categProduit" name="categProduit" required>
+      <option *ngFor="let categ of categProduitValues()" [value]="categ">{{categ}}</option>
     </select>
 </ng-template>
   <ng-template pTemplate="output">
-  {{repas.categorieRepas}}
+  {{produit.categorieProduit}}
 </ng-template> </p-cellEditor>
 </td>
 
@@ -158,16 +134,17 @@
     <input type="file" name="image" (change)="onFileSelected($event)">
 </ng-template>
   <ng-template pTemplate="output">
-    <img [src]="'data:image/jpeg;base64,' + repas.imageBase64" [alt]="repas.nom"/>
+    <img [src]="'data:image/jpeg;base64,' + produit.imageBase64" [alt]="produit.nom"/>
 </ng-template> </p-cellEditor>
 </td>
 
 
 
 
+
     <td>
       <p-cellEditor>
-          <td><img [src]="'data:image/jpeg;base64,' + repas.imageBase64" [alt]="repas.nom" width="50" class="shadow-4" /></td>
+          <td><img [src]="'data:image/jpeg;base64,' + produit.imageBase64" [alt]="produit.nom" width="50" class="shadow-4" /></td>
 
         </p-cellEditor>
       </td>
@@ -176,18 +153,18 @@
 
 
           <td>
-            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(repas)" class="p-button-rounded p-button-warning"></button>
-            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(repas)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
-            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(repas, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
-              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteRepas(repas)"></button>
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(produit)" class="p-button-rounded p-button-warning"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(produit)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(produit, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+              <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteProduit(produit)"></button>
           </td>
       </tr>
   </ng-template>
   <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">In total there are {{ repas ? repas.length : 0 }} repas.</div>
+      <div class="flex align-items-center justify-content-between">In total there are {{ produit ? produit.length : 0 }} produit.</div>
   </ng-template>
     <ng-template pTemplate="summary">
-        <div class="flex align-items-center justify-content-between">In total there are {{ repas ? repas.length : 0 }} products.</div>
+        <div class="flex align-items-center justify-content-between">In total there are {{ produit ? produit.length : 0 }} products.</div>
     </ng-template>
 </p-table>
 </div>

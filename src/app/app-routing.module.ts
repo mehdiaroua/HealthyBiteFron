@@ -13,11 +13,22 @@ import { UpdateLivraisonComponent } from './Commande/update-livraison/update-liv
 import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
+import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
+import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
+import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './User/auth.guard';
+
+import { RegisterComponent } from './register/register.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { RoleGuard } from './User/role.guard';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DashboardComponent } from './UserBack/dashboard.component';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: "home", component:HomeComponent},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
@@ -29,12 +40,22 @@ const routes: Routes = [
   { path: 'bbb', component: AddlivraisonComponent },
   { path: 'updateLiv/:id', component: UpdateLivraisonComponent },
   {path: "repas/addRepas", component:AddrepasComponent},
+  {path: "produit/addProduit", component:AddproduitComponent},
   {path: "repas/restaurant", component:RepasRestaurantComponent},
-  {path: "paiement", component:PaiementComponent},
-  
-
+  {path: "paiement", component:PaiementComponent}, 
+  {path: "produit/fournisseur", component:ProduitFournisseurComponent},
+  {path: "produitShop", component:ProduitShopComponent},
+  {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
+  {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
+  {path: "details", component:DetailsComponent},
+  {path: "panier", component:PanierComponent},
+  {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
+  {path: "dash", component:DashboardComponent,canActivate:[RoleGuard]},
+  {path: "login", component:LoginComponent},
+  {path: "register", component:RegisterComponent},
+  {path: "forgot", component:ForgotpasswordComponent},
+  {path: "reset", component:ResetPasswordComponent}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
