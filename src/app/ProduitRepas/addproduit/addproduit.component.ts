@@ -38,7 +38,7 @@ console.log(this.user);
   onSubmit() {
     this.submitted = true;
     this.save();
-    this.router.navigate(['/produit/fournisseur']);
+    this.router.navigate(['/produit/addNutrition']);
   }
 
   onFileSelected(event: any) {

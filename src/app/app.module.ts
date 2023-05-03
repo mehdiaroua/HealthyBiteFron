@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatDialogModule } from '@angular/material/dialog';
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 
@@ -46,6 +47,16 @@ import { DashboardComponent } from './UserBack/dashboard.component';
 import { PaniierComponent } from './commande/paniier/paniier.component';
 
 
+import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
+import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
+import { AdduserComponent } from './adduser/adduser.component';
+import { PiechartComponent } from './piechart/piechart.component';
+import {Chart} from 'chart.js'
+import { registerables } from 'chart.js';
+import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+Chart.register(...registerables);
 
 
 @NgModule({
@@ -77,8 +88,14 @@ import { PaniierComponent } from './commande/paniier/paniier.component';
     RepasRestaurantComponent,
     ProduitFournisseurComponent,
     PaniierComponent,
-GetAllLivraisonComponent
-
+GetAllLivraisonComponent,
+    AddnutritionComponent,
+    AddNutrRepasComponent,
+    ProfileUserComponent,
+    AdduserComponent,
+    PiechartComponent,
+    ShowProduitNutritionComponent,
+    UnauthorizedComponent
 
 
 
@@ -98,10 +115,11 @@ GetAllLivraisonComponent
     TagModule,
     DynamicDialogModule,
     ConfirmDialogModule,
-
     AppRoutingModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    
   ],
 
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

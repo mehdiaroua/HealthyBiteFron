@@ -8,16 +8,19 @@ import { AddproduitComponent } from '../addproduit/addproduit.component';
 import { UserService } from 'src/app/service/user.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { CategProduit } from 'src/app/Models/CategProduit';
+import { AddnutritionComponent } from '../addnutrition/addnutrition.component';
+import {MatDialog} from '@angular/material/dialog';
+import { Nutrition } from 'src/app/Models/Nutrition';
 
-@Component({
+@Component({ 
   selector: 'app-produit-fournisseur',
   templateUrl: './produit-fournisseur.component.html',
   styleUrls: ['./produit-fournisseur.component.css'],
-  providers:[MessageService,ConfirmationService,DialogService]
+  providers:[MessageService,ConfirmationService,DialogService,MatDialog]
 })
 export class ProduitFournisseurComponent implements OnInit{
   clonedProducts: { [s: string]: Produit } = {};
-
+  nutrition!: Nutrition;
   produit!: Produit[];
   produits!: Produit;
 
@@ -29,6 +32,7 @@ export class ProduitFournisseurComponent implements OnInit{
 
     selectedProducts!: Produit[];
 
+    selectedProduct!: Produit;
     submitted!: boolean;
 
     statuses!: any[];
@@ -37,7 +41,7 @@ export class ProduitFournisseurComponent implements OnInit{
     id!:any;
     user!:any;
   currentUser!:any;
-    constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:StorageService){}
+    constructor(private repasService:RepasProduitService,private messageService: MessageService,private dialog:MatDialog, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:StorageService){}
 
     ngOnInit(): void {
       this.user= this.userService.getUser();
@@ -54,6 +58,7 @@ export class ProduitFournisseurComponent implements OnInit{
     show() {
       this.ref = this.dialogService.open(AddproduitComponent, { header: 'Add a Product'});
   }
+
 
 
   deleteProduit(produit: Produit): void {
@@ -197,6 +202,15 @@ export class ProduitFournisseurComponent implements OnInit{
       (type) => isNaN(<any>type) && type !== 'values'
     );
   }
+
+
+
+
+
+
+
+
+
 
   }
 

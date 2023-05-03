@@ -8,11 +8,7 @@
                         <span>All departments</span>
                     </div>
                     <ul>
-                      <li><a href="#" routerLink="/repas/restaurant">Restaurant</a></li>
                       <li><a href="#" routerLink="/dash">User</a></li>
-                      <li><a href="#" routerLink="/produit/fournisseur">Fournisseur</a></li>
-                      <li><a href="#" routerLink="/livraisons">Livraison</a></li>
-                  
                     </ul>
                 </div>
             </div>
@@ -26,19 +22,47 @@
                       </div>
                       </form>
                       </div>
-                    </div>
-             
 
+
+
+                </div>
+                <button type="submit" class="btn btn-primary" routerLink="/add">Add User</button>
+                <button type="button" class="btn btn-primary" routerLink="/pie" style="margin-right: 10px;">View Chart</button> <!-- New button code -->
+
+
+                <div class="container edit-form" *ngIf="isEditing">
+                  <h2>Edit User</h2>
+                  <form (ngSubmit)="onUpdate()">
+                    <div class="form-group">
+                      <label for="username">Username:</label>
+                      <input type="text" class="form-control" id="username" name="username" [(ngModel)]="selectedUser.username">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email:</label>
+                      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="selectedUser.email">
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone:</label>
+                      <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="selectedUser.phone">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary" (click)="onCancel()">Save</button>
+                    <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+                  </form>
+                </div>
 
 
                 <div class="container">
-                    <h1>User List</h1>
+
                     <table class="table table-striped">
                         <thead>
                           <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone</th>
+                            <th scope="col">Role</th>
+
                             <th scope="col">status</th>
 
                             <th scope="col">Actions</th>
@@ -49,6 +73,20 @@
                             <td>{{ user.username }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
+                            <td>{{ user.role }}
+                              <div class="form-group">
+                                <select [(ngModel)]="selectedRole" class="form-control">
+                                  <option value="ROLE_ADMIN">ADMIN</option>
+                                  <option value="ROLE_USER">USER</option>
+                                  <option value="ROLE_FOURNISSEUR">FOURNISSEUR</option>
+                                  <option value="ROLE_RESTAURANT">RESTAURANT</option>
+                                </select>
+                              </div>
+                              <button class="btn btn-success" (click)="onUpdateRole(user.id, selectedRole)">
+                                Save
+                              </button>
+                            </td>
+
                             <td><button class="btn btn-success mr-1" (click)="onEnable(user.id)" [disabled]="user.enabled">
                                 Enable
                               </button>
@@ -57,15 +95,19 @@
                                 </button></td>
                             <td>
 
+                              <button class="btn btn-primary mr-1" (click)="onEdit1(user)">
+                                Edit
+                              </button>
                                 <button class="btn btn-danger" (click)="onDelete(user.id)">
                                 <i class="fa fa-times"></i>
                                 </button>
+
                                 </td>
+
                                 </tr>
 
                                   </tbody>
                                 </table>
-
 
                   </div>
 

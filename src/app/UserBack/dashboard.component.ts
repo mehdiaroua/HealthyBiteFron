@@ -13,32 +13,61 @@ import { StorageService } from '../service/storage.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit{
-  Roles: Role[] = [];
+  userss!: User[];
+
+    
+  selectedRole: string = '';
+  roles: Role[] = [];
   data: any;
+  enabled!: boolean;
+
   isEditing = false; // add a new variable to track editing mode
   selectedUser!: User;
   username!: string;
   userForm!: FormGroup;
   user!: User;
   id!: number;
-  roles: Role[] = [
+  role: Role[] = [
     { id: 1, name: ERole.ROLE_USER },
     { id: 2, name: ERole.ROLE_ADMIN }
   ];
   users: any[] = [];
 
-  constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private storage:StorageService) { }
-
+  constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private storage:StorageService) {
+    this.roles = [
+      { id: 1, name: ERole.ROLE_USER },
+      { id: 2, name: ERole.ROLE_MODERATOR },
+      { id: 3, name: ERole.ROLE_ADMIN },
+      { id: 4, name: ERole.ROLE_RESTAURANT },
+      { id: 5, name: ERole.ROLE_FOURNISSEUR },
+    ];
+   }
+   
   ngOnInit(): void {
 this.user=this.storage.getUser();
-console.log(this.user);
+console.log(this.user.id);
     this.userService.getAllUsers().subscribe(data => {
       console.log(data); // check if data is being retrieved correctly
 
       this.users = data;
     });
   }
+  
+  
+  onUpdateRole(userId: number, roleName: string) {
+    
+    this.userService.updateUserRole(userId, roleName)
+      .subscribe(
+        response => {
+          // If the update is successful, show a success message to the user
+          console.log(response);
+          alert('User role updated successfully.');
+        }
+      );
+  }
+  
   
   searchUsers() {
     console.log('Searching for users with username: ' + this.username);
@@ -81,6 +110,11 @@ console.log(this.user);
       }
     );
   }
+  
+  
+  
+  
+  
 
   onDisable(id: number) {
     this.userService.disableUser(id).subscribe(
@@ -97,9 +131,9 @@ console.log(this.user);
   }
   onEdit(id: number): void {
     this.isEditing = true;
-    this.id = id;
-    this.getUser(this.id);
+    this.selectedUser = this.users.find(user => user.id === id);
   }
+  
   
   ngOnInit1(): void {
     this.route.params.subscribe(params => {
@@ -113,7 +147,36 @@ console.log(this.user);
       phone: ['', Validators.required]
     });
   }
+  onEdit1(user: User): void {
+    this.selectedUser = user;
+    this.isEditing = true;
 
+  }
+  onUpdate() {
+    this.selectedUser.role = [this.selectedUser.selectedRole]; // update the role of the user
+    
+    this.userService.updateUser(this.selectedUser.id, this.selectedUser)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.isEditing = false;
+          this.selectedUser = new User();
+          this.ngOnInit();
+          
+        },
+        error => {
+          console.log(error);
+        });
+        
+  }
+  
+  
+  onCancel(): void {
+    this.selectedUser = {} as User;
+    this.isEditing = false;
+  }
+  
+  
   getUser(id: number): void {
     this.userService.getUserById(id)
       .subscribe(

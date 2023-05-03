@@ -1,5 +1,5 @@
 .container {
-    margin: 20px;
+    margin: 10px;
   }
   
   h1 {
@@ -14,7 +14,7 @@
   }
   
   .table {
-    width: 100%;
+    width: 900PX;
     border-collapse: collapse;
   }
   
@@ -29,4 +29,50 @@
   .table th {
     background-color: #eee;
   }
-  
+  .container {
+  margin: 20px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+
+
+/* increase width of table and center it */
+.table-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* set width and alignment of button column */
+.button-col {
+  width: 10%;
+  text-align: center;
+}
+.edit-form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+/* adjust padding and margin of button */
+.button {
+  padding: 5px;
+  margin: 0 auto;
+  display: block; /* display as block to center horizontally */
+}

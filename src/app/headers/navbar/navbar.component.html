@@ -52,11 +52,12 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a routerLink="shop">Home</a></li>
                             <li><a routerLink="shop">Shop</a></li>
                             <li><a routerLink="produitShop">Products</a>
 
                             </li>
+                           
                             <li><a href="./blog.html">Blog</a></li>
                             <li><a href="./contact.html">Contact</a></li>
                         </ul>
@@ -66,7 +67,10 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a routerLink="/panier"><i class="fa fa-shopping-bag" ></i> <span>3</span></a></li>
+                            <li><a  routerLink="/panier"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a routerLink="userProfile"><i class="fa fa-user"></i> </a></li>
+                            <li><a href="#" (click)="logout()"><i class="fa fa-sign-out"></i></a></li>
+
                         </ul>
                     </div>
                 </div>

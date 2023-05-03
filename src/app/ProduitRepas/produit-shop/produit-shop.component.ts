@@ -31,5 +31,9 @@ export class ProduitShopComponent implements OnInit{
     this.showDetails = false;
   }
 
+  goToDashboard(){
+    this.R.navigate(['/produit/fournisseur']);
+  }
+
 
 }

@@ -11,6 +11,6 @@ export class Nutrition {
     proteines!:number;
     lipides!:number;
     sel!:number;
-    repas!:Repas;
+    //repas!:Repas;
     //produit!:Produit;
 }

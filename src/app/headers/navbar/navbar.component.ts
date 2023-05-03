@@ -17,7 +17,7 @@ export class NavbarComponent {
     this.route.navigate(['/panier']);}
   logout() {
     this.UserService.logout();
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('auth-user');
     this.route.navigate(['/login']);
   }
 }

@@ -23,21 +23,21 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  
+
   formSubmitted = false;
 
     data : Date = new Date();
-    
+
     currentUser!: User;
     reponsedata: any;
-  
-  
-  
+
+
+
   userService: any;
-    
+
 
     constructor(private service:UserService, private route:Router, private formBuilder: FormBuilder,private http: HttpClient, private storageService: StorageService) {
-      
+
     }
    /* getCurrentUser() {
       const token = sessionStorage.getItem('token');
@@ -54,31 +54,26 @@ export class LoginComponent implements OnInit {
         );
       }
     }*/
-    
-    
-    public navigateToUserRole() {
-      const role = this.currentUser.role[0].name;
-      switch (role) {
-        case ERole.ROLE_ADMIN:
-          this.route.navigate(['/dash']);
-          break;
-        case ERole.ROLE_MODERATOR:
-          this.route.navigate(['/moderator']);
-          break;
-        case ERole.ROLE_RESTAURANT:
-          this.route.navigate(['/restaurant']);
-          break;
-        case ERole.ROLE_FOURNISSEUR:
-          this.route.navigate(['/fournisseur']);
-          break;
-        default:
-          this.route.navigate(['/home']);
-          break;
+
+
+    public navigateToUserRole(role:string[]) {
+      if(role.includes(ERole.ROLE_ADMIN)){
+        this.route.navigate(['/dash']);
+
       }
+      else if (role.includes(ERole.ROLE_USER) || role.includes(ERole.ROLE_RESTAURANT) || role.includes(ERole.ROLE_FOURNISSEUR)|| role.includes(ERole.ROLE_ADMIN)) {
+        this.route.navigate(['/home']);
+      }
+      else if (role.includes(ERole.ROLE_RESTAURANT))
+      this.route.navigate(['/repas/restaurant']);
+      else if (role.includes(ERole.ROLE_FOURNISSEUR))
+      this.route.navigate(['/produit/fournisseur']);
+
+
     }
-    
-    
-    
+
+
+
     ngOnInit() {
       if (this.storageService.isLoggedIn()) {
         this.isLoggedIn = true;
@@ -100,14 +95,14 @@ export class LoginComponent implements OnInit {
     }
     onSubmit(): void {
       const { username, password } = this.form;
-  
+
       this.service.login(username, password).subscribe({
         next: (data: any) => {
           this.storageService.saveUser(data);
-  
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.storageService.getUser().roles;
+          this.navigateToUserRole(this.roles)
 
         },
         error: (err: { error: { message: string; }; }) => {
@@ -119,7 +114,7 @@ export class LoginComponent implements OnInit {
     reloadPage(): void {
       window.location.reload();
     }
-      
-      
+
+
 
 }
