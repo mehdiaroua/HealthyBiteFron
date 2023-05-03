@@ -6,6 +6,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddpostComponent } from '../addpost/addpost.component';
 import { CommentService } from 'src/app/comment.service';
 import { CommentsComponent } from '../comments/comments.component';
+import { Comment } from 'src/app/Models/PostComment/comment';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-feed',
@@ -22,7 +26,7 @@ export class FeedComponent implements OnInit {
   currentPage = 1;
   postsPerPage = 5;
   showComments: boolean = false;
-    clickedPosts: Set<number> = new Set(); // create a Set to keep track of clicked posts
+  clickedPosts: Set<number> = new Set(); // create a Set to keep track of clicked posts
 
   constructor(private postService: PostService, public dialog: MatDialog, private commentService: CommentService) { }
   
@@ -30,6 +34,39 @@ export class FeedComponent implements OnInit {
     this.getAllPosts();
   }
 
+addComment(postId: number, content: string) {
+  const newComment: Comment = {
+    id: Date.now(),
+    postId,
+    content,
+    replies: []
+  };
+  this.commentService.addComment(postId, newComment).subscribe(
+    (comment) => {
+      const postIndex = this.posts.findIndex(post => post.id === postId);
+      this.posts[postIndex].comments.push(comment);
+      console.log('Comment added successfully:', comment);
+    },
+    error => {
+      console.error('Error adding comment:', error);
+    }
+  );
+  }
+  
+
+deleteComment(id: number): void {
+  this.commentService.deleteComment(id)
+    .subscribe(
+      () => console.log(`Comment with ID ${id} deleted`),
+      error => console.error(error)
+    );
+}
+
+
+
+
+
+  
   postImageURL(imageData: string): string {
     return `data:image/jpeg;base64,${imageData}`;
   }

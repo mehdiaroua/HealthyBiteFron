@@ -550,7 +550,7 @@ nav ul li span:nth-child(4) {
   border-radius: 50%;
 }
 .post-images2 {
-  width: 37%;
+  /* width: 37%; */
   overflow: hidden;
 }
 .post-images1 img:nth-child(1) {
