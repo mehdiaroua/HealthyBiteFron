@@ -1,14 +1,17 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { AppService } from 'src/app/AppService';
 import { Livraison } from 'src/app/Models/Livraison';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-addlivraison',
   templateUrl: './addlivraison.component.html',
   styleUrls: ['./addlivraison.component.css'],
-  providers: [AppService],
+
+  providers:[MessageService,StorageService,AppService]
 })
 export class AddlivraisonComponent {
   livraison! : Livraison ;
@@ -16,7 +19,8 @@ export class AddlivraisonComponent {
   submitted = false;
   deliveryForm: FormGroup| any;
   public liv: string='';
-  constructor(private service: AppService, private router: Router,  private form: FormBuilder) { 
+  user!:any;
+  constructor(private service: AppService, private router: Router,  private form: FormBuilder, private userService:StorageService,private messageService:MessageService) { 
     
 
 
@@ -24,6 +28,8 @@ export class AddlivraisonComponent {
   public ngOnInit() {
     this.initForm();
     this.initdeliveryForm();
+    this.user = this.userService.getUser();
+    console.log(this.user);
   }
   initForm(){
     this.formLivraison = this.form.group({
@@ -46,8 +52,9 @@ export class AddlivraisonComponent {
         error => console.log(error)
       );
   
-    // this.livraison = new Livraison();
-   //  this.router.navigate(['/paiement']);
+     this.livraison = new Livraison();
+     this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
+     this.router.navigate(['/paiement']);
   }
   onSubmit() {
     this.submitted = true;

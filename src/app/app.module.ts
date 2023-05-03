@@ -43,6 +43,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
+import { PaniierComponent } from './commande/paniier/paniier.component';
 
 
 
@@ -67,7 +68,15 @@ import { DashboardComponent } from './UserBack/dashboard.component';
     RegisterComponent,
     ForgotpasswordComponent,
     ResetPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddlivraisonComponent,
+    RepasRestaurantComponent,
+    ProduitFournisseurComponent,
+    AddrepasComponent,
+    AddproduitComponent,
+    RepasRestaurantComponent,
+    ProduitFournisseurComponent,
+    PaniierComponent
 
 
 

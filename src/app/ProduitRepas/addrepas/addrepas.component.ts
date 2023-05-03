@@ -10,7 +10,7 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-addrepas',
   templateUrl: './addrepas.component.html',
-  styleUrls: ['./addrepas.component.css'],
+
   providers:[MessageService,UserService]
 })
 export class AddrepasComponent implements OnInit{

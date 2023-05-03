@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { RepasProduitService } from 'src/app/repas-produit.service';
+
 import { AddrepasComponent } from '../addrepas/addrepas.component';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -10,6 +10,7 @@ import { User } from 'src/app/Class/user';
 import { UserService } from 'src/app/service/user.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { CategProduit } from 'src/app/Models/CategProduit';
+import { RepasProduitService } from 'src/app/repasProduit.service';
 
 @Component({
   selector: 'app-repas-restaurant',

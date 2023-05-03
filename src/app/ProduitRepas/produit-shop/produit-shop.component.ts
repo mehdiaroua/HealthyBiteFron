@@ -1,6 +1,6 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Produit } from 'src/app/Models/RepasProduit/Produit';
+import { Produit } from 'src/app/Models/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { CommonModule } from '@angular/common';
 @Component({

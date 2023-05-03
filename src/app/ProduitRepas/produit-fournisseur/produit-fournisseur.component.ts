@@ -171,7 +171,7 @@ export class ProduitFournisseurComponent implements OnInit{
           }
         );
       } else {
-        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient,   produit.categProduit,this.imageFile).subscribe(
+        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient,   produit.categProduit ,this.imageFile).subscribe(
           () => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Produit is updated' });
           },
