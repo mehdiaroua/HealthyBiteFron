@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatDialogModule } from '@angular/material/dialog';
+
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 
@@ -71,7 +71,6 @@ Chart.register(...registerables);
     PanierComponent,
     PaiementComponent,
     DetailsRecetteComponent,
-    ProduitFournisseurComponent,
     RepasRestaurantComponent,
     ProduitShopComponent,
     AddproduitComponent,
@@ -86,7 +85,6 @@ Chart.register(...registerables);
     AddrepasComponent,
     AddproduitComponent,
     RepasRestaurantComponent,
-    ProduitFournisseurComponent,
     PaniierComponent,
 GetAllLivraisonComponent,
     AddnutritionComponent,
@@ -95,7 +93,9 @@ GetAllLivraisonComponent,
     AdduserComponent,
     PiechartComponent,
     ShowProduitNutritionComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    DashboardComponent,
+    ProduitFournisseurComponent,
 
 
 
@@ -117,8 +117,7 @@ GetAllLivraisonComponent,
     ConfirmDialogModule,
     AppRoutingModule,
     RouterModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    MatDialogModule
     
   ],
 
