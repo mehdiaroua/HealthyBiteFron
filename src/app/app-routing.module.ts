@@ -20,6 +20,9 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { RoleGuard } from './User/role.guard';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
+import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
+import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -33,7 +36,9 @@ const routes: Routes = [
   {path: "repas/addRepas", component:AddrepasComponent},
   {path: "produit/addProduit", component:AddproduitComponent},
   {path: "repas/restaurant", component:RepasRestaurantComponent},
+  {path: "repas/restaurant/:id", component:AddNutrRepasComponent},
   {path: "produit/fournisseur", component:ProduitFournisseurComponent},
+  {path: "produit/fournisseur/:id", component:AddnutritionComponent},
   {path: "produitShop", component:ProduitShopComponent},
   {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
   {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
@@ -44,7 +49,9 @@ const routes: Routes = [
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
   {path: "forgot", component:ForgotpasswordComponent},
-  {path: "reset", component:ResetPasswordComponent}
+  {path: "reset", component:ResetPasswordComponent},
+  { path: 'add-nutrition/:id', component: AddnutritionComponent },
+  {path : "userProfile", component: ProfileUserComponent}
 
 
 

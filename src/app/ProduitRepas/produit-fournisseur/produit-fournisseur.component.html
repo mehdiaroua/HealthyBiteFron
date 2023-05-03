@@ -14,7 +14,7 @@
                       <li><a href="#" routerLink="/repas/restaurant">Restaurant</a></li>
                       <li><a href="#" routerLink="/dash">User</a></li>
                       <li><a href="#" routerLink="/produit/fournisseur">Fournisseur</a></li>
-                    
+
                   </ul>
               </div>
           </div>
@@ -36,7 +36,7 @@
     <ng-template pTemplate="left">
        <button pButton pRipple  class="p-button-success mr-2" (click)="show()"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
-        <button pButton pRipple  class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"><i class="fa fa-trash"></i></button>
+
     </ng-template>
 
     <ng-template pTemplate="right">
@@ -157,6 +157,9 @@
             <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(produit)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
             <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(produit, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteProduit(produit)"></button>
+            <!--  <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" routerLink="{{produit.id}}"></button>-->
+            <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" routerLink="{{produit.id}}"></button>
+
           </td>
       </tr>
   </ng-template>

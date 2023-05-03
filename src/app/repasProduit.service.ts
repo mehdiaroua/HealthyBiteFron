@@ -9,6 +9,7 @@ import { User } from './Class/user';
 import { UserService } from './service/user.service';
 import { StorageService } from './service/storage.service';
 import { CategProduit } from './Models/RepasProduit/CategProduit';
+import { Nutrition } from './Models/RepasProduit/Nutrition';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +72,15 @@ user!: any;
  getRepasByUserId(id:number){
   return this.httpClient.get<Repas[]>(environment.api+"test/getRepasByUserId"+`/${id}`);
  }
+ addNutritionToRepas(nutrition: Nutrition, repasId: number): Observable<Repas> {
+  const body = JSON.stringify(nutrition);
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  return this.httpClient.post<Repas>(`${environment.api}test/addNutritionToRepas/${repasId}`, body, { headers });
+}
+
+calculerMaxCalories(user: User): Observable<number> {
+  return this.httpClient.post<number>(environment.api + 'test/maxCalories',  JSON.stringify(user));
+}
 
 
 
@@ -134,6 +144,12 @@ updateProduitAndImage(id: number, nom: string, description: string, prix: number
   return this.httpClient.get<Produit[]>(environment.api+"test/getProduitByUserId"+`/${id}`);
  }
 
+
+ addNutritionToProduit(nutrition: Nutrition, produitId: number): Observable<Produit> {
+  const body = JSON.stringify(nutrition);
+  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  return this.httpClient.post<Produit>(`${environment.api}test/addNutritionToProduit/${produitId}`, body, { headers });
+}
 
 
 

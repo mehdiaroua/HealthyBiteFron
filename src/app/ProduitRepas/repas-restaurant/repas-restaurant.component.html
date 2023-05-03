@@ -32,8 +32,6 @@
 <p-toolbar styleClass="mb-4 gap-2">
     <ng-template pTemplate="left">
        <button pButton pRipple  class="p-button-success mr-2" (click)="show()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-
-        <button pButton pRipple  class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"><i class="fa fa-trash"></i></button>
     </ng-template>
 
     <ng-template pTemplate="right">
@@ -180,6 +178,7 @@
             <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(repas)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
             <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(repas, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteRepas(repas)"></button>
+              <button pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-success" routerLink="{{repas.id}}"></button>
           </td>
       </tr>
   </ng-template>

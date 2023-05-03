@@ -12,7 +12,7 @@ import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 
@@ -40,6 +40,9 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
+import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
+import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
+import { ProfileUserComponent } from './profile-user/profile-user.component';
 
 
 
@@ -65,7 +68,10 @@ import { DashboardComponent } from './UserBack/dashboard.component';
     RegisterComponent,
     ForgotpasswordComponent,
     ResetPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddnutritionComponent,
+    AddNutrRepasComponent,
+    ProfileUserComponent
 
 
 
@@ -83,7 +89,7 @@ import { DashboardComponent } from './UserBack/dashboard.component';
     TagModule,
     DynamicDialogModule,
     ConfirmDialogModule,
-
+    MatDialogModule,
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule

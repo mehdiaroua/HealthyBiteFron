@@ -156,7 +156,7 @@ searchUsersByUsername(username: string): Observable<User[]> {
   return this.http.get<User[]>(url);
 }
 getUserById(id: number): Observable<User> {
-  return this.http.get<User>(this.otherurl + 'getUserById/' + id);
+  return this.http.get<User>(`http://localhost:8080/api/test/getUserById/${id}`);
 }
 
 updateUser(id: number, user: User): Observable<any> {
