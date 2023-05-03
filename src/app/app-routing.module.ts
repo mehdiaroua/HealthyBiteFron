@@ -19,16 +19,11 @@ const routes: Routes = [
   { path: 'checkout', component: PaiementComponent },
   // recette
   // { path: 'blogDetails', component: DetailsRecetteComponent },
-  {
-    path: 'recette',
-    component: RecetteListComponent,
-
-  },
-  { path: 'recette/:id', component: DetailsRecetteComponent },
+  { path: 'recette', component: RecetteListComponent },
   { path: 'recette/add', component: RecetteFormComponent },
-
+  { path: 'recette/:id', component: DetailsRecetteComponent },
+  { path: 'recette/:id/edit', component: RecetteFormComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-
 ];
 
 @NgModule({

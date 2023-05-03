@@ -1,17 +1,10 @@
-import { ResourceModel } from "src/app/Models/resource-model.model";
-import { Recette } from "./recette.nodel";
+import { Recette } from "./recette.model";
 
-export class Ingredient extends ResourceModel<Ingredient> {
-    public nom?: string;
 
-    public quantite?: number;
-
-    public calories?: number;
-    
-    public recette?: Recette;
-
-    constructor(model?: Partial<Ingredient>) {
-        super(model);
-    }
-
+export interface Ingredient {
+  id?: number;
+  nom?: string;
+  quantite?: number;
+  calories?: number;
+  recette?: Recette;
 }

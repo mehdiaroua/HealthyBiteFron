@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
-import { ResourceService } from './resource.service';
-import { Ingredient } from '../Models/RepasProduit/Models/RecetteConseil/ingredient.model';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Ingredient } from '../Models/RepasProduit/Models/RecetteConseil/ingredient.model';
+import { CrudService } from './generics/crud-service.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class IngredientService extends ResourceService<Ingredient> {
+export class IngredientService extends CrudService<Ingredient, number> {
   baseUrl = 'http://localhost:8080/ingredient';
   constructor(private http: HttpClient) {
-    super(http, Ingredient, 'http://localhost:8080/ingredient/');
+    super(http, 'http://localhost:8080/ingredient/');
   }
 
   public addIngredientToRecette(recetteId: number, ingredient: Ingredient) {
@@ -27,6 +27,8 @@ export class IngredientService extends ResourceService<Ingredient> {
   public getIngredientsByRecetteId(
     recetteId: number
   ): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(`${this.baseUrl}/recette/${recetteId}/ingredients`);
+    return this.http.get<Ingredient[]>(
+      `${this.baseUrl}/recette/${recetteId}/ingredients`
+    );
   }
 }

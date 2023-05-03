@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Ingredient } from 'src/app/Models/RepasProduit/Models/RecetteConseil/ingredient.model';
-import { Recette } from 'src/app/Models/RepasProduit/Models/RecetteConseil/recette.nodel';
+import { Recette } from 'src/app/Models/RepasProduit/Models/RecetteConseil/recette.model';
 import { IngredientService } from 'src/app/services/ingredient.service';
 import { RecetteService } from 'src/app/services/recette.service';
 

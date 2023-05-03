@@ -1,1 +1,43 @@
-<p>recette-form works!</p>
+<div class="row">
+  <h5 *ngIf="!recette; else modidiferRecette">Ajouter une Recette</h5>
+  <ng-template #modidiferRecette>
+    <h5>Modifier la Recette</h5>
+  </ng-template>
+</div>
+<div class="row">
+  <div class="blog__item__text">
+    <form
+      *ngIf="!recette; else updateForm"
+      class="approval-form"
+      [formGroup]="recetteForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <label>
+        Titre :
+        <input type="text" formControlName="nom" />
+      </label>
+      <div class="footer" footer>
+        <button class="btn-brand" type="submit">Ajouter</button>
+        <button class="btn-secondary" type="button" (click)="onCancel()">
+          Annuler
+        </button>
+      </div>
+    </form>
+    <ng-template #updateForm>
+      <div class="approval-form">
+        <label for="">
+          Titre
+          <input type="text" [(ngModel)]="recette.nom" />
+        </label>
+        <div class="mt-5">
+          <button class="btn-brand" type="submit" (click)="onUpdate()">
+            Modidifer
+          </button>
+          <button class="btn-secondary" type="button" (click)="onCancel()">
+            Annuler
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

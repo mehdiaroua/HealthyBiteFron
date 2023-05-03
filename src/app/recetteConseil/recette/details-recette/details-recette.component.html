@@ -3,10 +3,15 @@
 </div>
 <div class="row">
   <div class="blog__item__text">
-    <p>Nom {{ recette.nom }}</p>
+    <p *ngIf="recette && recette.nom">
+      <strong>Titre</strong> {{ recette.nom }}
+    </p>
   </div>
 </div>
-<div class="row" *ngIf="ingredients.length > 0; else noIngredients"></div>
+<div
+  class="row"
+  *ngIf="ingredients && ingredients.length > 0; else noIngredients"
+></div>
 
 <ng-template #noIngredients>
   <div class="blog__item__text">

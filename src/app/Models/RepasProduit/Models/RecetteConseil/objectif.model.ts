@@ -1,20 +1,14 @@
-import { ResourceModel } from "src/app/Models/resource-model.model";
-import { TypeActivite } from "./type-activite.enum";
-import { Conseil } from "./conseil.model";
+import { Conseil } from './conseil.model';
+import { TypeActivite } from './type-activite.enum';
 
-export class Objectif extends ResourceModel<Objectif> {
-    public poidDepart?: number;
-    public poidActuel?: number;
-    public taille?: number;
-    public objectifPoid?: number;
-    public typeActivite?: TypeActivite;
+export interface Objectif {
+  id?: number;
+  poidDepart?: number;
+  poidActuel?: number;
+  taille?: number;
+  objectifPoid?: number;
+  typeActivite?: TypeActivite;
 
-    public user: any;
-    public conseils?: Conseil[];
-
-    
-    constructor(model?: Partial<Objectif>) {
-        super(model);
-    }
-
+  user: any;
+  conseils?: Conseil[];
 }
