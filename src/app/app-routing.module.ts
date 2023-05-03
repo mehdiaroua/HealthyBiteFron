@@ -23,10 +23,15 @@ import { DashboardComponent } from './UserBack/dashboard.component';
 import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
 import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
+import { AdduserComponent } from './adduser/adduser.component';
+import { PiechartComponent } from './piechart/piechart.component';
+
+
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: "home", component:HomeComponent},
+  {path: "home", component:HomeComponent,canActivate: [RoleGuard]},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},
@@ -51,7 +56,9 @@ const routes: Routes = [
   {path: "forgot", component:ForgotpasswordComponent},
   {path: "reset", component:ResetPasswordComponent},
   { path: 'add-nutrition/:id', component: AddnutritionComponent },
-  {path : "userProfile", component: ProfileUserComponent}
+  {path : "userProfile", component: ProfileUserComponent},
+  {path: "add", component:AdduserComponent},
+  {path: "pie", component:PiechartComponent},
 
 
 

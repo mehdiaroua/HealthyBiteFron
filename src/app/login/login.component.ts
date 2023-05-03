@@ -56,25 +56,15 @@ export class LoginComponent implements OnInit {
     }*/
     
     
-    public navigateToUserRole() {
-      const role = this.currentUser.role[0].name;
-      switch (role) {
-        case ERole.ROLE_ADMIN:
-          this.route.navigate(['/dash']);
-          break;
-        case ERole.ROLE_MODERATOR:
-          this.route.navigate(['/moderator']);
-          break;
-        case ERole.ROLE_RESTAURANT:
-          this.route.navigate(['/restaurant']);
-          break;
-        case ERole.ROLE_FOURNISSEUR:
-          this.route.navigate(['/fournisseur']);
-          break;
-        default:
-          this.route.navigate(['/home']);
-          break;
+    public navigateToUserRole(role:string[]) {
+      if(role.includes(ERole.ROLE_ADMIN)){
+        this.route.navigate(['/dash']);
+
       }
+      else if (role.includes(ERole.ROLE_USER))
+      this.route.navigate(['/home']);
+
+      
     }
     
     
@@ -104,10 +94,10 @@ export class LoginComponent implements OnInit {
       this.service.login(username, password).subscribe({
         next: (data: any) => {
           this.storageService.saveUser(data);
-  
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.storageService.getUser().roles;
+          this.navigateToUserRole(this.roles)
 
         },
         error: (err: { error: { message: string; }; }) => {

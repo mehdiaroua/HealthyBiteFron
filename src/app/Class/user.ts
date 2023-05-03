@@ -18,6 +18,8 @@ export class User {
   taille!:number;
   enabled!: boolean;
   role!: Role[];
+  selectedRole!: Role;
+
 }
 export enum ERole {
   ROLE_USER = 'ROLE_USER',

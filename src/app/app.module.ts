@@ -43,8 +43,11 @@ import { DashboardComponent } from './UserBack/dashboard.component';
 import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
 import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
-
-
+import { AdduserComponent } from './adduser/adduser.component';
+import { PiechartComponent } from './piechart/piechart.component';
+import {Chart} from 'chart.js'
+import { registerables } from 'chart.js';
+Chart.register(...registerables);
 
 
 @NgModule({
@@ -71,7 +74,9 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
     DashboardComponent,
     AddnutritionComponent,
     AddNutrRepasComponent,
-    ProfileUserComponent
+    ProfileUserComponent,
+    AdduserComponent,
+    PiechartComponent
 
 
 
@@ -92,7 +97,8 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
     MatDialogModule,
     AppRoutingModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
 
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

@@ -1,5 +1,4 @@
-import { ERole, Role } from './../Class/user';
-import {  User } from '../Class/user';
+import {  ERole, Role, User } from '../Class/user';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -89,23 +88,17 @@ export class UserService {
   }
 
   isLoggedIn(){
-    return localStorage.getItem('token')!=null;
+    return sessionStorage.getItem('auth-user')!=null;
   }
 
   GetToken(){
-    return localStorage.getItem('token')||'';
+    return sessionStorage.getItem('auth-user')||'';
 
 
   }
 
   HaveAcces(){
-//     var loggintoken=sessionStorage.getItem('token')||'';
-//     var _extractedtoken=loggintoken.split('.')[1];
-//     var _atobdata=atob(_extractedtoken);
-//     var _finaldata=JSON.parse(_atobdata);
-//     if(_finaldata.Roles=='admin'){
-// return true;  }
-// return false;
+
 const user=JSON.parse(sessionStorage.getItem('auth-user')||'');
 console.log({user})
 if(user !== '')
@@ -127,6 +120,10 @@ return user.roles[0] === 'ROLE_ADMIN'
           return user;
         })
       );
+    }
+    getAllRolesWithUserCounts(): Observable<any> {
+      const url = `${this.otherurl}/count`;
+      return this.http.get(url);
     }
 
 
@@ -174,6 +171,28 @@ deleteUser(id: number): Observable<any> {
 }
 getAllUsers(): Observable<any> {
   return this.http.get<any>('http://localhost:8080/api/test/getAllUser');
+}
+getAllRoles(): Observable<string[]> {
+  return this.http.get<string[]>(`${this.otherurl}/roles`);
+}
+addUser(signUpRequest: any): Observable<any> {
+  return this.http.post<any>(`${this.otherurl}/add`, signUpRequest);
+}
+
+
+getUserRoles(userId: number): Observable<string[]> {
+  return this.http.get<ERole[]>(`${this.otherurl}/${userId}/roles`)
+    .pipe(
+      map((roles: ERole[]) => roles.map(role => role.toString()))
+    );
+}
+updateUserRole(userId: number, roleName: string): Observable<any> {
+  return this.http.put(`${this.otherurl}/${userId}/role/${roleName}`, null);
+}
+
+
+getRoleByName(name: string): Observable<Role> {
+  return this.http.get<Role>(`${this.otherurl}/${name}`);
 }
 }
 

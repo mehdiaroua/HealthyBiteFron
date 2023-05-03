@@ -12,7 +12,7 @@ export class NavbarComponent {
   constructor(private http: HttpClient, private UserService: UserService, private route:Router) {}
   logout() {
     this.UserService.logout();
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('auth-user');
     this.route.navigate(['/login']);
   }
 }
