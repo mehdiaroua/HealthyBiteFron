@@ -76,7 +76,9 @@ import { PaniierComponent } from './commande/paniier/paniier.component';
     AddproduitComponent,
     RepasRestaurantComponent,
     ProduitFournisseurComponent,
-    PaniierComponent
+    PaniierComponent,
+GetAllLivraisonComponent
+
 
 
 

@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
  
-  onSubmit(){
-     this.route.navigate(['/panier']);}
   constructor(private http: HttpClient, private UserService: UserService, private route:Router) {}
 
 
+  onSubmit(){
+    this.route.navigate(['/panier']);}
   logout() {
     this.UserService.logout();
     localStorage.removeItem('token');

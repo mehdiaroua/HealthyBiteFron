@@ -27,6 +27,7 @@ import { PaniierComponent } from './commande/paniier/paniier.component';
 
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {path: "home", component:HomeComponent},
@@ -36,8 +37,8 @@ const routes: Routes = [
   {path: "details", component:DetailsComponent},
   {path: "panier", component:PaniierComponent},
   {path: "checkout", component:PaiementComponent},
-  { path: 'aaa', component: GetAllLivraisonComponent },
-  { path: 'bbb', component: AddlivraisonComponent },
+  { path: 'livraisons', component: GetAllLivraisonComponent },
+  { path: 'addlivraison', component: AddlivraisonComponent },
   { path: 'updateLiv/:id', component: UpdateLivraisonComponent },
   {path: "repas/addRepas", component:AddrepasComponent},
   {path: "produit/addProduit", component:AddproduitComponent},
