@@ -63,6 +63,10 @@ export class LoginComponent implements OnInit {
       }
       else if (role.includes(ERole.ROLE_USER))
       this.route.navigate(['/home']);
+      else if (role.includes(ERole.ROLE_RESTAURANT))
+      this.route.navigate(['/repas/restaurant']);
+      else if (role.includes(ERole.ROLE_FOURNISSEUR))
+      this.route.navigate(['/produit/fournisseur']);
 
       
     }
