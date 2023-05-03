@@ -55,7 +55,7 @@ import {Chart} from 'chart.js'
 import { registerables } from 'chart.js';
 import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import { MatDialogModule } from '@angular/material/dialog';
+
 import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
 Chart.register(...registerables);
 
@@ -118,9 +118,7 @@ GetAllLivraisonComponent,
     DynamicDialogModule,
     ConfirmDialogModule,
     AppRoutingModule,
-    RouterModule,
-    MatDialogModule
-    
+    RouterModule
     
   ],
 

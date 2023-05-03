@@ -1,4 +1,4 @@
-import { ObjectifType } from "../Models/RepasProduit/ObjectifType";
+import { ObjectifType } from "../Models/ObjectifType";
 
 
 export class User {

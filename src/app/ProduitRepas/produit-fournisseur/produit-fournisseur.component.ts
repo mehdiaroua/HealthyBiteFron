@@ -9,14 +9,14 @@ import { UserService } from 'src/app/service/user.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { CategProduit } from 'src/app/Models/CategProduit';
 import { AddnutritionComponent } from '../addnutrition/addnutrition.component';
-import {MatDialog} from '@angular/material/dialog';
+
 import { Nutrition } from 'src/app/Models/Nutrition';
 
 @Component({ 
   selector: 'app-produit-fournisseur',
   templateUrl: './produit-fournisseur.component.html',
   styleUrls: ['./produit-fournisseur.component.css'],
-  providers:[MessageService,ConfirmationService,DialogService,MatDialog]
+  providers:[MessageService,ConfirmationService,DialogService]
 })
 export class ProduitFournisseurComponent implements OnInit{
   clonedProducts: { [s: string]: Produit } = {};
@@ -41,7 +41,7 @@ export class ProduitFournisseurComponent implements OnInit{
     id!:any;
     user!:any;
   currentUser!:any;
-    constructor(private repasService:RepasProduitService,private messageService: MessageService,private dialog:MatDialog, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:StorageService){}
+    constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:StorageService){}
 
     ngOnInit(): void {
       this.user= this.userService.getUser();

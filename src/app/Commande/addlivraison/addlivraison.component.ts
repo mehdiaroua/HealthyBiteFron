@@ -28,8 +28,8 @@ export class AddlivraisonComponent {
   public ngOnInit() {
     this.initForm();
     this.initdeliveryForm();
-    this.user = this.userService.getUser();
-    console.log(this.user);
+    // this.user = this.userService.getUser();
+    // console.log(this.user);
   }
   initForm(){
     this.formLivraison = this.form.group({
@@ -52,8 +52,8 @@ export class AddlivraisonComponent {
         error => console.log(error)
       );
   
-     this.livraison = new Livraison();
-     this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
+    // this.livraison = new Livraison();
+    // this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
      this.router.navigate(['/paiement']);
   }
   onSubmit() {
