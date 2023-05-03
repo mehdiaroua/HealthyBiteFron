@@ -48,6 +48,7 @@ import { PiechartComponent } from './piechart/piechart.component';
 import {Chart} from 'chart.js'
 import { registerables } from 'chart.js';
 import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 Chart.register(...registerables);
 
 
@@ -78,7 +79,8 @@ Chart.register(...registerables);
     ProfileUserComponent,
     AdduserComponent,
     PiechartComponent,
-    ShowProduitNutritionComponent
+    ShowProduitNutritionComponent,
+    UnauthorizedComponent
 
 
 
@@ -96,11 +98,11 @@ Chart.register(...registerables);
     TagModule,
     DynamicDialogModule,
     ConfirmDialogModule,
-    MatDialogModule,
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatDialogModule
   ],
 
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

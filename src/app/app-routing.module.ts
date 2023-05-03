@@ -1,3 +1,4 @@
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -25,39 +26,64 @@ import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-re
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { PiechartComponent } from './piechart/piechart.component';
+import { ERole } from './Class/user';
 
 
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: "unauthorized", component:UnauthorizedComponent},
   {path: "home", component:HomeComponent},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},
- {path: 'shop/:id', component:DetailsComponent},
+ {path: 'shop/:id', component:DetailsComponent,
+ canActivate: [RoleGuard],
+ data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
   {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent},
-  {path: "repas/addRepas", component:AddrepasComponent},
-  {path: "produit/addProduit", component:AddproduitComponent},
-  {path: "repas/restaurant", component:RepasRestaurantComponent},
-  {path: "repas/restaurant/:id", component:AddNutrRepasComponent},
-  {path: "produit/fournisseur", component:ProduitFournisseurComponent},
-  {path: "produit/fournisseur/:id", component:AddnutritionComponent},
+  {path: "repas/addRepas", component:AddrepasComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
+  {path: "produit/addProduit", component:AddproduitComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] }},
+  {path: "repas/restaurant", component:RepasRestaurantComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
+  {path: "repas/restaurant/:id", component:AddNutrRepasComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
+  {path: "produit/fournisseur", component:ProduitFournisseurComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] }},
+  {path: "produit/fournisseur/:id", component:AddnutritionComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] }},
   {path: "produitShop", component:ProduitShopComponent},
   {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
   {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
   {path: "details", component:DetailsComponent},
   {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
-  {path: "dash", component:DashboardComponent,canActivate:[RoleGuard]},
+  {path: "dash", component:DashboardComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_ADMIN] }},
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
   {path: "forgot", component:ForgotpasswordComponent},
   {path: "reset", component:ResetPasswordComponent},
-  { path: 'add-nutrition/:id', component: AddnutritionComponent },
+  { path: 'add-nutrition/:id', component: AddnutritionComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] } },
   {path : "userProfile", component: ProfileUserComponent},
-  {path: "add", component:AdduserComponent},
+  { 
+    path: 'add', 
+    component: AdduserComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_ADMIN] }// specify required roles here
+  },  
   {path: "pie", component:PiechartComponent},
 
 

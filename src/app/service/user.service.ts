@@ -28,25 +28,7 @@ export class UserService {
   constructor(private http:HttpClient,private route:Router) { }
 
 
-  getCurrentUser(): User | void {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
-      this.http.get<User>('http://localhost:8080/api/auth/user', { headers }).subscribe(
-        data => {
-          this.currentUser = data;
-          console.log(data);
-          this.navigateToUserRole();
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }else {
-      console.log('Token not found in localStorage');
-      return
-      ;}
-  }
+  
 
   private navigateToUserRole() {
     const role = this.currentUser.role[0].name;
@@ -97,21 +79,19 @@ export class UserService {
 
   }
 
-  HaveAcces(){
-
-const user=JSON.parse(sessionStorage.getItem('auth-user')||'');
-console.log({user})
-if(user !== '')
-var _extractedtoken=user.accessToken;
-// console.log(user.roles=== 'ROLE_ADMIN')
-// if(user.roles.includes('admin')){
-// return true;
-//  }
-// return false;
-console.log(user.roles[0] === 'ROLE_ADMIN')
-return user.roles[0] === 'ROLE_ADMIN'
+  haveAccess(requiredRoles: ERole[]): boolean {
+    const user = JSON.parse(sessionStorage.getItem('auth-user') || '');
+    if (user && user.accessToken) {
+      const roles = user.roles;
+      for (const requiredRole of requiredRoles) {
+        if (roles.includes(requiredRole)) {
+          return true;
+        }
+      }
     }
-
+    return false;
+  }
+  
     sendSMS(user: User): Observable<any> {
       const url = `http://localhost:8080/api/test/sendsms`;
       return this.http.put(url, { phone: user.phone }).pipe(
