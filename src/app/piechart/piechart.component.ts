@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { BubbleDataPoint, Chart, ChartTypeRegistry, Point ,registerables } from 'chart.js';
 import { Observable } from 'rxjs';
 import { AnimationSpec, AnimationEvent } from 'chart.js';
-import { _DeepPartialObject } from 'chart.js/types/utils';
 import { UserService } from '../service/user.service';
 
 Chart.register(...registerables);
