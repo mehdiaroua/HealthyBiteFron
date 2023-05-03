@@ -30,8 +30,8 @@ export class PaniierComponent {
     return this.cartItems.reduce((total, item) => total + item.prix * item.quantite, 0);
   }
 
-  checkout(): void {
-    // Implement checkout logic here
-  }
+  // checkout(): void {
+  //   // Implement checkout logic here
+  // }
 
 }

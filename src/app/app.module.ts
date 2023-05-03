@@ -35,7 +35,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RouterModule } from '@angular/router';
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
 import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
-import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
 import { LoginComponent } from './login/login.component';
 
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -56,6 +55,8 @@ import {Chart} from 'chart.js'
 import { registerables } from 'chart.js';
 import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
 Chart.register(...registerables);
 
 
@@ -95,7 +96,8 @@ GetAllLivraisonComponent,
     ShowProduitNutritionComponent,
     UnauthorizedComponent,
     DashboardComponent,
-    ProduitFournisseurComponent,
+   
+    RepasRestaurantComponent
 
 
 
@@ -118,6 +120,7 @@ GetAllLivraisonComponent,
     AppRoutingModule,
     RouterModule,
     MatDialogModule
+    
     
   ],
 
