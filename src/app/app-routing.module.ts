@@ -31,7 +31,7 @@ import { PiechartComponent } from './piechart/piechart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: "home", component:HomeComponent,canActivate: [RoleGuard]},
+  {path: "home", component:HomeComponent},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},

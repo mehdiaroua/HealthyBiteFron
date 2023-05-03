@@ -23,21 +23,21 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  
+
   formSubmitted = false;
 
     data : Date = new Date();
-    
+
     currentUser!: User;
     reponsedata: any;
-  
-  
-  
+
+
+
   userService: any;
-    
+
 
     constructor(private service:UserService, private route:Router, private formBuilder: FormBuilder,private http: HttpClient, private storageService: StorageService) {
-      
+
     }
    /* getCurrentUser() {
       const token = sessionStorage.getItem('token');
@@ -54,25 +54,26 @@ export class LoginComponent implements OnInit {
         );
       }
     }*/
-    
-    
+
+
     public navigateToUserRole(role:string[]) {
       if(role.includes(ERole.ROLE_ADMIN)){
         this.route.navigate(['/dash']);
 
       }
-      else if (role.includes(ERole.ROLE_USER))
-      this.route.navigate(['/home']);
+      else if (role.includes(ERole.ROLE_USER) || role.includes(ERole.ROLE_RESTAURANT) || role.includes(ERole.ROLE_FOURNISSEUR)|| role.includes(ERole.ROLE_ADMIN)) {
+        this.route.navigate(['/home']);
+      }
       else if (role.includes(ERole.ROLE_RESTAURANT))
       this.route.navigate(['/repas/restaurant']);
       else if (role.includes(ERole.ROLE_FOURNISSEUR))
       this.route.navigate(['/produit/fournisseur']);
 
-      
+
     }
-    
-    
-    
+
+
+
     ngOnInit() {
       if (this.storageService.isLoggedIn()) {
         this.isLoggedIn = true;
@@ -94,7 +95,7 @@ export class LoginComponent implements OnInit {
     }
     onSubmit(): void {
       const { username, password } = this.form;
-  
+
       this.service.login(username, password).subscribe({
         next: (data: any) => {
           this.storageService.saveUser(data);
@@ -113,7 +114,7 @@ export class LoginComponent implements OnInit {
     reloadPage(): void {
       window.location.reload();
     }
-      
-      
+
+
 
 }

@@ -47,6 +47,7 @@ import { AdduserComponent } from './adduser/adduser.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import {Chart} from 'chart.js'
 import { registerables } from 'chart.js';
+import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
 Chart.register(...registerables);
 
 
@@ -76,7 +77,8 @@ Chart.register(...registerables);
     AddNutrRepasComponent,
     ProfileUserComponent,
     AdduserComponent,
-    PiechartComponent
+    PiechartComponent,
+    ShowProduitNutritionComponent
 
 
 
