@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
+
+import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './headers/navbar/navbar.component';
@@ -25,8 +28,11 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
-
-
+import { AdduserComponent } from './adduser/adduser.component';
+import { PiechartComponent } from './piechart/piechart.component';
+import {Chart} from 'chart.js'
+import { registerables } from 'chart.js';
+Chart.register(...registerables);
 
 
 @NgModule({
@@ -45,19 +51,26 @@ import { DashboardComponent } from './UserBack/dashboard.component';
     RegisterComponent,
     ForgotpasswordComponent,
     ResetPasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdduserComponent,
+    PiechartComponent
   
         
    
   ],
   imports: [
+    
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
+    NgChartsModule,
+    
+    
 
        
   ],

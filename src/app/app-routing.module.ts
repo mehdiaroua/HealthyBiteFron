@@ -15,21 +15,27 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { RoleGuard } from './User/role.guard';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
+import { AdduserComponent } from './adduser/adduser.component';
+import { PiechartComponent } from './piechart/piechart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {path: "home", component:HomeComponent,canActivate:[AuthGuard]},
+  {path: "home", component:HomeComponent,canActivate: [RoleGuard]},
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
   {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
   {path: "details", component:DetailsComponent,canActivate:[AuthGuard]},
   {path: "panier", component:PanierComponent,canActivate:[AuthGuard]},
   {path: "checkout", component:PaiementComponent},
-  {path: "dash", component:DashboardComponent,canActivate:[RoleGuard]},
+  {path: "dash", component:DashboardComponent,canActivate: [RoleGuard]},
   {path: "login", component:LoginComponent},
   {path: "register", component:RegisterComponent},
   {path: "forgot", component:ForgotpasswordComponent},
-  {path: "reset", component:ResetPasswordComponent}
+  {path: "reset", component:ResetPasswordComponent},
+  {path: "add", component:AdduserComponent},
+  {path: "pie", component:PiechartComponent}
+
+
 
   
 
