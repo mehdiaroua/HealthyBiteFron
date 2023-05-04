@@ -1,6 +1,7 @@
 import { Post } from "./Post";
 import { Tag } from "./Tag";
 import { User } from "./User";
+import { Reply } from "./reply";
 
 export class Comment {
 //   id!: number;
@@ -13,13 +14,15 @@ export class Comment {
 //   post!: Post;
 //   likess!: any[];
 //   tags!: Tag[];
-//   parentComment!: Comment;
 //   replies!: Comment[];
 //   postId!: number;
     
   id!: number;
   postId!: number;
   content!: string;
-  replies!: Comment[];
+  replies!: Reply[];
+  commentId?: number;
+  showReply!: boolean; // Add the showReply property here
+
 
 }

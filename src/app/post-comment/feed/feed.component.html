@@ -17,12 +17,12 @@
                     <div class="pages">
                         <h4 class="mini-headign">Pages</h4>
                         <label>
-                            <img src="/assets/images/messenger.png" alt="messenger">
-                            <span>messenger</span>
+                            <img src="/assets/images/marketplace.png" alt="messenger">
+                            <span>Shop</span>
                         </label>
                         <label>
-                            <img src="/assets/images/instagram.png" alt="instagram">
-                            <span>instagram</span>
+                            <img src="/assets/images/friends.png" alt="instagram">
+                            <span>Home</span>
                         </label>
                         <button class="see-more-btn">See more <i class="fa fa-angle-down"></i></button>
                     </div>
@@ -31,11 +31,11 @@
                         <h4 class="mini-headign">Group</h4>
                         <label>
                             <img src="/assets/images/gg.png" alt="group01">
-                            <span>Graphic design</span>
+                            <span>Healthy Food Community</span>
                         </label>
                         <label>
                             <img src="/assets/images/gg2.png" alt="group02">
-                            <span>website design</span>
+                            <span>HealthyBite</span>
                         </label>
 
                         <label>
@@ -44,7 +44,7 @@
                         </label>
                         <button class="see-more-btn">See more <i class="fa fa-angle-down"></i></button>
                     </div>
-
+                    <!-- 
                     <div class="games">
                         <h4 class="mini-headign">Games</h4>
                         <label>
@@ -56,7 +56,7 @@
                             <span>Free Play Games</span>
                         </label>
                         <button class="see-more-btn">See more <i class="fa fa-angle-down"></i></button>
-                    </div>
+                    </div> -->
 
                     <div class="explore">
                         <h4 class="mini-headign">Explore</h4>
@@ -182,16 +182,28 @@
                                                             <h6 class="comment-name by-author"><a
                                                                     href="http://creaticode.com/blog">Agustin Ortiz</a>
                                                             </h6>
-                                                            <i class="fa fa-reply"></i>
-                                                            <button (click)="deleteComment(comment.id)">Delete</button>
-
-                                                            <i class="fa fa-heart"></i>
+                                                            <i class="fa fa-trash" style="color: red;"
+                                                                (click)="deleteComment(comment.id)"></i>
+                                                            <!-- <button mat-menu-item>
+                                                                    <mat-icon (click)="deleteComment(comment.id)">delete_forever</mat-icon>
+                                                                </button> -->
+                                                            <!-- <i class="fa fa-heart"></i> -->
                                                         </div>
                                                         <div class="comment-content">
                                                             <p>{{ comment?.content }}</p>
                                                         </div>
+
+
                                                         <!-- Respuestas de los comentarios -->
-                                                        <ul class="comments-list reply-list">
+                                                        <ul class="comments-list reply-list" >
+                                <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
+                                    <div class="form-group">
+                                        <label for="content">Add a comment:</label>
+                                        <input type="text" class="form-control" name="content" #content ngModel required>
+                                    </div>
+                                    <button type="submit" class="add-comment">Submit</button>
+                                </form>
+
                                                             <li *ngFor="let reply of comment.replies">
                                                                 <!-- Avatar -->
                                                                 <div class="comment-avatar"><img
@@ -203,13 +215,20 @@
                                                                                 href="http://creaticode.com/blog">Lorena
                                                                                 Rojero</a></h6>
                                                                         <i class="fa fa-reply"></i>
+                                                                        <button
+                                                                            (click)="deleteComment(comment.id)">Delete</button>
+
                                                                         <i class="fa fa-heart"></i>
                                                                     </div>
                                                                     <div class="comment-content">
                                                                         <p>{{ reply.content }}</p>
 
                                                                     </div>
+
+
+
                                                                 </div>
+
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -222,12 +241,9 @@
                                                 <input type="text" class="form-control" name="content" #content ngModel
                                                     required>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" class="add-comment">Submit</button>
                                         </form>
-
                                     </div>
-
-
                                 </div>
                             </div>
                             <div class="pagination-buttons">

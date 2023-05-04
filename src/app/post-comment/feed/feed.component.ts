@@ -10,6 +10,8 @@ import { Comment } from 'src/app/Models/PostComment/comment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { data } from 'jquery';
+import { Reply } from 'src/app/Models/PostComment/reply';
 
 @Component({
   selector: 'app-feed',
@@ -26,21 +28,29 @@ export class FeedComponent implements OnInit {
   currentPage = 1;
   postsPerPage = 5;
   showComments: boolean = false;
-  clickedPosts: Set<number> = new Set(); // create a Set to keep track of clicked posts
+  clickedPosts: Set<number> = new Set(); 
+    replyContent!: string;
+
 
   constructor(private postService: PostService, public dialog: MatDialog, private commentService: CommentService) { }
   
   ngOnInit() {
     this.getAllPosts();
+    this.getCommentsByPost(this.postId);
   }
 
+
+
+
 addComment(postId: number, content: string) {
-  const newComment: Comment = {
-    id: Date.now(),
-    postId,
-    content,
-    replies: []
-  };
+const newComment: Comment = {
+  id: Date.now(),
+  showReply:false,
+  postId,
+  content,
+  replies: []
+};
+
   this.commentService.addComment(postId, newComment).subscribe(
     (comment) => {
       const postIndex = this.posts.findIndex(post => post.id === postId);
@@ -52,21 +62,53 @@ addComment(postId: number, content: string) {
     }
   );
   }
+
+
+//    addReply(commentId: number, content: string): void {
   
+//      let reply = new Comment();
+//      reply.content = content;
+     
+//      this.commentService.addReply
+//  }
+
+ 
+addReply(commentId:number,content: string) {
+const newComment: Comment = {
+  id: Date.now(),
+  showReply:false,
+  content,
+  postId:this.postId,
+  commentId,
+  replies: []
+};
+
+  this.commentService.addComment(commentId,newComment ).subscribe(
+    (comment) => {
+      const commentIndex = this.comments.findIndex(comment => comment.id === commentId);
+      this.posts[commentIndex].comments.push(comment);
+      console.log('Comment added successfully:', comment);
+    },
+    error => {
+      console.error('Error adding comment:', error);
+    }
+  );
+  }
 
 deleteComment(id: number): void {
-  this.commentService.deleteComment(id)
-    .subscribe(
-      () => console.log(`Comment with ID ${id} deleted`),
-      error => console.error(error)
-    );
+  if (confirm("Are you sure you want to delete this comment?")) {
+    this.commentService.deleteComment(id)
+      .subscribe(() => {
+        console.log(`Comment with ID ${id} deleted`);
+        this.getCommentsByPost(this.postId);
+        
+      }, error => {
+        console.error(error);
+      });
+  }
 }
 
 
-
-
-
-  
   postImageURL(imageData: string): string {
     return `data:image/jpeg;base64,${imageData}`;
   }
@@ -87,13 +129,26 @@ deleteComment(id: number): void {
   }
 
 
-
-  getAllPosts() {
-    this.postService.getAllPosts()
-      .subscribe((data: Post[]) => {
-        this.posts = data;
+getAllPosts() {
+  this.postService.getAllPosts()
+    .subscribe((data: Post[]) => {
+      this.posts = data.sort((a, b) => {
+        return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
       });
+    });
+}
+
+
+
+  getCommentsByPost(postId: number) {
+    this.commentService.getCommentsByPost(postId)
+      .subscribe((data: Comment[]) => {
+        this.comments = data;
+      });
+    
   }
+
+  
 
   deletePost(posts: Post): void {
     if (confirm("Are you sure you want to delete this post?")) {
