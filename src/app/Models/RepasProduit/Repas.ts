@@ -1,6 +1,7 @@
 import {ObjectifType} from './ObjectifType'
 import { CategRepas } from './CategRepas';
 import { Nutrition } from './Nutrition';
+import { User } from 'src/app/Class/user';
 export class Repas {
     id!:number;
     nom!:string;
@@ -11,8 +12,11 @@ export class Repas {
     objectifType!:ObjectifType;
     img!:string;
     categorieRepas!:CategRepas;
-    //user!:User;
+    user!:number;
     nutrition!:Nutrition;
+    image_data!:ArrayBuffer;
+    imageUrl!: string;
+    imageBase64!:String;
 
 
 
