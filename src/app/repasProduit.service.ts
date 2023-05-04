@@ -78,9 +78,10 @@ user!: any;
   return this.httpClient.post<Repas>(`${environment.api}test/addNutritionToRepas/${repasId}`, body, { headers });
 }
 
-calculerMaxCalories(user: User): Observable<number> {
-  return this.httpClient.post<number>(environment.api + 'test/maxCalories',  JSON.stringify(user));
+calculerMaxCalories(id: number): Observable<number> {
+  return this.httpClient.get<number>(environment.api+"test/maxCalories"+`/${id}`);
 }
+
 
 
 

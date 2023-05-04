@@ -28,12 +28,14 @@ console.log(this.user);
 save() {
   this.repasService.addRepasAndImage(this.repas.nom, this.repas.description, this.repas.prix, this.repas.ingredient, this.repas.allergene, this.repas.objectifType,this.repas.categorieRepas, this.imageFile)
     .subscribe(data => console.log(data), error => console.log(error));
+    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
   this.repas = new Repas();
-  this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'repas Ajouté avec Succés' });
+
 }
 
 onSubmit() {
   this.submitted = true;
+
   this.save();
   this.router.navigate(['/repas/restaurant']);
 }

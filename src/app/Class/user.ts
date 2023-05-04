@@ -17,8 +17,10 @@ export class User {
   poids!:number;
   taille!:number;
   enabled!: boolean;
-  role!: Role[];
+  roles!: Role[];
   selectedRole!: Role;
+
+
 
 }
 export enum ERole {

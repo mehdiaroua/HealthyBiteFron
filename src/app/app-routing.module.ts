@@ -77,13 +77,13 @@ const routes: Routes = [
   { path: 'add-nutrition/:id', component: AddnutritionComponent,
   canActivate: [RoleGuard],
   data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] } },
-  {path : "userProfile", component: ProfileUserComponent},
-  { 
-    path: 'add', 
+  {path : "userProfile", component: ProfileUserComponent,canActivate: [AuthGuard]},
+  {
+    path: 'add',
     component: AdduserComponent,
     canActivate: [RoleGuard],
     data: { requiredRoles: [ERole.ROLE_ADMIN] }// specify required roles here
-  },  
+  },
   {path: "pie", component:PiechartComponent},
 
 

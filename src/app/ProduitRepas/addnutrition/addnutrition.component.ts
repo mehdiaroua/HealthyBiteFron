@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Nutrition } from 'src/app/Models/RepasProduit/Nutrition';
 import { Produit } from 'src/app/Models/RepasProduit/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
@@ -7,7 +8,8 @@ import { RepasProduitService } from 'src/app/repasProduit.service';
 @Component({
   selector: 'app-addnutrition',
   templateUrl: './addnutrition.component.html',
-  styleUrls: ['./addnutrition.component.css']
+  styleUrls: ['./addnutrition.component.css'],
+  providers:[MessageService]
 })
 export class AddnutritionComponent implements OnInit{
   nutrition: Nutrition = {
@@ -19,7 +21,7 @@ export class AddnutritionComponent implements OnInit{
     fibre: 0,
     calories: 0,
     proteines: 0,
-    lipides: 0, 
+    lipides: 0,
     sel: 0,
 
   };
@@ -27,7 +29,7 @@ export class AddnutritionComponent implements OnInit{
 
   produits!: Produit[];
   selectedProduit!: Produit;
-constructor(private repasService:RepasProduitService,private router:Router,private route: ActivatedRoute){}
+constructor(private repasService:RepasProduitService,private router:Router,private route: ActivatedRoute, private messageService:MessageService){}
   ngOnInit(): void {
     const id = +this.route.snapshot.params['id'];
     this.repasService.getProduitById(id).subscribe(produit => {
@@ -40,6 +42,7 @@ constructor(private repasService:RepasProduitService,private router:Router,priva
   addNutritionToProduit(nutrition: Nutrition, produitId: number) {
     this.repasService.addNutritionToProduit(nutrition, produitId)
       .subscribe(() => {
+        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content' });
         this.router.navigate(['/produit/fournisseur', this.selectedProduit.id]);
       });
   }

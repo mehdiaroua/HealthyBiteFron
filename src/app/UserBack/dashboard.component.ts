@@ -17,7 +17,7 @@ import { StorageService } from '../service/storage.service';
 export class DashboardComponent implements OnInit{
   userss!: User[];
 
-    
+
   selectedRole: string = '';
   roles: Role[] = [];
   data: any;
@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit{
   ];
   users: any[] = [];
 
+
   constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private storage:StorageService) {
     this.roles = [
       { id: 1, name: ERole.ROLE_USER },
@@ -44,20 +45,23 @@ export class DashboardComponent implements OnInit{
       { id: 5, name: ERole.ROLE_FOURNISSEUR },
     ];
    }
-   
+
   ngOnInit(): void {
 this.user=this.storage.getUser();
 console.log(this.user.id);
     this.userService.getAllUsers().subscribe(data => {
-      console.log(data); // check if data is being retrieved correctly
 
       this.users = data;
+      this.users.forEach(user => { user.selectedRole = user.roles[0];
+          console.log(user.selectedRole.name)
+      });
+      console.log(this.users);
     });
   }
-  
-  
+
+
   onUpdateRole(userId: number, roleName: string) {
-    
+
     this.userService.updateUserRole(userId, roleName)
       .subscribe(
         response => {
@@ -67,8 +71,8 @@ console.log(this.user.id);
         }
       );
   }
-  
-  
+
+
   searchUsers() {
     console.log('Searching for users with username: ' + this.username);
     this.userService.searchUsersByUsername(this.username).subscribe(
@@ -79,7 +83,7 @@ console.log(this.user.id);
       error => console.log(error)
     );
   }
-  
+
   onDelete(id: number) {
     if (confirm('Are you sure you want to delete this user?')) {
       this.userService.deleteUser(id).subscribe(
@@ -110,11 +114,11 @@ console.log(this.user.id);
       }
     );
   }
-  
-  
-  
-  
-  
+
+
+
+
+
 
   onDisable(id: number) {
     this.userService.disableUser(id).subscribe(
@@ -133,8 +137,8 @@ console.log(this.user.id);
     this.isEditing = true;
     this.selectedUser = this.users.find(user => user.id === id);
   }
-  
-  
+
+
   ngOnInit1(): void {
     this.route.params.subscribe(params => {
       this.id = params['id'];
@@ -153,8 +157,8 @@ console.log(this.user.id);
 
   }
   onUpdate() {
-    this.selectedUser.role = [this.selectedUser.selectedRole]; // update the role of the user
-    
+    this.selectedUser.roles = [this.selectedUser.selectedRole]; // update the role of the user
+
     this.userService.updateUser(this.selectedUser.id, this.selectedUser)
       .subscribe(
         response => {
@@ -162,21 +166,21 @@ console.log(this.user.id);
           this.isEditing = false;
           this.selectedUser = new User();
           this.ngOnInit();
-          
+
         },
         error => {
           console.log(error);
         });
-        
+
   }
-  
-  
+
+
   onCancel(): void {
     this.selectedUser = {} as User;
     this.isEditing = false;
   }
-  
-  
+
+
   getUser(id: number): void {
     this.userService.getUserById(id)
       .subscribe(
@@ -207,5 +211,5 @@ console.log(this.user.id);
           console.log(error);
         });
   }
-  
+
 }

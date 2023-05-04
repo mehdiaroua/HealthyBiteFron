@@ -28,10 +28,10 @@ export class UserService {
   constructor(private http:HttpClient,private route:Router) { }
 
 
-  
+
 
   private navigateToUserRole() {
-    const role = this.currentUser.role[0].name;
+    const role = this.currentUser.roles[0].name;
     switch (role) {
       case ERole.ROLE_ADMIN:
         this.route.navigate(['/dash']);
@@ -91,7 +91,7 @@ export class UserService {
     }
     return false;
   }
-  
+
     sendSMS(user: User): Observable<any> {
       const url = `http://localhost:8080/api/test/sendsms`;
       return this.http.put(url, { phone: user.phone }).pipe(

@@ -30,8 +30,9 @@ console.log(this.user);
   save() {
     this.repasService.addProduitAndImage(this.produit.nom, this.produit.description, this.produit.prix, this.produit.ingredient,  this.produit.categProduit,  this.imageFile)
       .subscribe(data => console.log(data), error => console.log(error));
+      this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
     this.produit = new Produit();
-    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
+
 
   }
 

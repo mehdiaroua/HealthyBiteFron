@@ -11,21 +11,21 @@ import { ERole, User } from '../Class/user';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  
-  
-  
+
+
+
   data : Date = new Date();
-    
-    
+
+
     reponsedata: any;
     errorMessage: string = '';
-  
+
   user: User = new User();
- 
+
   signupForm: FormGroup;
   password: any;
   username: any;
-    
+
 
     constructor(private service:UserService, private route:Router, private formBuilder: FormBuilder,private http: HttpClient) {
       this.signupForm = this.formBuilder.group({
@@ -48,7 +48,7 @@ export class RegisterComponent {
     this.user.email = this.signupForm.value.email;
     this.user.password = this.signupForm.value.password;
     this.user.phone = this.signupForm.value.phone;
-    this.user.role = [this.signupForm.value.role];
+    this.user.roles = [this.signupForm.value.role];
 
     this.http.post<any>('http://localhost:8080/api/auth/signup', this.user, httpOptions)
       .subscribe(

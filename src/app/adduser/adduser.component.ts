@@ -25,16 +25,16 @@ export class AdduserComponent {
       role: [[{ id: 1, name: ERole.ROLE_ADMIN }], Validators.required]
     });
    }
-   
-  
+
+
 
    onSubmit(): void {
     this.user.username = this.signupForm.value.username;
     this.user.email = this.signupForm.value.email;
     this.user.password = this.signupForm.value.password;
     this.user.phone = this.signupForm.value.phone;
-    this.user.role = [this.signupForm.value.role];
-  
+    this.user.roles = [this.signupForm.value.role];
+
     this.http.post<any>('http://localhost:8080/api/test/add', this.user)
       .subscribe(
         response => {
@@ -46,5 +46,5 @@ export class AdduserComponent {
         }
       );
   }
-  
+
 }

@@ -25,4 +25,8 @@ constructor(private repasProduit:RepasProduitService, private R:Router){}
       this.R.navigate(['products/productDetails', id]);
     }
 
+    gotoDashboard(){
+      this.R.navigate(['repas/restaurant']);
+    }
+
 }

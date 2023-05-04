@@ -73,13 +73,15 @@
                             <td>{{ user.username }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.phone }}</td>
-                            <td>{{ user.role }}
+                            <td>
                               <div class="form-group">
-                                <select [(ngModel)]="selectedRole" class="form-control">
+                                <select  [(ngModel)]="user.selectedRole.name" class="form-control">
+                                  <!--<option value="hello" selected="{{user.selectedRole.name}}">{{user.selectedRole.name}}</option>
                                   <option value="ROLE_ADMIN">ADMIN</option>
                                   <option value="ROLE_USER">USER</option>
                                   <option value="ROLE_FOURNISSEUR">FOURNISSEUR</option>
-                                  <option value="ROLE_RESTAURANT">RESTAURANT</option>
+                                  <option value="ROLE_RESTAURANT">RESTAURANT</option>-->
+                                  <option *ngFor="let role of roles" title="{{role.name}}" ng-selected="{role.name == user.selectedRole.name}" value="{{role.name}}">{{role.name}}</option>
                                 </select>
                               </div>
                               <button class="btn btn-success" (click)="onUpdateRole(user.id, selectedRole)">
