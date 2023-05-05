@@ -85,6 +85,10 @@ const routes: Routes = [
     data: { requiredRoles: [ERole.ROLE_ADMIN] }// specify required roles here
   },
   {path: "pie", component:PiechartComponent},
+  { path: "post/posts", component: FeedComponent },
+  { path: 'posts/:id', component: PostDetailsComponent },
+  { path: 'posts/update/:id', component: UpdatePostComponent },
+  { path: 'posts/comments', component: CommentsComponent }
 
 
 
