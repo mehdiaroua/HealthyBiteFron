@@ -49,12 +49,13 @@ import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutri
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 Chart.register(...registerables);
 import { MatMenuModule } from '@angular/material/menu';
-import { AddpostComponent } from './post-comment/addpost/addpost.component';
+
 import { FeedComponent } from './post-comment/feed/feed.component';
 
 import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
 import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
 import { CommentsComponent } from './post-comment/comments/comments.component';
+import { AddpostComponent } from './post-comment/addpost/addpost.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,11 @@ import { CommentsComponent } from './post-comment/comments/comments.component';
     AdduserComponent,
     PiechartComponent,
     ShowProduitNutritionComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    AddpostComponent,
+    PostDetailsComponent,
+    UpdatePostComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,10 +116,6 @@ import { CommentsComponent } from './post-comment/comments/comments.component';
     MatIconModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    AddpostComponent,
-    PostDetailsComponent,
-    UpdatePostComponent,
-    CommentsComponent,
   ],
 
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

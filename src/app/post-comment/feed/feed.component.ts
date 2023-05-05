@@ -10,7 +10,6 @@ import { Comment } from 'src/app/Models/PostComment/comment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { data } from 'jquery';
 import { Reply } from 'src/app/Models/PostComment/reply';
 
 @Component({
@@ -28,12 +27,12 @@ export class FeedComponent implements OnInit {
   currentPage = 1;
   postsPerPage = 5;
   showComments: boolean = false;
-  clickedPosts: Set<number> = new Set(); 
+  clickedPosts: Set<number> = new Set();
     replyContent!: string;
 
 
   constructor(private postService: PostService, public dialog: MatDialog, private commentService: CommentService) { }
-  
+
   ngOnInit() {
     this.getAllPosts();
     this.getCommentsByPost(this.postId);
@@ -65,14 +64,14 @@ const newComment: Comment = {
 
 
 //    addReply(commentId: number, content: string): void {
-  
+
 //      let reply = new Comment();
 //      reply.content = content;
-     
+
 //      this.commentService.addReply
 //  }
 
- 
+
 // addReply(commentId:number,content: string) {
 // const newComment: Comment = {
 //   id: Date.now(),
@@ -101,7 +100,7 @@ deleteComment(id: number): void {
       .subscribe(() => {
         console.log(`Comment with ID ${id} deleted`);
         this.getCommentsByPost(this.postId);
-        
+
       }, error => {
         console.error(error);
       });
@@ -145,10 +144,10 @@ getAllPosts() {
       .subscribe((data: Comment[]) => {
         this.comments = data;
       });
-    
+
   }
 
-  
+
 
   deletePost(posts: Post): void {
     if (confirm("Are you sure you want to delete this post?")) {

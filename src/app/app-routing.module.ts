@@ -27,6 +27,10 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import { ERole } from './Class/user';
+import { FeedComponent } from './post-comment/feed/feed.component';
+import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
+import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
+import { CommentsComponent } from './post-comment/comments/comments.component';
 
 
 
