@@ -1,0 +1,53 @@
+<div class=" container-fluid">	
+							<div>
+								<h1>Reclamation
+								</h1>
+							</div>
+                            <div>
+
+    <table class="table">
+  <thead>
+    <tr>
+      
+      <th>Date</th>
+      <th>Description</th>
+      <th>Etat</th>
+      <th>Archived</th>
+      <th style="text-align : center">Action</th>
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reclamation of listReclamation">
+     
+      <td>{{ reclamation.dateReclamation }}</td>
+      <td>{{ reclamation.textReclamation }}</td>
+      <td>{{ reclamation.etatReclamation }}</td>
+      <td>{{ reclamation.archived }}</td>
+      
+      <td>
+        <button class="btn btn-danger" (click)="deleteReclamation(reclamation)">Supprimer</button>
+ &nbsp; &nbsp;
+        <button style="background-color: #2eca6a" 
+        class="btn-primary btn" *ngIf="reclamation.etatReclamation === 'Non Traitee'" (click)="openUpdateDialog(reclamation.idReclamation)" >
+        edit </button>
+        &nbsp; &nbsp;
+        <button class="btn btn-primary" (click)="showDetails(reclamation.idReclamation)"   >Details</button></td>
+      &nbsp; &nbsp;
+      <button class="btn btn-primary" *ngIf="reclamation.etatReclamation === 'Non Traitee'" (click)="repondre(reclamation.idReclamation)"    >Répondre</button>
+      
+      
+      
+      <a [routerLink]="['reclamationDetails',reclamation.idReclamation]" [queryParams]="{'name':'test'}">Show Details</a>
+      <a [routerLink]="['addReponse',reclamation.idReclamation]" [queryParams]="{'name':'hz'}" >Repondre</a>
+      
+    </tr>
+  </tbody>
+</table>
+                            </div>
+<div>
+ <a routerLink="/AddReclamation" class="btn btn-primary">Ajouter une réclamation</a> 
+</div>
+</div>
+	

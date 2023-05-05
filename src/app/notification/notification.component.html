@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Notification</h1>
+  </div>
+  <div class="card-body">
+    <div *ngFor="let notif of listNotification" class="card mb-3">
+      <div class="card-body">
+        <h2 class="card-title">{{ notif.textNotification }} {{"le"}} {{ notif.dateNotification }}</h2>
+        <div class="col-sm-20 text-right">
+        <button class="btn btn-danger" (click)="deleteNotification(notif)">Supprimer</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

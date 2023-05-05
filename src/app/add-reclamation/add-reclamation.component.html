@@ -1,0 +1,10 @@
+<div class="d-flex flex-column justify-content-center">
+  <label for="Description">Ajouter votre reclamation :</label>	
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="Description">Description :</label>
+    <input type="textarea" class="form-control" id="textReclamation" [(ngModel)]="reclamation.textReclamation" name="textReclamation" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Ajouter</button>
+</form>
+    </div>

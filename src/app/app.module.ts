@@ -13,7 +13,19 @@ import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AddLivraisonComponent } from './commande/add-livraison/add-livraison.component';
+import { NotificationComponent } from './notification/notification.component';
+import { ReclamationListComponent } from './reclamation-list/reclamation-list.component';
+import { ReponseListComponent } from './reponse-list/reponse-list.component';
+import { AddReclamationComponent } from './add-reclamation/add-reclamation.component';
+import { ReclamationDetailComponent } from './reclamation-detail/reclamation-detail.component';
+import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
+import { EditReponseComponent } from './edit-reponse/edit-reponse.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,12 +38,24 @@ import { AddLivraisonComponent } from './commande/add-livraison/add-livraison.co
     PanierComponent,
     PaiementComponent,
     DetailsRecetteComponent,
-    AddLivraisonComponent
+    AddLivraisonComponent,
+    NotificationComponent,
+    ReclamationListComponent,
+    ReponseListComponent,
+    AddReclamationComponent,
+    ReclamationDetailComponent,
+    AddReponseReclamationComponent,
+    EditReponseComponent,
+    EditReclamationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
