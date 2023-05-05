@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ReclamationService } from '../Service/reclamation.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-reclamation',
@@ -11,9 +11,10 @@ export class AddReclamationComponent {
 
   reclamation: any = {};
 
-  constructor(private reclamationS: ReclamationService, private R: Router) { }
+  constructor(private reclamationS: ReclamationService, private R: Router,private route: ActivatedRoute) { }
 
   onSubmit() {
+    const id = +this.route.snapshot.params['id'];
     this.reclamationS.addReclamtion(this.reclamation).subscribe(
       data => console.log(data),
       error => console.log(error)
@@ -23,6 +24,6 @@ export class AddReclamationComponent {
   }
 
 
-  
+
 
 }

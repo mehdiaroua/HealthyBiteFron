@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
+import { AddReclamationComponent } from 'src/app/add-reclamation/add-reclamation.component';
 
 import { RepasProduitService } from 'src/app/repasProduit.service';
 
@@ -8,11 +10,12 @@ import { RepasProduitService } from 'src/app/repasProduit.service';
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css'],
-  providers:[RepasProduitService]
+  providers:[RepasProduitService,DialogService]
 })
 export class ShopComponent implements OnInit{
   repas!:Repas[];
-constructor(private repasProduit:RepasProduitService, private R:Router){}
+  ref!: DynamicDialogRef;
+constructor(private repasProduit:RepasProduitService, private R:Router,public dialogService: DialogService){}
   ngOnInit(){
 
     this.repasProduit.getAllRepas().subscribe(data => {
@@ -28,5 +31,12 @@ constructor(private repasProduit:RepasProduitService, private R:Router){}
     gotoDashboard(){
       this.R.navigate(['repas/restaurant']);
     }
+
+
+
+  show() {
+  
+    this.ref = this.dialogService.open(AddReclamationComponent, { header: 'Add a Product'});
+}
 
 }

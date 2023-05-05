@@ -34,7 +34,7 @@ constructor(private repasService:RepasProduitService,private router:Router,priva
     const id = +this.route.snapshot.params['id'];
     this.repasService.getProduitById(id).subscribe(produit => {
       this.selectedProduit = produit;
-    });
+    }); 
   }
 
 

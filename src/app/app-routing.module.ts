@@ -31,6 +31,12 @@ import { FeedComponent } from './post-comment/feed/feed.component';
 import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
 import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
 import { CommentsComponent } from './post-comment/comments/comments.component';
+import { NotificationComponent } from './notification/notification.component';
+import { ReponseListComponent } from './reponse-list/reponse-list.component';
+import { ReclamationListComponent } from './reclamation-list/reclamation-list.component';
+import { ReclamationDetailComponent } from './reclamation-detail/reclamation-detail.component';
+import { AddReclamationComponent } from './add-reclamation/add-reclamation.component';
+import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
 
 
 
@@ -97,7 +103,7 @@ const routes: Routes = [
   { path: "Reponses", component: ReponseListComponent },
   { path: "Reclamations", component: ReclamationListComponent },
   { path: 'reclamationDetails/:param', component: ReclamationDetailComponent },
-  { path: 'AddReclamation', component: AddReclamationComponent },
+  { path: 'AddReclamation/:id', component: AddReclamationComponent },
   { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent }
 
 
