@@ -57,6 +57,16 @@ import { UpdatePostComponent } from './post-comment/update-post/update-post.comp
 import { CommentsComponent } from './post-comment/comments/comments.component';
 import { AddpostComponent } from './post-comment/addpost/addpost.component';
 
+import { NotificationComponent } from './notification/notification.component';
+import { ReclamationListComponent } from './reclamation-list/reclamation-list.component';
+import { ReponseListComponent } from './reponse-list/reponse-list.component';
+import { AddReclamationComponent } from './add-reclamation/add-reclamation.component';
+import { ReclamationDetailComponent } from './reclamation-detail/reclamation-detail.component';
+import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
+import { EditReponseComponent } from './edit-reponse/edit-reponse.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -91,6 +101,14 @@ import { AddpostComponent } from './post-comment/addpost/addpost.component';
     PostDetailsComponent,
     UpdatePostComponent,
     CommentsComponent,
+    NotificationComponent,
+    ReclamationListComponent,
+    ReponseListComponent,
+    AddReclamationComponent,
+    ReclamationDetailComponent,
+    AddReponseReclamationComponent,
+    EditReponseComponent,
+    EditReclamationComponent
   ],
   imports: [
     BrowserModule,
@@ -116,6 +134,11 @@ import { AddpostComponent } from './post-comment/addpost/addpost.component';
     MatIconModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
 
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

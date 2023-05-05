@@ -92,7 +92,13 @@ const routes: Routes = [
   { path: "post/posts", component: FeedComponent },
   { path: 'posts/:id', component: PostDetailsComponent },
   { path: 'posts/update/:id', component: UpdatePostComponent },
-  { path: 'posts/comments', component: CommentsComponent }
+  { path: 'posts/comments', component: CommentsComponent },
+  { path: "Notification", component: NotificationComponent },
+  { path: "Reponses", component: ReponseListComponent },
+  { path: "Reclamations", component: ReclamationListComponent },
+  { path: 'reclamationDetails/:param', component: ReclamationDetailComponent },
+  { path: 'AddReclamation', component: AddReclamationComponent },
+  { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent }
 
 
 
