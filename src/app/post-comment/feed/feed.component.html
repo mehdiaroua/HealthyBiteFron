@@ -196,13 +196,13 @@
 
                                                         <!-- Respuestas de los comentarios -->
                                                         <ul class="comments-list reply-list" >
-                                <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
+                                <!-- <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
                                     <div class="form-group">
                                         <label for="content">Add a comment:</label>
                                         <input type="text" class="form-control" name="content" #content ngModel required>
                                     </div>
                                     <button type="submit" class="add-comment">Submit</button>
-                                </form>
+                                </form> -->
 
                                                             <li *ngFor="let reply of comment.replies">
                                                                 <!-- Avatar -->

@@ -73,27 +73,27 @@ const newComment: Comment = {
 //  }
 
  
-addReply(commentId:number,content: string) {
-const newComment: Comment = {
-  id: Date.now(),
-  showReply:false,
-  content,
-  postId:this.postId,
-  commentId,
-  replies: []
-};
+// addReply(commentId:number,content: string) {
+// const newComment: Comment = {
+//   id: Date.now(),
+//   showReply:false,
+//   content,
+//   postId:this.postId,
+//   commentId,
+//   replies: []
+// };
 
-  this.commentService.addComment(commentId,newComment ).subscribe(
-    (comment) => {
-      const commentIndex = this.comments.findIndex(comment => comment.id === commentId);
-      this.posts[commentIndex].comments.push(comment);
-      console.log('Comment added successfully:', comment);
-    },
-    error => {
-      console.error('Error adding comment:', error);
-    }
-  );
-  }
+//   this.commentService.addComment(commentId,newComment ).subscribe(
+//     (comment) => {
+//       const commentIndex = this.comments.findIndex(comment => comment.id === commentId);
+//       this.posts[commentIndex].comments.push(comment);
+//       console.log('Comment added successfully:', comment);
+//     },
+//     error => {
+//       console.error('Error adding comment:', error);
+//     }
+//   );
+//   }
 
 deleteComment(id: number): void {
   if (confirm("Are you sure you want to delete this comment?")) {
