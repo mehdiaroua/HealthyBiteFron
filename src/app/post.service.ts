@@ -5,23 +5,43 @@ import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Post } from './Models/PostComment/Post';
+import { StorageService } from './service/storage.service';
+import { User } from './Class/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
   listPost: Post[] = [];
-  constructor(private httpClient: HttpClient) {}
+    private baseUrl = 'http://localhost:8080'; 
+  user!: any;
+  constructor(private httpClient: HttpClient,private storage: StorageService) {}
 
-  addPost(formData: FormData): Observable<Post> {
-    return this.httpClient
-      .post<Post>(`${environment.api}test/addPostWithImg`, formData)
-      .pipe(
-        catchError((error: any) => {
-          console.log(error);
-          return throwError(error);
-        })
-      );
+  // addPost(formData: FormData): Observable<Post> {
+  //   return this.httpClient
+  //     .post<Post>(`${environment.api}test/addPostWithImg`, formData)
+  //     .pipe(
+  //       catchError((error: any) => {
+  //         console.log(error);
+  //         return throwError(error);
+  //       })
+  //     );
+  // }
+
+    addPost(title:string, content: string, image: File): Observable<Post> {
+    this.user = this.storage.getUser();
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('image', image, image.name);
+    formData.append('user', this.user.id.toString());
+
+    return this.httpClient.post<Post>(`${environment.api}test/addPostWithImg`, formData);
+  }
+
+    getUserByPost(postId: number): Observable<User> {
+    const url = `${this.baseUrl}/api/test/posts/${postId}/user`;
+    return this.httpClient.get<User>(url);
   }
 
   getPostById(id: number) {

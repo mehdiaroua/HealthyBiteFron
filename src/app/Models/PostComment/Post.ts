@@ -1,3 +1,4 @@
+import { User } from "src/app/Class/user";
 import { Tag } from "./Tag";
 import { Comment } from "./comment";
 
@@ -10,7 +11,7 @@ export class Post {
     // tags!: Tag[];
     image!: File;
       comments!: Comment[]; // Define a comments property that is an array of Comment objects
-
+  user!: User;
 
 
 }

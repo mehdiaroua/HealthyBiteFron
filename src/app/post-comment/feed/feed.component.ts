@@ -11,6 +11,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Reply } from 'src/app/Models/PostComment/reply';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-feed',
@@ -28,14 +29,20 @@ export class FeedComponent implements OnInit {
   postsPerPage = 5;
   showComments: boolean = false;
   clickedPosts: Set<number> = new Set();
-    replyContent!: string;
+  replyContent!: string;
+  User: any;
+  public user = this.storageService.getUser();
 
 
-  constructor(private postService: PostService, public dialog: MatDialog, private commentService: CommentService) { }
+
+  constructor(private postService: PostService, public dialog: MatDialog, private commentService: CommentService, private storageService : StorageService) { }
 
   ngOnInit() {
-    this.getAllPosts();
-    this.getCommentsByPost(this.postId);
+    this.postService.getAllPosts().subscribe(posts => {
+      this.posts = posts;
+    });  
+  // this.getCommentsByPost(this.postId);
+  this.User = this.storageService.getUser();
   }
 
 
@@ -129,13 +136,14 @@ deleteComment(id: number): void {
 
 
 getAllPosts() {
-  this.postService.getAllPosts()
-    .subscribe((data: Post[]) => {
-      this.posts = data.sort((a, b) => {
-        return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
-      });
+  this.postService.getAllPosts().subscribe((data: Post[]) => {
+    this.posts = data.sort((a, b) => {
+      return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
     });
+  });
 }
+
+
 
 
 
@@ -153,6 +161,8 @@ getAllPosts() {
     if (confirm("Are you sure you want to delete this post?")) {
       this.postService.deletePost(posts).subscribe(() => {
         this.posts = this.posts.filter(p => p !== posts);
+                location.reload();
+
       });
     }
   }

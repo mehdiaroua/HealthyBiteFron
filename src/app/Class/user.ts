@@ -1,3 +1,4 @@
+import { Post } from "../Models/PostComment/Post";
 import { ObjectifType } from "../Models/RepasProduit/ObjectifType";
 
 
@@ -19,9 +20,7 @@ export class User {
   enabled!: boolean;
   role!: Role[];
   selectedRole!: Role;
-
-
-
+  posts!: Post[];
 }
 export enum ERole {
   ROLE_USER = 'ROLE_USER',

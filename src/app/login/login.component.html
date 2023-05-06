@@ -1,43 +1,23 @@
-<p-toast></p-toast>
-<div class="overlay">
-  <form
-        *ngIf="!isLoggedIn"
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-    <div class="con">
-        <header class="head-form">
-          <h2>Log In</h2>
-          <p>login here using your username and password</p>
-        </header>
-        <br>
-        <div class="field-set">
-          <div class="input_group">
-            <input class="form-input" id="txt-input" type="text" placeholder="Username" required
-              [(ngModel)]="form.username" name="username" #usernameInput="ngModel">
-            <div *ngIf="formSubmitted && usernameInput.invalid" class="error-message error">
-              Username is required.
-            </div>
-            <br>
-          </div>
-          <div class="input_group">
-            <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required
-              [(ngModel)]="form.password" name="password" #passwordInput="ngModel">
-            <div *ngIf="formSubmitted && passwordInput.invalid" class="error-message error">
-              Password is required.
-            </div>
-            <br>
-          </div>
-          <button type="submit" class="log-in" >Log In</button>
-        </div>
-        <div class="other">
-          <button class="btn submits frgt-pass" (click)="goToForgot()">Forgot Password</button>
-          <button class="btn submits sign-up" (click)="goToRegistration()">Sign Up
-            <i class="fa fa-user-plus" aria-hidden="true"></i>
-          </button>
-        </div>
+
+<form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <div class="container">
+    <div class="left">
+      <div class="header">
+        <h2 class="animation a1">Welcome Back</h2>
+        <h4 class="animation a2">Log in to your account using email and password</h4>
       </div>
-    </form>
+      <div class="form">
+<input class="form-field animation a3" id="txt-input" type="text" placeholder="Username" required [(ngModel)]="form.username"
+  name="username" #usernameInput="ngModel">
+        <input class="form-field animation a4" type="password" placeholder="Password" id="pwd" name="password" required
+          [(ngModel)]="form.password" name="password" #passwordInput="ngModel">
+        <div *ngIf="formSubmitted && passwordInput.invalid" class="error-message error">
+          Password is required.
+        </div>
+        <p class="animation a5"><a (click)="goToForgot()">Forgot Password</a></p>
+        <button class="animation a6">LOGIN</button> <br/>
+        <p class="animation a5"><a (click)="goToRegistration()">Don't have an Account ? </a></p>
+      </div>
+    </div>
+    <div class="right"></div>
   </div>

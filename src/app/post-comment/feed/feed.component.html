@@ -11,7 +11,7 @@
                 <div class="home-left">
                     <div class="profile">
                         <img src="/assets/images/user.jpg" alt="user" class="">
-                        <h3>Eya Mastour</h3>
+                        <h3>{{User.username}}</h3>
                     </div>
 
                     <div class="pages">
@@ -132,15 +132,15 @@
                                     <div class="post-title">
                                         <img src="/assets/images/user2.jpg" alt="user picture">
                                         <ul>
-                                            <li>
-                                                <h3>Eya Mastour <span> . 2 hours ago</span></h3>
+                                               <li>
+                                                <h3>{{post.user.username}} <span> . 2 hours ago</span></h3>
                                             </li>
                                             <li><span>{{post.addedDate}}</span></li>
+                                        
                                         </ul>
                                         <p style="  font-weight: bold;">{{post.title}}
 
                                         </p>
-
 
                                     </div>
                                     <div class="post-images">
