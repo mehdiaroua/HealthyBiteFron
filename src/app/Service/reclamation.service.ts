@@ -60,4 +60,8 @@ export class ReclamationService {
         return this.listReclamation.filter(r => r !== reclamation);
       }));
   }
+
+  getAllReclamationsByUser(userId: number): Observable<Reclamation[]> {
+    return this.httpClient.get<Reclamation[]>(`${this.URL}api/test/retrieveAllReclamationByUser/${userId}`);
+  }
 }
