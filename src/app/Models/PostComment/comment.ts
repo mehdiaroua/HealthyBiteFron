@@ -1,6 +1,5 @@
 import { Post } from "./Post";
 import { Tag } from "./Tag";
-import { User } from "./User";
 import { Reply } from "./reply";
 
 export class Comment {
