@@ -43,8 +43,6 @@ export class ReclamationService {
     return this.httpClient.put(this.URL + 'api/test/updateReclamation', reclamation);
   }
 
-
-
   public assignRepasToReclamation(reclamation: Reclamation, idRepas: number, idUser:number): Observable<Reclamation> {
     const url = `${this.URL}api/test/assignRepasToReclamation/${idRepas}/${idUser}`
     return this.httpClient.post<Reclamation>(url, reclamation);
