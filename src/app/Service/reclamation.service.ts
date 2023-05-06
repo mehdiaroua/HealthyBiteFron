@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
 import { map } from 'rxjs/operators';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,10 +43,8 @@ export class ReclamationService {
     return this.httpClient.put(this.URL + 'api/test/updateReclamation', reclamation);
   }
 
-
-  
-  public assignRepasToReclamation(reclamation: Reclamation, idRepas: number): Observable<Reclamation> {
-    const url = `${this.URL}api/test/assignRepasToReclamation/${idRepas}`
+  public assignRepasToReclamation(reclamation: Reclamation, idRepas: number, idUser:number): Observable<Reclamation> {
+    const url = `${this.URL}api/test/assignRepasToReclamation/${idRepas}/${idUser}`
     return this.httpClient.post<Reclamation>(url, reclamation);
   }
   public assignProduitToReclamation(reclamation: Reclamation, idProduit: number): Observable<Reclamation> {
@@ -57,5 +57,9 @@ export class ReclamationService {
       .pipe(map(() => {
         return this.listReclamation.filter(r => r !== reclamation);
       }));
+  }
+
+  getAllReclamationsByUser(userId: number): Observable<Reclamation[]> {
+    return this.httpClient.get<Reclamation[]>(`${this.URL}api/test/retrieveAllReclamationByUser/${userId}`);
   }
 }

@@ -31,7 +31,7 @@ export class UserService {
 
 
   private navigateToUserRole() {
-    const role = this.currentUser.roles[0].name;
+    const role = this.currentUser.role[0].name;
     switch (role) {
       case ERole.ROLE_ADMIN:
         this.route.navigate(['/dash']);
@@ -50,7 +50,10 @@ export class UserService {
         break;
     }
   }
-
+  confirmAccount(token: string): Observable<any> {
+    const url = `http://localhost:8080/api/auth/confirm-account?token=${token}`;
+    return this.http.post(url, null);
+  }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(

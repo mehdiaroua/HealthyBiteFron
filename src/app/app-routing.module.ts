@@ -41,6 +41,8 @@ import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-re
 
 
 
+
+
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: "unauthorized", component:UnauthorizedComponent},
@@ -103,8 +105,10 @@ const routes: Routes = [
   { path: "Reponses", component: ReponseListComponent },
   { path: "Reclamations", component: ReclamationListComponent },
   { path: 'reclamationDetails/:param', component: ReclamationDetailComponent },
-  { path: 'AddReclamation/:id', component: AddReclamationComponent },
+  { path: 'shop/AddReclamation/:id', component: AddReclamationComponent,canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_USER] }},
   { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent }
+
 
 
 

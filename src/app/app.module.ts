@@ -20,7 +20,6 @@ import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
-import { TooltipModule } from 'primeng/tooltip';
 import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -44,6 +43,9 @@ import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import {Chart} from 'chart.js'
+import { MenuModule } from 'primeng/menu';
+import { InputNumberModule } from 'primeng/inputnumber';
+
 import { registerables } from 'chart.js';
 import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
@@ -51,12 +53,18 @@ Chart.register(...registerables);
 import { MatMenuModule } from '@angular/material/menu';
 
 import { FeedComponent } from './post-comment/feed/feed.component';
+import {MatSelectModule} from '@angular/material/select';
+import { SidebarModule } from 'primeng/sidebar';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { PostDetailsComponent } from './post-comment/post-details/post-details.component';
 import { UpdatePostComponent } from './post-comment/update-post/update-post.component';
 import { CommentsComponent } from './post-comment/comments/comments.component';
 import { AddpostComponent } from './post-comment/addpost/addpost.component';
-
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { TooltipModule } from 'primeng/tooltip';
+import { MessagesModule } from 'primeng/messages';
+import { MatCardModule } from '@angular/material/card';
 import { NotificationComponent } from './notification/notification.component';
 import { ReclamationListComponent } from './reclamation-list/reclamation-list.component';
 import { ReponseListComponent } from './reponse-list/reponse-list.component';
@@ -64,9 +72,13 @@ import { AddReclamationComponent } from './add-reclamation/add-reclamation.compo
 import { ReclamationDetailComponent } from './reclamation-detail/reclamation-detail.component';
 import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
 import { EditReponseComponent } from './edit-reponse/edit-reponse.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { PasswordModule } from 'primeng/password';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.component';
+import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -108,7 +120,8 @@ import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.co
     ReclamationDetailComponent,
     AddReponseReclamationComponent,
     EditReponseComponent,
-    EditReclamationComponent
+    EditReclamationComponent,
+    ReclamationUserComponent
   ],
   imports: [
     BrowserModule,
@@ -138,7 +151,18 @@ import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.co
     HttpClientModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CheckboxModule,
+    InputSwitchModule,
+    MultiSelectModule,
+    MatSelectModule,
+    SidebarModule,
+    MenuModule,
+    MessagesModule,
+    PasswordModule,
+    InputTextModule,
+    InputNumberModule,
+    MatCardModule
   ],
 
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

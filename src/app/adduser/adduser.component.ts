@@ -33,7 +33,7 @@ export class AdduserComponent {
     this.user.email = this.signupForm.value.email;
     this.user.password = this.signupForm.value.password;
     this.user.phone = this.signupForm.value.phone;
-    this.user.roles = [this.signupForm.value.role];
+    this.user.role = [this.signupForm.value.role];
 
     this.http.post<any>('http://localhost:8080/api/test/add', this.user)
       .subscribe(

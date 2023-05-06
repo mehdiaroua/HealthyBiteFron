@@ -1,5 +1,5 @@
+import { UserService } from 'src/app/service/user.service';
 import { Component } from '@angular/core';
-import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -37,28 +37,32 @@ export class RegisterComponent {
       });
     }
 
-  signup() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    this.user.username = this.signupForm.value.username;
-    this.user.email = this.signupForm.value.email;
-    this.user.password = this.signupForm.value.password;
-    this.user.phone = this.signupForm.value.phone;
-    this.user.roles = [this.signupForm.value.role];
-
-    this.http.post<any>('http://localhost:8080/api/auth/signup', this.user, httpOptions)
-      .subscribe(
-        response => {
-          console.log('User registered:', response);
-          this.route.navigate(['/login']);
-        },
-        error => {
-          this.errorMessage = error.error.message;
-        }
-      );
-  }
+    signup() {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      };
+    
+      this.user.username = this.signupForm.value.username;
+      this.user.email = this.signupForm.value.email;
+      this.user.password = this.signupForm.value.password;
+      this.user.phone = this.signupForm.value.phone;
+      this.user.role = [this.signupForm.value.role];
+    
+      this.http.post<any>('http://localhost:8080/api/auth/signup', this.user, httpOptions)
+        .subscribe(
+          response => {
+            console.log('User registered:', response);
+            
+                this.route.navigate(['/login']);
+            
+          },
+          error => {
+            console.log('Error registering user:', error);
+            this.errorMessage = error.error.message;
+          }
+        );
+    }
+    
 }
