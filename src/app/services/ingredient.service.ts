@@ -10,7 +10,7 @@ import { CrudService } from './generics/crud-service.service';
 export class IngredientService extends CrudService<Ingredient, number> {
   baseUrl = 'http://localhost:8080/ingredient';
   constructor(private http: HttpClient) {
-    super(http, 'http://localhost:8080/ingredient/');
+    super(http, 'http://localhost:8080/ingredient');
   }
 
   public addIngredientToRecette(recetteId: number, ingredient: Ingredient) {

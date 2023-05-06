@@ -1,1 +1,102 @@
-<p>objectif-list works!</p>
+<div class="container mb-5">
+  <div class="row justify-content-start align-items-center">
+    <div class="row">
+      <h3>Mes Objectifs</h3>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center mt-1">
+    <div class="row">
+      <div class="col-12"><h5>Liste des objectifs</h5></div>
+    </div>
+  </div>
+  <div
+    class="row mt-5 justify-content-center align-items-center"
+    *ngIf="objectifList.length == 0; else showListObjectifs"
+  >
+    <p>Vous n'avez pas encore saisie une Recette</p>
+  </div>
+  <ng-template #showListObjectifs>
+    <div class="col-3" *ngFor="let objectif of objectifList">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex justify-content-end">
+            <div>
+              <span
+                (click)="onShowEditObjectif(objectif.id)"
+                style="cursor: pointer"
+                class="icon_pencil-edit ml-1"
+              ></span>
+              <span
+                (click)="deleteObjectif(objectif.id)"
+                style="cursor: pointer"
+                class="icon_trash ml-1"
+              ></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHOW -->
+        <div *ngIf="!editMode" class="card-body">
+          <h5 class="card-title">
+            <strong>Poid de depart</strong>
+            {{ objectif.poidDepart }}
+          </h5>
+          <h5 class="card-title">
+            <strong>Poid Actuel</strong> {{ objectif.poidActuel }}
+          </h5>
+
+          <h5 class="card-title">
+            <strong>Taille</strong> {{ objectif.taille }}
+          </h5>
+
+          <h5 class="card-title">
+            <strong>Poid a atteindre</strong> {{ objectif.objectifPoid }}
+          </h5>
+
+          <h5 class="card-title">
+            <strong>Type d'activite</strong> {{ objectif.typeActivite }}
+          </h5>
+        </div>
+
+        <!-- EDIT -->
+        <!-- <div *ngIf="editMode" class="card-body">
+          <h5 class="card-title">
+            <strong>Calories</strong>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="subjectForUpdateIngredient.calories"
+            />
+          </h5>
+          <h5 class="card-title">
+            <strong>Quantite</strong>
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="subjectForUpdateIngredient.quantite"
+            />
+          </h5>
+
+          <div class="row justify-content-end align-items-end mb-2">
+            <div class="col-12">
+              <button
+                class="btn btn-outline-primary btn-sm"
+                type="submit"
+                (click)="editIngredient()"
+              >
+                Modifier
+              </button>
+              <button
+                class="btn btn-outline-secondary btn-sm ml-1"
+                type="button"
+                (click)="onCancelEditIngredient()"
+              >
+                Annuler
+              </button>
+            </div>
+          </div> 
+        </div>-->
+      </div>
+    </div>
+  </ng-template>
+</div>

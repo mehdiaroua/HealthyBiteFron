@@ -30,63 +30,97 @@ import { RecetteListComponent } from './recetteConseil/recette/recette-list/rece
 import { RecetteFormComponent } from './recetteConseil/recette/recette-form/recette-form.component';
 import { RecetteConseilComponent } from './recetteConseil/recette-conseil/recette-conseil.component';
 import { DetailsRecetteComponent } from './recetteConseil/recette/details-recette/details-recette.component';
+import { ObjectifListComponent } from './recetteConseil/objectif/objectif-list/objectif-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: "unauthorized", component:UnauthorizedComponent},
-  {path: "home", component:HomeComponent},
-  {path: "shop", component:ShopComponent},
-  {path: "blog", component:RecetteConseilComponent},
-  {path: "blogDetails", component:DetailsRecetteComponent},
- {path: 'shop/:id', component:DetailsComponent,
- canActivate: [RoleGuard],
- data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
-  {path: "panier", component:PanierComponent},
-  {path: "checkout", component:PaiementComponent},
-  {path: "repas/addRepas", component:AddrepasComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
-  {path: "produit/addProduit", component:AddproduitComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] }},
-  {path: "repas/restaurant", component:RepasRestaurantComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
-  {path: "repas/restaurant/:id", component:AddNutrRepasComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
-  {path: "produit/fournisseur", component:ProduitFournisseurComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] }},
-  {path: "produit/fournisseur/:id", component:AddnutritionComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] }},
-  {path: "produitShop", component:ProduitShopComponent},
-  {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
-  {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
-  {path: "details", component:DetailsComponent},
-  {path: "panier", component:PanierComponent},
-  {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
-  {path: "dash", component:DashboardComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_ADMIN] }},
-  {path: "login", component:LoginComponent},
-  {path: "register", component:RegisterComponent},
-  {path: "forgot", component:ForgotpasswordComponent},
-  {path: "reset", component:ResetPasswordComponent},
-  { path: 'add-nutrition/:id', component: AddnutritionComponent,
-  canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] } },
-  {path : "userProfile", component: ProfileUserComponent},
-  { 
-    path: 'add', 
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'shop', component: ShopComponent },
+  { path: 'blog', component: RecetteConseilComponent },
+  { path: 'blogDetails', component: DetailsRecetteComponent },
+  {
+    path: 'shop/:id',
+    component: DetailsComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_RESTAURANT] },
+  },
+  { path: 'panier', component: PanierComponent },
+  { path: 'checkout', component: PaiementComponent },
+  {
+    path: 'repas/addRepas',
+    component: AddrepasComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_RESTAURANT] },
+  },
+  {
+    path: 'produit/addProduit',
+    component: AddproduitComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] },
+  },
+  {
+    path: 'repas/restaurant',
+    component: RepasRestaurantComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_RESTAURANT] },
+  },
+  {
+    path: 'repas/restaurant/:id',
+    component: AddNutrRepasComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_RESTAURANT] },
+  },
+  {
+    path: 'produit/fournisseur',
+    component: ProduitFournisseurComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] },
+  },
+  {
+    path: 'produit/fournisseur/:id',
+    component: AddnutritionComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] },
+  },
+  { path: 'produitShop', component: ProduitShopComponent },
+  {
+    path: 'blog',
+    component: RecetteConseilComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'blogDetails',
+    component: DetailsRecetteComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'details', component: DetailsComponent },
+  { path: 'panier', component: PanierComponent },
+  { path: 'checkout', component: PaiementComponent, canActivate: [AuthGuard] },
+  {
+    path: 'dash',
+    component: DashboardComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_ADMIN] },
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'forgot', component: ForgotpasswordComponent },
+  { path: 'reset', component: ResetPasswordComponent },
+  {
+    path: 'add-nutrition/:id',
+    component: AddnutritionComponent,
+    canActivate: [RoleGuard],
+    data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] },
+  },
+  { path: 'userProfile', component: ProfileUserComponent },
+  {
+    path: 'add',
     component: AdduserComponent,
     canActivate: [RoleGuard],
-    data: { requiredRoles: [ERole.ROLE_ADMIN] }// specify required roles here
-  },  
-  {path: "pie", component:PiechartComponent},
-
-
+    data: { requiredRoles: [ERole.ROLE_ADMIN] }, // specify required roles here
+  },
+  { path: 'pie', component: PiechartComponent },
 
   // recette
   // { path: 'blogDetails', component: DetailsRecetteComponent },
@@ -95,6 +129,9 @@ const routes: Routes = [
   { path: 'recette/:id', component: DetailsRecetteComponent },
   { path: 'recette/:id/edit', component: RecetteFormComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // recette end
+  // objectifs
+  { path: 'objectif', component: ObjectifListComponent },
 ];
 
 @NgModule({

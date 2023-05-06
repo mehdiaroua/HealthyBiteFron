@@ -35,7 +35,7 @@ export class RecetteListComponent implements OnInit {
   edit(id?: number) {
     this.router.navigateByUrl(`recette/${id}/edit`);
   }
-  delete(id?: number) {
+  deleteRecette(id?: number) {
     this.recetteService.delete(id!).subscribe(() => {
       let index = this.recetteList.findIndex((x) => x.id === id);
       this.recetteList.splice(index, 1);

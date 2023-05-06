@@ -3,6 +3,7 @@ import { TypeActivite } from './type-activite.enum';
 
 export interface Objectif {
   id?: number;
+  title?: string;
   poidDepart?: number;
   poidActuel?: number;
   taille?: number;

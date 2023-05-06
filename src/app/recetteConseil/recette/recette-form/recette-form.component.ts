@@ -51,7 +51,9 @@ export class RecetteFormComponent implements OnInit {
       this.router.navigateByUrl('/recette');
     });
   }
-  onCancel() {}
+  onCancel() {
+    this.router.navigateByUrl('/recette');
+  }
   onUpdate() {
     this.recetteService.update(this.recette.id!, this.recette).subscribe(() => {
       this.router.navigateByUrl('/recette');

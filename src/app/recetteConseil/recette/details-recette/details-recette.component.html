@@ -1,20 +1,182 @@
-<div class="row">
-  <h5>Details de la recette</h5>
-</div>
-<div class="row">
-  <div class="blog__item__text">
-    <p *ngIf="recette && recette.nom">
-      <strong>Titre</strong> {{ recette.nom }}
-    </p>
+<div class="container h-100">
+  <div class="row justify-content-end align-items-end">
+    <button type="submit" class="primary-btn" (click)="back()">
+      Retourner
+    </button>
   </div>
-</div>
-<div
-  class="row"
-  *ngIf="ingredients && ingredients.length > 0; else noIngredients"
-></div>
+  <div class="row justify-content-center align-items-center">
+    <h5>Details de la recette</h5>
+  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="blog__item__text">
+      <p *ngIf="recette && recette.nom">
+        <strong>Titre</strong> {{ recette.nom }}
+      </p>
+    </div>
+  </div>
 
-<ng-template #noIngredients>
-  <div class="blog__item__text">
-    <p>Pas d'ingredients encore</p>
+  <div
+    class="row justify-content-center align-items-center"
+    *ngIf="
+      recette.ingredients && recette.ingredients.length > 0;
+      else noIngredients
+    "
+  >
+    <div class="col-12 justify-content-center align-items-center">
+      <h5>liste des ingredients</h5>
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        (click)="onShowAddIngrient()"
+      >
+        Ajouter
+      </button>
+    </div>
+    <div class="mt-5 col-12 justify-content-center align-items-center">
+      <div class="col-3" *ngFor="let ingredient of recette.ingredients">
+        <div class="card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between">
+              <h5>
+                {{ ingredient.nom }}
+              </h5>
+              <div>
+                <span
+                  (click)="onShowEditIngredient(ingredient.id)"
+                  style="cursor: pointer"
+                  class="icon_pencil-edit ml-1"
+                ></span>
+                <span
+                  (click)="deleteIngredient(ingredient.id)"
+                  style="cursor: pointer"
+                  class="icon_trash ml-1"
+                ></span>
+              </div>
+            </div>
+          </div>
+          <!-- SHOW -->
+          <div *ngIf="!editMode" class="card-body">
+            <h5 class="card-title">
+              <strong>Calories</strong>
+              {{ ingredient.calories }}
+            </h5>
+            <h5 class="card-title">
+              <strong>Quantite</strong> {{ ingredient.quantite }}
+            </h5>
+          </div>
+          <!-- EDIT -->
+          <div *ngIf="editMode" class="card-body">
+            <h5 class="card-title">
+              <strong>Calories</strong>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="subjectForUpdateIngredient.calories"
+              />
+            </h5>
+            <h5 class="card-title">
+              <strong>Quantite</strong>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="subjectForUpdateIngredient.quantite"
+              />
+            </h5>
+
+            <div class="row justify-content-end align-items-end mb-2">
+              <div class="col-12">
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  type="submit"
+                  (click)="editIngredient()"
+                >
+                  Modifier
+                </button>
+                <button
+                  class="btn btn-outline-secondary btn-sm ml-1"
+                  type="button"
+                  (click)="onCancelEditIngredient()"
+                >
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</ng-template>
+
+  <ng-template #noIngredients>
+    <div class="row justify-content-center align-items-center">
+      <div class="blog__item__text">
+        <p>Pas d'ingredients encore</p>
+      </div>
+    </div>
+    <div class="row justify-content-end align-items-end">
+      <button
+        type="submit"
+        class="btn btn-outline-success"
+        (click)="onShowAddIngrient()"
+      >
+        Ajouter
+      </button>
+    </div>
+  </ng-template>
+
+  <div *ngIf="showAddIngredient" class="fade-in">
+    <div class="row justify-content-center align-items-center">
+      <form
+        class="approval-form"
+        [formGroup]="ingredientForm"
+        (ngSubmit)="onSubmitIngredient()"
+      >
+        <div class="row">
+          <div class="col-6">
+            <label>
+              Nom :
+              <input type="text" class="form-control" formControlName="nom" />
+            </label>
+          </div>
+          <div class="col-6">
+            <label>
+              Nombre de calories :
+              <input
+                type="number"
+                class="form-control"
+                formControlName="calories"
+              />
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <label>
+              Quantite :
+              <input
+                type="number"
+                class="form-control"
+                formControlName="quantite"
+              />
+            </label>
+          </div>
+        </div>
+        <div class="row justify-content-start align-items-start">
+          <div class="col">
+            <button class="btn btn-outline-primary" type="submit">
+              Ajouter
+            </button>
+
+            <button
+              class="ml-2 btn btn-outline-secondary"
+              type="button"
+              (click)="onCancelAddIngredient()"
+            >
+              Annuler
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
