@@ -1,5 +1,5 @@
-<div class="d-flex flex-column justify-content-center">
-  <label for="Description">Ajouter votre reclamation :</label>	
+<!-- <div class="d-flex flex-column justify-content-center">
+  <label for="Description">Ajouter votre reclamation :</label>
 <form (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="Description">Description :</label>
@@ -7,4 +7,19 @@
   </div>
   <button type="submit" class="btn btn-primary">Ajouter</button>
 </form>
-    </div>
+    </div> -->
+    <section id="contact">
+      <div class="sectionheader">	<h1>Reclamation</h1></div>
+      <article>
+      <p>Speak up! We want to hear your feedback</p>
+
+          <label for="checkcontact" class="contactbutton"><div class="mail"></div></label><input id="checkcontact" type="checkbox">
+
+          <form (ngSubmit)="onSubmit()" action="" method="post" class="contactform">
+            <p class="textarea_wrapper"><textarea name="textReclamation" id="textReclamation" placeholder="Your input is valuable to us, tell us how we can do better"
+              [(ngModel)]="reclamation.textReclamation"
+              required ></textarea></p>
+            <p class="submit_wrapper"><input type="submit" value="ENVOYER"></p>
+          </form>
+      </article>
+    </section>

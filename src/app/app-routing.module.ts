@@ -37,6 +37,7 @@ import { ReclamationListComponent } from './reclamation-list/reclamation-list.co
 import { ReclamationDetailComponent } from './reclamation-detail/reclamation-detail.component';
 import { AddReclamationComponent } from './add-reclamation/add-reclamation.component';
 import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
+import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
 
 
 
@@ -105,9 +106,10 @@ const routes: Routes = [
   { path: "Reponses", component: ReponseListComponent },
   { path: "Reclamations", component: ReclamationListComponent },
   { path: 'reclamationDetails/:param', component: ReclamationDetailComponent },
-  { path: 'shop/AddReclamation/:id', component: AddReclamationComponent,canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_USER] }},
-  { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent }
+  { path: 'shop/AddReclamation/:id', component: AddReclamationComponent},
+  { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent },
+  { path : 'reclamationUser', component : ReclamationUserComponent}
+
 
 
 

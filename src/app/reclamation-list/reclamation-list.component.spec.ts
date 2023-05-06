@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialog } from '@angular/material/dialog';
 import { ReclamationListComponent } from './reclamation-list.component';
 
 describe('ReclamationListComponent', () => {
