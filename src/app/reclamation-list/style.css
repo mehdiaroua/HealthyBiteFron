@@ -52,14 +52,3 @@ body {
 	border: 3px solid #fff;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.delete-icon {
-  color: red;
-}
-
-.edit-icon {
-  color: rgb(35, 118, 182);
-}
-
-.show-icon {
-  color: rgb(72, 217, 127);
-}

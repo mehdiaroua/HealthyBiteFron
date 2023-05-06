@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReclamationService } from '../Service/reclamation.service';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
+import { StorageService } from '../service/storage.service';
 
 @Component({
   selector: 'app-reclamation-user',
@@ -10,15 +11,17 @@ import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
 export class ReclamationUserComponent implements OnInit {
 
   reclamations!: Reclamation[];
+  user!:any;
 
-  constructor(private reclamationService: ReclamationService) { }
+  constructor(private reclamationService: ReclamationService, private userService:StorageService) { }
 
   ngOnInit(): void {
     this.loadReclamations();
   }
 
   loadReclamations() {
-    const userId = 123; // ajustez l'ID utilisateur en fonction de vos besoins
+
+    const userId = this.user= this.userService.getUser().id;
     this.reclamationService.getAllReclamationsByUser(userId).subscribe(data => {
       this.reclamations = data;
     });
