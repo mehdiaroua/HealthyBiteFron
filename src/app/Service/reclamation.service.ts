@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
 import { map } from 'rxjs/operators';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,9 +44,9 @@ export class ReclamationService {
   }
 
 
-  
-  public assignRepasToReclamation(reclamation: Reclamation, idRepas: number): Observable<Reclamation> {
-    const url = `${this.URL}api/test/assignRepasToReclamation/${idRepas}`
+
+  public assignRepasToReclamation(reclamation: Reclamation, idRepas: number, idUser:number): Observable<Reclamation> {
+    const url = `${this.URL}api/test/assignRepasToReclamation/${idRepas}/${idUser}`
     return this.httpClient.post<Reclamation>(url, reclamation);
   }
   public assignProduitToReclamation(reclamation: Reclamation, idProduit: number): Observable<Reclamation> {

@@ -34,9 +34,6 @@ constructor(private repasProduit:RepasProduitService, private R:Router,public di
 
 
 
-  show() {
-  
-    this.ref = this.dialogService.open(AddReclamationComponent, { header: 'Add a Product'});
-}
+
 
 }
