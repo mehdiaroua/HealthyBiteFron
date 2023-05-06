@@ -43,38 +43,25 @@
       <div class="col-md-4 content-center">
           <div class="card card-register card-plain">
               <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form">
-                <header class="head-form">
-                </header>
-                  <div class="header header-primary text-center">
-                      <div class="logo-container">
-                          <img src="assets/img/now-logo.png" alt="">
-                      </div>
-                  </div>
-                  <div class="content">
-                    <div class="input-group form-group-no-border input-lg" >
-                      <div class="input-group-prepend">
-                          <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
-                      </div>
-                        <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username..."   >
-                    </div>
-                    <div class="input-group form-group-no-border input-lg" >
-                      <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
-                      </div>
-                        <input type="password" id="password" formControlName="password" placeholder="Password..."  class="form-control"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
+               
+                 
+                      <input type="text" id="username" formControlName="username" class="form-control" pInputText pTooltip="Enter your username" placeholder="Username">
+
+                    
+                    
                     <input type="email" id="email" formControlName="email" placeholder="Email..."  class="form-control" />
 
-                
-                  </div>
+                    <form [formGroup]="signupForm">
+
+                      <p-password formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+                      
+                  </form>
                   
  <div class="form-group">
 
     <input type="text" id="phone" formControlName="phone" placeholder="PhoneNumber..."  class="form-control" />
 
-    
+
   </div>
 
   <div class="form-group">

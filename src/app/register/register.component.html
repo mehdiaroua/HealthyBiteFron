@@ -53,16 +53,16 @@
                     </div>
                     
 
-  <div class="form-group">
+                    <div class="form-group">
+                      <select id="role" formControlName="role" class="form-control" required>
+                        <option value="" selected>Select Role...</option>
+                        <option value="user">User</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="fournisseur">Fournisseur</option>
+                      </select>
+                    </div>
+                    
     
-    <select id="role" formControlName="role" placeholder="Select Role..." class="form-control" required>
-      <option value="user">User</option>
-      <option value="admin">Admin</option>
-      <option value="mod">Moderator</option>
-      <option value="restaurant">Restaurant</option>
-      <option value="fournisseur">Fournisseur</option>
-    </select>
-  </div>
                   <div class="footer text-center">
                       <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Register</button>
                   </div>
@@ -76,5 +76,3 @@
                           <a href="#pablo" class="link">Need Help?</a>
                       </h6>
                   </div>
-            
-          

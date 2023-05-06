@@ -3,6 +3,7 @@ import { UserService } from '../service/user.service';
 import { ERole, Role, User } from '../Class/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { Chart, ChartType } from 'chart.js';
 import { StorageService } from '../service/storage.service';
@@ -22,7 +23,8 @@ export class DashboardComponent implements OnInit{
   roles: Role[] = [];
   data: any;
   enabled!: boolean;
-
+items!: any;
+items1!: any;
   isEditing = false; // add a new variable to track editing mode
   selectedUser!: User;
   username!: string;
@@ -35,15 +37,33 @@ export class DashboardComponent implements OnInit{
   ];
   users: any[] = [];
 
+  
+
+  
 
   constructor(private userService: UserService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private storage:StorageService) {
     this.roles = [
       { id: 1, name: ERole.ROLE_USER },
-      { id: 2, name: ERole.ROLE_MODERATOR },
       { id: 3, name: ERole.ROLE_ADMIN },
       { id: 4, name: ERole.ROLE_RESTAURANT },
       { id: 5, name: ERole.ROLE_FOURNISSEUR },
     ];
+    this.items = [
+      {
+          label: 'Add User',
+          icon: 'pi pi-fw pi-user',
+          routerLink: '/add'
+      },
+      {
+        label: 'Stat',
+        icon: 'pi pi-fw pi-chart-bar',
+        routerLink: '/pie'
+    },
+      
+  ];
+  
+
+  
    }
 
   ngOnInit(): void {
@@ -64,11 +84,23 @@ console.log(this.user.id);
 
     this.userService.updateUserRole(userId, roleName)
       .subscribe(
-        response => {
-          // If the update is successful, show a success message to the user
-          console.log(response);
-          alert('User role updated successfully.');
+        () => {
+          // Role update successful
+          alert('Role updated successfully.');
+          location.reload();
+        },
+        (error) => {
+          // Role update failed
+          console.error('Role update failed:', error);
+          if (error.status === 200) {
+            // Handle plain text response
+            alert(error.error);
+          } else {
+            // Handle JSON response
+            alert('Failed to update role. Please try again later.');
+          }
         }
+        
       );
   }
 
@@ -156,8 +188,10 @@ console.log(this.user.id);
     this.isEditing = true;
 
   }
+
+    
   onUpdate() {
-    this.selectedUser.roles = [this.selectedUser.selectedRole]; // update the role of the user
+    this.selectedUser.role = [this.selectedUser.selectedRole]; // update the role of the user
 
     this.userService.updateUser(this.selectedUser.id, this.selectedUser)
       .subscribe(
@@ -166,6 +200,7 @@ console.log(this.user.id);
           this.isEditing = false;
           this.selectedUser = new User();
           this.ngOnInit();
+
 
         },
         error => {

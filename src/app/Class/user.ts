@@ -17,7 +17,7 @@ export class User {
   poids!:number;
   taille!:number;
   enabled!: boolean;
-  roles!: Role[];
+  role!: Role[];
   selectedRole!: Role;
 
 

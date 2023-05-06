@@ -15,6 +15,7 @@ export class ForgotpasswordComponent {
   newPassword!: string;
   passwordReset = false;
   errorMessage = '';
+  showAdditionalInputs = false;
 
   user: User = new User();
   smsSent = false;
@@ -27,6 +28,7 @@ export class ForgotpasswordComponent {
         (result) => {
           this.user = result;
           this.smsSent = true;
+
           this.route.navigate(['/reset']); // navigate to reset page only if smsSent is true
         },
         (error) => {
