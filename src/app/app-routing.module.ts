@@ -106,7 +106,7 @@ const routes: Routes = [
   { path: "Reclamations", component: ReclamationListComponent },
   { path: 'reclamationDetails/:param', component: ReclamationDetailComponent },
   { path: 'shop/AddReclamation/:id', component: AddReclamationComponent,canActivate: [RoleGuard],
-  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
+  data: { requiredRoles: [ERole.ROLE_USER] }},
   { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent }
 
 

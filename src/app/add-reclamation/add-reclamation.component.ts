@@ -19,7 +19,7 @@ export class AddReclamationComponent implements OnInit{
   }
 
   onSubmit() {
-    const id = +this.route.snapshot.params['id'];
+    const id = +this.route.snapshot.params['id']; 
     this.user =  this.user = this.userService.getUser().id;
     this.reclamationS.assignRepasToReclamation(this.reclamation,id,this.user).subscribe(
       data => console.log(data),

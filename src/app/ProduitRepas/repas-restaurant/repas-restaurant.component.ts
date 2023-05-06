@@ -47,9 +47,9 @@ export class RepasRestaurantComponent implements OnInit{
     console.log(this.user);
 
     this.repasService.getRepasByUserId(this.userService.getUser().id)
-      .subscribe(repas => {
+      .subscribe(repas => { 
         this.repas = repas;
- 
+
       });
   }
 

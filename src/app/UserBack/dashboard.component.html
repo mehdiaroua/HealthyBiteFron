@@ -11,12 +11,12 @@
                       <li><a href="#" routerLink="/dash">User</a></li>
                     </ul>
                 </div>
-                
+
             </div>
-            
+
             <div class="col-lg-9">
-                
-                
+
+
               <div class="hero__search">
                 <div class="hero__search__form">
                   <form (ngSubmit)="searchUsers()">
@@ -36,10 +36,10 @@
                   <h2>Edit User</h2>
                   <form (ngSubmit)="onUpdate()">
                     <div class="form-group">
-                      
+
                       <label for="username">Username:</label>
                       <input type="text" class="form-control" id="username" name="username" [(ngModel)]="selectedUser.username">
-                      
+
                     </div>
                     <div class="form-group">
                       <label for="email">Email:</label>
@@ -54,11 +54,17 @@
                     <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
                   </form>
                 </div>
-                
+
 
                 <div class="container">
+
+                  <p-toolbar styleClass="mb-4 gap-2">
+                    <ng-template pTemplate="left">
+                       <button pButton pRipple  class="p-button-success mr-2" (click)="show()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </ng-template>
+
                   
-                  <p-menu [model]="items"></p-menu>
+                </p-toolbar>
                   <div class="card">
                     <p-table
                         #dt2
@@ -72,7 +78,7 @@
                         [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
                         [tableStyle]="{ 'min-width': '50rem' }"
                         >
-                        
+
                         <ng-template pTemplate="header">
                             <tr>
                                 <th style="width:10%">Name</th>
@@ -81,9 +87,9 @@
                                 <th style="width:15%">Role</th>
                                 <th style="width:2%">Status</th>
                                 <th style="width:22%">Actions</th>
-                
+
                             </tr>
-                            
+
                         </ng-template>
                         <ng-template pTemplate="body" let-user>
                           <tr>
@@ -106,11 +112,11 @@
                             <td>
                               <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-info p-button-text p-button-raised" (click)="onEdit1(user)"></p-button>
 <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text p-button-raised"(click)="onDelete(user.id)"></p-button>
-                              
+
                           </tr>
                         </ng-template>
                         <ng-template pTemplate="emptymessage">
-                            
+
                         </ng-template>
                     </p-table>
                 </div>

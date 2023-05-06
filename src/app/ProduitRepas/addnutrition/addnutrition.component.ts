@@ -34,12 +34,12 @@ constructor(private repasService:RepasProduitService,private router:Router,priva
     const id = +this.route.snapshot.params['id'];
     this.repasService.getProduitById(id).subscribe(produit => {
       this.selectedProduit = produit;
-    }); 
+    });
   }
 
 
 
-  addNutritionToProduit(nutrition: Nutrition, produitId: number) {
+  addNutritionToProduit(nutrition: Nutrition, produitId: number) { 
     this.repasService.addNutritionToProduit(nutrition, produitId)
       .subscribe(() => {
         this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content' });

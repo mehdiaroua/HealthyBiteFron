@@ -2,7 +2,7 @@
 
 <div class="head">
 <div class="page-header" filter-color="orange">
-  
+
   <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
   <div class="container">
       <div class="col-md-4 content-center">
@@ -23,11 +23,11 @@
                       </div>
                       <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username...">
                       <div *ngIf="signupForm.controls['username'].errors?.['required'] && signupForm.controls['username'].touched" class="text-danger">
-                      
+
                         Please enter a username
                       </div>
                     </div>
-                    
+
                     <div class="input-group form-group-no-border input-lg" >
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
@@ -37,21 +37,21 @@
                         Please enter a password
                       </div>
                     </div>
-                    
+
                     <div class="form-group">
                       <input type="email" id="email" formControlName="email" placeholder="Email..."  class="form-control" />
                       <div *ngIf="signupForm.controls['email'].errors?.['required'] && signupForm.controls['email'].touched" class="text-danger">
                         Please enter an email address
                       </div>
                     </div>
-                    
+
                     <div class="form-group">
                       <input type="text" id="phone" formControlName="phone" placeholder="PhoneNumber..."  class="form-control" />
                       <div *ngIf="signupForm.controls['phone'].errors?.['required'] && signupForm.controls['phone'].touched" class="text-danger">
                         Please enter a phone number
                       </div>
                     </div>
-                    
+
 
                     <div class="form-group">
                       <select id="role" formControlName="role" class="form-control" required>
@@ -61,8 +61,8 @@
                         <option value="fournisseur">Fournisseur</option>
                       </select>
                     </div>
-                    
-    
+
+
                   <div class="footer text-center">
                       <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Register</button>
                   </div>

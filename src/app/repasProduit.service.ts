@@ -81,6 +81,10 @@ user!: any;
 calculerMaxCalories(id: number): Observable<number> {
   return this.httpClient.get<number>(environment.api+"test/maxCalories"+`/${id}`);
 }
+proposerRepasSelonObjectifEtActivite(id: number): Observable<Repas[]> {
+  const url = `${environment.api}test/proposer/${id}`;
+  return this.httpClient.get<Repas[]>(url);
+}
 
 
 
