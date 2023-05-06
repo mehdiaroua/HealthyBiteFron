@@ -78,6 +78,7 @@ import { PasswordModule } from 'primeng/password';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.component';
+import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -119,7 +120,8 @@ import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.co
     ReclamationDetailComponent,
     AddReponseReclamationComponent,
     EditReponseComponent,
-    EditReclamationComponent
+    EditReclamationComponent,
+    ReclamationUserComponent
   ],
   imports: [
     BrowserModule,
