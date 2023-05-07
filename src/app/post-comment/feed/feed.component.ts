@@ -52,7 +52,6 @@ export class FeedComponent implements OnInit {
 
 addComment(postId: number, content: string) {
   const newComment: Comment = {
-  user: new User,
   id: Date.now(),
   showReply:false,
   postId,
@@ -170,13 +169,7 @@ getAllPosts() {
     }
   }
 
-toggleLikeOnPost() {
-    this.postService.toggleLikeOnPost(1, 'UP').subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.log(error);
-    });
-}
+
   
   likeButtonClick() {
     this.numberOfLikes++;

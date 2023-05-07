@@ -1,4 +1,3 @@
-import { User } from "src/app/Class/user";
 import { Post } from "./Post";
 import { Tag } from "./Tag";
 import { Reply } from "./reply";
@@ -23,7 +22,6 @@ export class Comment {
   replies!: Reply[];
   commentId?: number;
   showReply!: boolean; // Add the showReply property here
-  user!: User;
 
 
 }

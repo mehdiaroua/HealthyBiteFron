@@ -162,7 +162,8 @@ import { ReclamationUserComponent } from './reclamation-user/reclamation-user.co
     PasswordModule,
     InputTextModule,
     InputNumberModule,
-    MatCardModule
+    MatCardModule,
+    
   ],
 
   providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],

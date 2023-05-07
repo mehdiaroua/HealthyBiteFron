@@ -30,7 +30,7 @@ console.log(this.user);
   save() {
      this.postService.addPost(this.post.title, this.post.content,this.imageFile)
     .subscribe(data => console.log(data), error => console.log(error));
-    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
+    this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Post Ajouté avec Succés' });
     this.post = new Post();
                     location.reload();
 
