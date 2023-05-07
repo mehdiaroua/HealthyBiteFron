@@ -40,6 +40,7 @@ export class AdduserComponent {
         response => {
           console.log('User registered:', response);
           this.route.navigate(['/dash'], { queryParams: { id: response.id } });
+          location.reload();
         },
         error => {
           this.errorMessage = error.error.message;
