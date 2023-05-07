@@ -12,17 +12,17 @@
 
 
 
-                    <input type="email" id="email" formControlName="email" placeholder="Email..."  class="form-control" />
+                    <input type="email" id="email" formControlName="email" pInputText pTooltip="Enter your email" placeholder="Email"  class="form-control" />
 
                     <form [formGroup]="signupForm">
 
-                      <p-password formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+                      <p-password formControlName="password" placeholder="Password" [feedback]="false" [toggleMask]="true"></p-password>
 
                   </form>
 
  <div class="form-group">
 
-    <input type="text" id="phone" formControlName="phone" placeholder="PhoneNumber..."  class="form-control" />
+    <input type="text" id="phone" formControlName="phone" pInputText pTooltip="Enter your Phone number" placeholder="PhoneNumber"  class="form-control" />
 
 
   </div>
