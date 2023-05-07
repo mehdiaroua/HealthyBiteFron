@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Post } from './Models/PostComment/Post';
 import { StorageService } from './service/storage.service';
 import { User } from './Class/user';
+import { Like } from './Models/PostComment/Like';
 
 @Injectable({
   providedIn: 'root',
@@ -91,4 +92,9 @@ return this.httpClient.put<Post>(`${environment.api}test/updatePostWithImg`, for
   getPostByUserId() {
     return this.httpClient.get<Post>(environment.api + 'test/getPostByUserId');
   }
+
+  toggleLikeOnPost(postId: number, likeType: string) {
+    return this.httpClient.put(`${this.baseUrl}/api/test/posts/${postId}?likeType=${likeType}`, {});
+  }
+
 }

@@ -12,6 +12,7 @@ import { throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Reply } from 'src/app/Models/PostComment/reply';
 import { StorageService } from 'src/app/service/storage.service';
+import { User } from 'src/app/Class/user';
 
 @Component({
   selector: 'app-feed',
@@ -32,6 +33,7 @@ export class FeedComponent implements OnInit {
   replyContent!: string;
   User: any;
   public user = this.storageService.getUser();
+  numberOfLikes : number = 0;
 
 
 
@@ -49,7 +51,8 @@ export class FeedComponent implements OnInit {
 
 
 addComment(postId: number, content: string) {
-const newComment: Comment = {
+  const newComment: Comment = {
+  user: new User,
   id: Date.now(),
   showReply:false,
   postId,
@@ -167,6 +170,21 @@ getAllPosts() {
     }
   }
 
+toggleLikeOnPost() {
+    this.postService.toggleLikeOnPost(1, 'UP').subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+    });
+}
+  
+  likeButtonClick() {
+    this.numberOfLikes++;
+  }
+
+  dislikeButtonClick() {
+    this.numberOfLikes--;
+  }
 
 
 toggleComments() {

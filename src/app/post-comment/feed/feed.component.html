@@ -132,11 +132,11 @@
                                     <div class="post-title">
                                         <img src="/assets/images/user2.jpg" alt="user picture">
                                         <ul>
-                                               <li>
+                                            <li>
                                                 <h3>{{post.user.username}} <span> . 2 hours ago</span></h3>
                                             </li>
                                             <li><span>{{post.addedDate}}</span></li>
-                                        
+
                                         </ul>
                                         <p style="  font-weight: bold;">{{post.title}}
 
@@ -157,9 +157,19 @@
                                     <div class="like-comment">
                                         <ul>
                                             <li>
-                                                <img src="/assets/images/love.png" alt="love">
-                                                <img src="/assets/images/like.png" alt="like">
-                                                <span>22k like</span>
+                                                <!-- <img src="/assets/images/love.png" alt="love"> -->
+                                                <!-- <img src="/assets/images/like.png" alt="like"> -->
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <img src="/assets/images/love.png" (click)="likeButtonClick()"
+                                                            alt="love">
+                                                        <img src="/assets/images/dislike.png"
+                                                            (click)="dislikeButtonClick()" alt="love">
+
+
+                                                    </div>
+                                                </div>
+                                                <span>{{numberOfLikes}} like</span>
                                             </li>
                                             <li><i (click)="toggleClicked(post.id)" class="fa fa-comment"></i>
                                                 {{ isClicked(post.id) ? 'Hide Comments' : 'Show Comments' }}
@@ -179,8 +189,7 @@
                                                     <!-- Contenedor del Comentario -->
                                                     <div class="comment-box">
                                                         <div class="comment-head">
-                                                            <h6 class="comment-name by-author"><a
-                                                                    href="http://creaticode.com/blog">Agustin Ortiz</a>
+                                                            <h6 class="comment-name by-author"><a>{{user.username}}</a>
                                                             </h6>
                                                             <i class="fa fa-trash" style="color: red;"
                                                                 (click)="deleteComment(comment.id)"></i>
@@ -192,18 +201,8 @@
                                                         <div class="comment-content">
                                                             <p>{{ comment?.content }}</p>
                                                         </div>
-
-
                                                         <!-- Respuestas de los comentarios -->
-                                                        <ul class="comments-list reply-list" >
-                                <!-- <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
-                                    <div class="form-group">
-                                        <label for="content">Add a comment:</label>
-                                        <input type="text" class="form-control" name="content" #content ngModel required>
-                                    </div>
-                                    <button type="submit" class="add-comment">Submit</button>
-                                </form> -->
-
+                                                        <ul class="comments-list reply-list">
                                                             <li *ngFor="let reply of comment.replies">
                                                                 <!-- Avatar -->
                                                                 <div class="comment-avatar"><img

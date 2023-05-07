@@ -1,7 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { User } from 'src/app/Class/user';
 import { Post } from 'src/app/Models/PostComment/Post';
 import { Comment } from 'src/app/Models/PostComment/comment';
 import { CommentService } from 'src/app/comment.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 
 @Component({
@@ -13,16 +15,21 @@ export class CommentsComponent implements OnInit {
  @Input() postId!: number;
   comments!: Comment[];
   @Input() content!: string;
+    User: any;
   @Input() replies!: string;
   posts: Post[] = [];
+    public user = this.storageService.getUser();
 
 
 
-  constructor(private commentService: CommentService) { }
+
+  constructor(private commentService: CommentService, private storageService : StorageService) { }
 
   ngOnInit(): void {
     this.commentService.getCommentsByPost(this.postId)
       .subscribe(comments => this.comments = comments);
+      this.User = this.storageService.getUser();
+
   }
 
   deleteComment(id: number): void {
@@ -34,7 +41,8 @@ export class CommentsComponent implements OnInit {
   }
   
   addComment(postId: number, content: string) {
-  const newComment: Comment = {
+    const newComment: Comment = {
+  user: new User,
     id: Date.now(),
     showReply:false,
     postId,
