@@ -12,7 +12,7 @@ import { AddnutritionComponent } from '../addnutrition/addnutrition.component';
 import {MatDialog} from '@angular/material/dialog';
 import { Nutrition } from 'src/app/Models/RepasProduit/Nutrition';
 
-@Component({ 
+@Component({
   selector: 'app-produit-fournisseur',
   templateUrl: './produit-fournisseur.component.html',
   styleUrls: ['./produit-fournisseur.component.css'],
