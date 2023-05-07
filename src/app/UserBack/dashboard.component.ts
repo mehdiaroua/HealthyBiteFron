@@ -70,6 +70,9 @@ items1!: any;
 
 
    }
+   gotoStat() {
+    this.router.navigate(['/pie']);
+  }
 
   ngOnInit(): void {
 this.user=this.storage.getUser();
@@ -85,7 +88,7 @@ console.log(this.user.id);
   }
 
   show(){
-    this.ref = this.dialogService.open(AdduserComponent, { header: 'Add a Product'});
+    this.ref = this.dialogService.open(AdduserComponent, { header: 'Add User'});
   }
 
   onUpdateRole(userId: number, roleName: string) {

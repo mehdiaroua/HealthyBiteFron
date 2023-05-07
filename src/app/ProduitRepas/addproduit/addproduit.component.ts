@@ -29,9 +29,12 @@ console.log(this.user);
 
   save() {
     this.repasService.addProduitAndImage(this.produit.nom, this.produit.description, this.produit.prix, this.produit.ingredient,  this.produit.categProduit,  this.imageFile)
-      .subscribe(data => console.log(data), error => console.log(error));
-      this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
+      .subscribe(data => this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' }), error => this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Produit n est pas ajouté' }));
+
     this.produit = new Produit();
+    location.reload();
+    this.router.navigate(['/produit/addNutrition']);
+
 
 
   }
@@ -39,7 +42,8 @@ console.log(this.user);
   onSubmit() {
     this.submitted = true;
     this.save();
-    this.router.navigate(['/produit/addNutrition']);
+   // this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
+   // location.reload();
   }
 
   onFileSelected(event: any) {

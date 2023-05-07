@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Nutrition } from 'src/app/Models/RepasProduit/Nutrition';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repasProduit.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-add-nutr-repas',
@@ -26,10 +27,12 @@ export class AddNutrRepasComponent {
 
   produits!: Repas[];
   selectedProduit!: Repas;
+  user!:any;
 
-  constructor(private repasService:RepasProduitService,private router:Router,private route: ActivatedRoute){}
+  constructor(private repasService:RepasProduitService,private router:Router,private route: ActivatedRoute,private userService: StorageService){}
 
   ngOnInit(): void {
+    this.user = this.userService.getUser();
     const id = +this.route.snapshot.params['id'];
     this.repasService.getRepasById(id).subscribe(produit => {
       this.selectedProduit = produit;
@@ -41,6 +44,7 @@ export class AddNutrRepasComponent {
         .subscribe(() => {
           this.router.navigate(['/repas/restaurant', this.selectedProduit.id]);
         });
+        location.reload();
     }
   }
 
