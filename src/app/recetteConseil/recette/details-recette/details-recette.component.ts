@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -22,6 +22,9 @@ export class DetailsRecetteComponent implements OnInit {
   public ingredientForm!: UntypedFormGroup;
   public editMode: boolean = false;
   public subjectForUpdateIngredient: Ingredient = {};
+  @ViewChild('closeModal') closeModal!: ElementRef;
+  @ViewChild('closeModal1') closeModal1!: ElementRef;
+
   constructor(
     private recetteService: RecetteService,
     private ingredientService: IngredientService,
@@ -57,10 +60,6 @@ export class DetailsRecetteComponent implements OnInit {
     this.router.navigateByUrl('/recette');
   }
 
-  onShowAddIngrient() {
-    this.showAddIngredient = true;
-  }
-
   onSubmitIngredient() {
     const ingredientToSave: Ingredient = {
       nom: this.ingredientForm.get('nom')?.value,
@@ -73,9 +72,15 @@ export class DetailsRecetteComponent implements OnInit {
       .subscribe((resultat) => {
         this.loadRecette();
         this.showAddIngredient = false;
+        this.ingredientForm.reset();
+        this.ingredientForm.markAsPristine();
+        this.closeModal.nativeElement.click();
       });
   }
   onCancelAddIngredient() {
+    this.ingredientForm.reset();
+    this.ingredientForm.markAsPristine();
+    this.closeModal.nativeElement.click();
     this.showAddIngredient = false;
   }
 
@@ -101,6 +106,7 @@ export class DetailsRecetteComponent implements OnInit {
         this.loadRecette();
         this.editMode = false;
         this.subjectForUpdateIngredient = {};
+        this.closeModal1.nativeElement.click();
       });
   }
   onCancelEditIngredient() {

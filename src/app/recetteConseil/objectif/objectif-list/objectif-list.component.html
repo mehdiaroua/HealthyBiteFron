@@ -1,102 +1,325 @@
-<div class="container mb-5">
-  <div class="row justify-content-start align-items-center">
+<div class="container h-100 recette-list-marge">
+  <div class="container">
     <div class="row">
-      <h3>Mes Objectifs</h3>
-    </div>
-  </div>
-  <div class="row justify-content-center align-items-center mt-1">
-    <div class="row">
-      <div class="col-12"><h5>Liste des objectifs</h5></div>
+      <div class="col-3">
+        <p-button
+          icon="pi pi-arrow-left"
+          styleClass="p-button-outlined p-button-secondary p-button"
+          (click)="back()"
+        ></p-button>
+      </div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Mes Objectifs</h3>
+      </div>
+      <div class="col-3">
+        <p-button
+          icon="pi pi-plus"
+          styleClass="p-button-outlined p-button-success p-button"
+          type="button"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        ></p-button>
+      </div>
     </div>
   </div>
   <div
-    class="row mt-5 justify-content-center align-items-center"
-    *ngIf="objectifList.length == 0; else showListObjectifs"
+    class="container"
+    *ngIf="objectifList.length == 0; else showObjectifList"
   >
-    <p>Vous n'avez pas encore saisie une Recette</p>
+    <div class="row mt-5 justify-content-center align-items-center">
+      <div class="col-12 text-center">
+        <img src="../../assets/img/no-data.png" alt="" />
+      </div>
+
+      <p>Vous n'avez pas encore saisie un Objectif</p>
+    </div>
   </div>
-  <ng-template #showListObjectifs>
-    <div class="col-3" *ngFor="let objectif of objectifList">
-      <div class="card">
-        <div class="card-header">
-          <div class="d-flex justify-content-end">
-            <div>
-              <span
+  <ng-template #showObjectifList>
+    <div class="container mb-5 mt-5 fade-in">
+      <div class="row justify-content-center align-items-center">
+        <div
+          class="col-3"
+          *ngFor="let objectif of objectifList"
+          style="margin-right: 2em"
+        >
+          <div class="card-hendi" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="../../assets/img/blog/blog-2.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Titre: {{ objectif.title }}</h5>
+              <h5 class="card-title">
+                Poid de depart: {{ objectif.poidDepart }}
+              </h5>
+              <h5 class="card-title">Poid Actuel: {{ objectif.poidActuel }}</h5>
+              <h5 class="card-title">Taille: {{ objectif.taille }}</h5>
+              <h5 class="card-title">
+                Poid Objectif: {{ objectif.objectifPoid }}
+              </h5>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-eye"
+                class="p-button-rounded p-button-outlined mr-1"
+                (click)="checkDetails(objectif.id)"
+              ></button>
+
+              <button
+                pButton
+                pRipple
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-outlined p-button-success mr-1"
+                data-toggle="modal"
+                data-target="#exampleModal1"
                 (click)="onShowEditObjectif(objectif.id)"
-                style="cursor: pointer"
-                class="icon_pencil-edit ml-1"
-              ></span>
-              <span
+              ></button>
+
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-outlined p-button-danger"
                 (click)="deleteObjectif(objectif.id)"
-                style="cursor: pointer"
-                class="icon_trash ml-1"
-              ></span>
+              ></button>
             </div>
           </div>
         </div>
-
-        <!-- SHOW -->
-        <div *ngIf="!editMode" class="card-body">
-          <h5 class="card-title">
-            <strong>Poid de depart</strong>
-            {{ objectif.poidDepart }}
-          </h5>
-          <h5 class="card-title">
-            <strong>Poid Actuel</strong> {{ objectif.poidActuel }}
-          </h5>
-
-          <h5 class="card-title">
-            <strong>Taille</strong> {{ objectif.taille }}
-          </h5>
-
-          <h5 class="card-title">
-            <strong>Poid a atteindre</strong> {{ objectif.objectifPoid }}
-          </h5>
-
-          <h5 class="card-title">
-            <strong>Type d'activite</strong> {{ objectif.typeActivite }}
-          </h5>
-        </div>
-
-        <!-- EDIT -->
-        <!-- <div *ngIf="editMode" class="card-body">
-          <h5 class="card-title">
-            <strong>Calories</strong>
-            <input
-              type="number"
-              class="form-control"
-              [(ngModel)]="subjectForUpdateIngredient.calories"
-            />
-          </h5>
-          <h5 class="card-title">
-            <strong>Quantite</strong>
-            <input
-              type="number"
-              class="form-control"
-              [(ngModel)]="subjectForUpdateIngredient.quantite"
-            />
-          </h5>
-
-          <div class="row justify-content-end align-items-end mb-2">
-            <div class="col-12">
-              <button
-                class="btn btn-outline-primary btn-sm"
-                type="submit"
-                (click)="editIngredient()"
-              >
-                Modifier
-              </button>
-              <button
-                class="btn btn-outline-secondary btn-sm ml-1"
-                type="button"
-                (click)="onCancelEditIngredient()"
-              >
-                Annuler
-              </button>
-            </div>
-          </div> 
-        </div>-->
       </div>
     </div>
   </ng-template>
+</div>
+
+<div class="container mb-5">
+  <div class="row justify-content-center align-items-center mt-1">
+    <div class="row justify-content-end align-items-end">
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <form
+            class="approval-form"
+            [formGroup]="objectifForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Ajouter Objectif
+                </h5>
+                <button
+                  #closeModal
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      Titre :
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="title"
+                      />
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      Poid de Depart :
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="poidDepart"
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      Poid Actuel :
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="poidActuel"
+                      />
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      Taille :
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="taille"
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <label>
+                      Objectif Poid :
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="objectifPoid"
+                      />
+                    </label>
+                  </div>
+                  <div class="col">
+                    <label>
+                      Type Activite :
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="typeActivite"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <p-button
+                  [disabled]="!objectifForm.valid"
+                  icon="pi pi-check"
+                  styleClass="p-button-rounded p-button-success p-button-text p-button-raised"
+                  type="submit"
+                ></p-button>
+
+                <p-button
+                  icon="pi pi-times"
+                  styleClass="p-button-rounded p-button-danger  p-button-text p-button-raised"
+                  (click)="onCancelAddObjectif()"
+                ></p-button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="exampleModal1"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel1"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">
+            Modidifer Objectif <br />
+          </h5>
+          <button
+            #closeModalEditObjectif
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <label>
+                Titre :
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateObjectif.title"
+                />
+              </label>
+            </div>
+            <div class="col">
+              <label>
+                Poid de Depart :
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateObjectif.poidDepart"
+                />
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label>
+                Poid Actuel :
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateObjectif.poidActuel"
+                />
+              </label>
+            </div>
+            <div class="col">
+              <label>
+                Taille :
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateObjectif.taille"
+                />
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label>
+                Objectif Poid :
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateObjectif.objectifPoid"
+                />
+              </label>
+            </div>
+            <div class="col">
+              <label>
+                Type Activite :
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateObjectif.typeActivite"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <p-button
+            icon="pi pi-check"
+            styleClass="p-button-rounded p-button-success p-button-text p-button-raised"
+            type="submit"
+            (click)="editObjectif()"
+          ></p-button>
+
+          <p-button
+            icon="pi pi-times"
+            styleClass="p-button-rounded p-button-danger  p-button-text p-button-raised"
+            (click)="onCancelEditObjectif()"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

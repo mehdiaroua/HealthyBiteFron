@@ -1,59 +1,73 @@
-<div class="container h-100">
-  <div class="row justify-content-end align-items-end mb-3">
-    <button type="submit" class="primary-btn" (click)="add()">Ajouter</button>
-  </div>
-  <div
-    class="row mt-5 justify-content-center align-items-center"
-    *ngIf="recetteList.length == 0; else showRecetteList"
-  >
-    <p>Vous n'avez pas encore saisie une Recette</p>
-  </div>
-  <ng-template #showRecetteList>
-    <div class="row justify-content-center align-items-center">
-      <div class="col-3" *ngFor="let recette of recetteList">
-        <div class="blog__item">
-          <div class="blog__item__pic" style="cursor: pointer">
-            <div class="img-holder">
-              <img
-                class="img-holder"
-                src="../../assets/img/blog/blog-2.jpg"
-                alt=""
-              />
-              <div id="link">
-                <span
-                  (click)="checkDetails(recette.id)"
-                  style="cursor: pointer"
-                  class="icon_info"
-                ></span>
-
-                <span
-                  (click)="edit(recette.id)"
-                  style="cursor: pointer"
-                  class="icon_pencil-edit ml-1"
-                ></span>
-
-                <span
-                  (click)="deleteRecette(recette.id)"
-                  style="cursor: pointer"
-                  class="icon_trash ml-1"
-                ></span>
-              </div>
-            </div>
-          </div>
-          <div class="blog__item__text">
-            <h5>
-              {{ recette.nom }}
-            </h5>
-          </div>
-        </div>
+<div class="container recette-list-marge">
+  <div class="container  ">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Liste des recettes</h3>
+      </div>
+      <div class="col">
+        <p-button
+          label="Ajouter"
+          icon="pi pi-plus"
+          styleClass="p-button-outlined p-button-success "
+          (click)="add()"
+        ></p-button>
       </div>
     </div>
-    <div class="col-lg-12">
-      <div class="product__pagination blog__pagination">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+  </div>
+
+  <div class="container" *ngIf="recetteList.length == 0; else showRecetteList">
+    <div class="row mt-5 justify-content-center align-items-center">
+      <div class="col-12 text-center">
+        <img src="../../assets/img/no-data.png" alt="" />
+      </div>
+
+      <p>Vous n'avez pas encore saisie une Recette</p>
+    </div>
+  </div>
+  <ng-template #showRecetteList>
+    <div class="container mb-5 mt-5 fade-in">
+      <div class="row justify-content-center align-items-center">
+        <div
+          class="col-3"
+          *ngFor="let recette of recetteList"
+          style="margin-right: 2em"
+        >
+          <div class="card-hendi" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="../../assets/img/blog/blog-2.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ recette.nom }}</h5>
+
+              <button
+                pButton
+                pRipple
+                icon="pi pi-eye"
+                class="p-button-rounded p-button-outlined mr-1"
+                (click)="checkDetails(recette.id)"
+              ></button>
+
+              <button
+                pButton
+                pRipple
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-outlined p-button-success mr-1"
+                (click)="edit(recette.id)"
+              ></button>
+
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-outlined p-button-danger"
+                (click)="deleteRecette(recette.id)"
+              ></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </ng-template>

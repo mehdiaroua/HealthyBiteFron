@@ -1,182 +1,225 @@
-<div class="container h-100">
-  <div class="row justify-content-end align-items-end">
-    <button type="submit" class="primary-btn" (click)="back()">
-      Retourner
-    </button>
-  </div>
-  <div class="row justify-content-center align-items-center">
-    <h5>Details de la recette</h5>
-  </div>
-  <div class="row justify-content-center align-items-center">
-    <div class="blog__item__text">
-      <p *ngIf="recette && recette.nom">
-        <strong>Titre</strong> {{ recette.nom }}
-      </p>
+<div class="container h-100 recette-list-marge">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <p-button
+          icon="pi pi-arrow-left"
+          styleClass="p-button-outlined p-button-secondary p-button"
+          (click)="back()"
+        ></p-button>
+      </div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Details de la Recette</h3>
+      </div>
+      <div class="col-3">
+        <p-button
+          icon="pi pi-plus"
+          styleClass="p-button-outlined p-button-success p-button"
+          label="Ajouter Ingredients"
+          type="button"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        ></p-button>
+      </div>
     </div>
   </div>
 
   <div
-    class="row justify-content-center align-items-center"
-    *ngIf="
-      recette.ingredients && recette.ingredients.length > 0;
-      else noIngredients
-    "
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
   >
-    <div class="col-12 justify-content-center align-items-center">
-      <h5>liste des ingredients</h5>
-      <button
-        type="submit"
-        class="btn btn-outline-success"
-        (click)="onShowAddIngrient()"
-      >
-        Ajouter
-      </button>
-    </div>
-    <div class="mt-5 col-12 justify-content-center align-items-center">
-      <div class="col-3" *ngFor="let ingredient of recette.ingredients">
-        <div class="card">
-          <div class="card-header">
-            <div class="d-flex justify-content-between">
-              <h5>
-                {{ ingredient.nom }}
-              </h5>
-              <div>
-                <span
-                  (click)="onShowEditIngredient(ingredient.id)"
-                  style="cursor: pointer"
-                  class="icon_pencil-edit ml-1"
-                ></span>
-                <span
-                  (click)="deleteIngredient(ingredient.id)"
-                  style="cursor: pointer"
-                  class="icon_trash ml-1"
-                ></span>
-              </div>
-            </div>
-          </div>
-          <!-- SHOW -->
-          <div *ngIf="!editMode" class="card-body">
-            <h5 class="card-title">
-              <strong>Calories</strong>
-              {{ ingredient.calories }}
-            </h5>
-            <h5 class="card-title">
-              <strong>Quantite</strong> {{ ingredient.quantite }}
-            </h5>
-          </div>
-          <!-- EDIT -->
-          <div *ngIf="editMode" class="card-body">
-            <h5 class="card-title">
-              <strong>Calories</strong>
-              <input
-                type="number"
-                class="form-control"
-                [(ngModel)]="subjectForUpdateIngredient.calories"
-              />
-            </h5>
-            <h5 class="card-title">
-              <strong>Quantite</strong>
-              <input
-                type="number"
-                class="form-control"
-                [(ngModel)]="subjectForUpdateIngredient.quantite"
-              />
-            </h5>
-
-            <div class="row justify-content-end align-items-end mb-2">
-              <div class="col-12">
-                <button
-                  class="btn btn-outline-primary btn-sm"
-                  type="submit"
-                  (click)="editIngredient()"
-                >
-                  Modifier
-                </button>
-                <button
-                  class="btn btn-outline-secondary btn-sm ml-1"
-                  type="button"
-                  (click)="onCancelEditIngredient()"
-                >
-                  Annuler
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <ng-template #noIngredients>
-    <div class="row justify-content-center align-items-center">
-      <div class="blog__item__text">
-        <p>Pas d'ingredients encore</p>
-      </div>
-    </div>
-    <div class="row justify-content-end align-items-end">
-      <button
-        type="submit"
-        class="btn btn-outline-success"
-        (click)="onShowAddIngrient()"
-      >
-        Ajouter
-      </button>
-    </div>
-  </ng-template>
-
-  <div *ngIf="showAddIngredient" class="fade-in">
-    <div class="row justify-content-center align-items-center">
+    <div class="modal-dialog" role="document">
       <form
         class="approval-form"
         [formGroup]="ingredientForm"
         (ngSubmit)="onSubmitIngredient()"
       >
-        <div class="row">
-          <div class="col-6">
-            <label>
-              Nom :
-              <input type="text" class="form-control" formControlName="nom" />
-            </label>
-          </div>
-          <div class="col-6">
-            <label>
-              Nombre de calories :
-              <input
-                type="number"
-                class="form-control"
-                formControlName="calories"
-              />
-            </label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <label>
-              Quantite :
-              <input
-                type="number"
-                class="form-control"
-                formControlName="quantite"
-              />
-            </label>
-          </div>
-        </div>
-        <div class="row justify-content-start align-items-start">
-          <div class="col">
-            <button class="btn btn-outline-primary" type="submit">
-              Ajouter
-            </button>
-
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <h3>Ajouter Ingredient</h3>
+            </h5>
             <button
-              class="ml-2 btn btn-outline-secondary"
+              #closeModal
               type="button"
-              (click)="onCancelAddIngredient()"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
             >
-              Annuler
+              <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="nom"
+                  placeholder="Nom"
+                />
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="calories"
+                  placeholder="Nombre de calories :"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="quantite"
+                  placeholder="Quantite"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <p-button
+              icon="pi pi-check"
+              styleClass="p-button-rounded p-button-success p-button-text p-button-raised"
+              type="submit"
+            ></p-button>
+
+            <p-button
+              icon="pi pi-times"
+              styleClass="p-button-rounded p-button-danger  p-button-text p-button-raised"
+              (click)="onCancelAddIngredient()"
+            ></p-button>
           </div>
         </div>
       </form>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="blog__item__text">
+      <span *ngIf="recette && recette.nom">
+        <p-chip
+          [label]="recette.nom"
+          image="../../assets/img/blog/blog-2.jpg"
+        ></p-chip>
+      </span>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Liste des ingredients</h3>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
+
+  <div class="container fade-in">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-3 mt-3" *ngFor="let ingredient of recette.ingredients">
+        <p-card [header]="ingredient.nom !== undefined ? ingredient.nom : ''">
+          <p class="m-0">Calories: {{ ingredient.calories }}</p>
+          <p class="m-0">Quantite: {{ ingredient.quantite }}</p>
+          <ng-template pTemplate="footer">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-outlined p-button-success mr-1"
+              data-toggle="modal"
+              data-target="#exampleModal1"
+              (click)="onShowEditIngredient(ingredient.id)"
+            ></button>
+
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-outlined p-button-danger"
+              (click)="deleteIngredient(ingredient.id)"
+            ></button>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+    <!-- ModalEditIngredient -->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <h3>Modifier Ingredient</h3>
+            </h5>
+            <button
+              #closeModal1
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateIngredient.nom"
+                  placeholder="Nom"
+                />liste des ingredients
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateIngredient.calories"
+                  placeholder="Nombre de calories :"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateIngredient.quantite"
+                  placeholder="Quantite"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <p-button
+              icon="pi pi-check"
+              styleClass="p-button-rounded p-button-success p-button-text p-button-raised"
+              type="submit"
+              (click)="editIngredient()"
+            ></p-button>
+
+            <p-button
+              icon="pi pi-times"
+              styleClass="p-button-rounded p-button-danger  p-button-text p-button-raised"
+              (click)="onCancelAddIngredient()"
+            ></p-button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

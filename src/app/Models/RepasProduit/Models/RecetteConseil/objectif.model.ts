@@ -10,6 +10,6 @@ export interface Objectif {
   objectifPoid?: number;
   typeActivite?: TypeActivite;
 
-  user: any;
+  user?: any;
   conseils?: Conseil[];
 }

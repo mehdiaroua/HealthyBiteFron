@@ -1,1 +1,166 @@
-<p>objectif-detail works!</p>
+<div class="container recette-list-marge mb-5">
+  <div class="card text-center fade-in">
+    <div class="card-header">
+      <h3>
+        Details de l'objectif<button
+          type="submit"
+          class="btn btn-outline-secondary"
+          (click)="back()"
+          style="float: right"
+        >
+          Retourner
+        </button>
+      </h3>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Titre</h5>
+      <p class="card-text">
+        {{ objectif.title }}
+      </p>
+      <h5 class="card-title">Poid de depart</h5>
+      <p class="card-text">
+        {{ objectif.poidDepart }}
+      </p>
+      <h5 class="card-title">Poid Actuel</h5>
+      <p class="card-text">
+        {{ objectif.poidActuel }}
+      </p>
+      <h5 class="card-title">Taille</h5>
+      <p class="card-text">
+        {{ objectif.taille }}
+      </p>
+      <h5 class="card-title">Poid a objectif</h5>
+      <p class="card-text">
+        {{ objectif.objectifPoid }}
+      </p>
+      <h5 class="card-title">Type D'activite</h5>
+      <p class="card-text">
+        {{ objectif.typeActivite }}
+      </p>
+    </div>
+  </div>
+  <div class="card text-center mt-5 fade-in">
+    <div class="card-header">
+      <h3>
+        Conseils Associe
+
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          style="float: right"
+        >
+          Ajouter
+        </button>
+      </h3>
+    </div>
+    <div class="card-body">
+      <h5
+        class="card-title"
+        *ngIf="
+          objectif.conseils && objectif.conseils.length == 0;
+          else showListConseils
+        "
+      >
+        Pas de conseils
+      </h5>
+      <ng-template #showListConseils>
+        <ul
+          class="list-group list-group-flush"
+          *ngFor="let conseil of objectif.conseils"
+        >
+          <li class="list-group-item">
+            {{ conseil.title }}
+            <span
+              style="cursor: pointer; float: right; margin-left: 5px"
+              class="icon_info"
+              (click)="checkConseilDetails(conseil.id)"
+            ></span>
+            <span
+              style="cursor: pointer; float: right"
+              class="icon_trash"
+              (click)="deleteConseil(conseil.id)"
+            ></span>
+          </li>
+        </ul>
+      </ng-template>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <form
+            [formGroup]="conseilForm"
+            class="approval-form"
+            (ngSubmit)="onSubmit()"
+          >
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Ajouter Conseil
+                </h5>
+                <button
+                  #closeModal
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row justify-content-start align-items-start">
+                  <div class="col">
+                    <label>
+                      Titre :
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="title"
+                      />
+                    </label>
+                  </div>
+                </div>
+                <div class="row justify-content-start align-items-start">
+                  <div class="col">
+                    <label>
+                      Description :
+                      <textarea
+                        class="form-control"
+                        formControlName="description"
+                        cols="30"
+                        rows="10"
+                      ></textarea>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  data-dismiss="modal"
+                >
+                  Annuler
+                </button>
+                <button type="submit" class="btn btn-outline-primary">
+                  Enregistrer
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-recommendation class="fade-in"></app-recommendation>
+
+</div>

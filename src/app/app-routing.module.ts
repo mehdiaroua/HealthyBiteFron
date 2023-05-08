@@ -31,6 +31,9 @@ import { RecetteFormComponent } from './recetteConseil/recette/recette-form/rece
 import { RecetteConseilComponent } from './recetteConseil/recette-conseil/recette-conseil.component';
 import { DetailsRecetteComponent } from './recetteConseil/recette/details-recette/details-recette.component';
 import { ObjectifListComponent } from './recetteConseil/objectif/objectif-list/objectif-list.component';
+import { ConseilListComponent } from './recetteConseil/conseil/conseil-list/conseil-list.component';
+import { ObjectifDetailComponent } from './recetteConseil/objectif/objectif-detail/objectif-detail.component';
+import { ConseilDetailComponent } from './recetteConseil/conseil/conseil-detail/conseil-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -132,6 +135,9 @@ const routes: Routes = [
   // recette end
   // objectifs
   { path: 'objectif', component: ObjectifListComponent },
+  { path: 'objectif/:id', component: ObjectifDetailComponent },
+  { path: 'conseil', component: ConseilListComponent },
+  { path: 'conseil/:id', component: ConseilDetailComponent },
 ];
 
 @NgModule({

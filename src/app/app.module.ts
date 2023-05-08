@@ -62,6 +62,12 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TokenInterceptorService } from './service/token-interceptor.service';
+import { RecommendationComponent } from './recetteConseil/recommendation/recommendation.component';
+
+// Chip Module
+import { ChipModule } from 'primeng/chip';
+import { CardModule } from 'primeng/card';
+
 Chart.register(...registerables);
 
 @NgModule({
@@ -109,6 +115,7 @@ Chart.register(...registerables);
     IngredientFormComponent,
     IngredientListComponent,
     IngredientDetailComponent,
+    RecommendationComponent,
     //sabra end
   ],
   imports: [
@@ -130,6 +137,10 @@ Chart.register(...registerables);
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
+
+    // chipModule
+    ChipModule,
+    CardModule,
   ],
 
   providers: [

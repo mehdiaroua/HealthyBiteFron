@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -22,7 +23,8 @@ export class RecetteFormComponent implements OnInit {
     private recetteService: RecetteService,
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +60,9 @@ export class RecetteFormComponent implements OnInit {
     this.recetteService.update(this.recette.id!, this.recette).subscribe(() => {
       this.router.navigateByUrl('/recette');
     });
+  }
+
+  back() {
+    this.router.navigateByUrl('/recette');
   }
 }

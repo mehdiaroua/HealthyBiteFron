@@ -21,4 +21,6 @@ export class ConseilListComponent implements OnInit {
   checkDetails(id?: number) {
     this.router.navigate(['/conseil', id]);
   }
+
+  back() {}
 }

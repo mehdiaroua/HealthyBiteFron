@@ -15,7 +15,11 @@ export abstract class CrudService<T, ID> implements CrudOperations<T, ID> {
   }
 
   update(id: ID, t: T): Observable<T> {
-    return this._http.put<T>(this._base + '/' + id, t, {});
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    let options = { headers: headers };
+    return this._http.put<T>(this._base + '/' + id, t, options);
   }
 
   getById(id: ID): Observable<T> {
