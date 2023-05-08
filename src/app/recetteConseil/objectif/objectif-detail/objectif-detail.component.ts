@@ -78,5 +78,9 @@ export class ObjectifDetailComponent implements OnInit {
       this.loadData();
     });
   }
-
+  onCancelAddConseil(){
+    this.conseilForm.reset();
+    this.conseilForm.markAsPristine();
+    this.closeModal.nativeElement.click();
+  }
 }
