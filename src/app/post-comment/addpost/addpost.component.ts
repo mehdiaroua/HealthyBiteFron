@@ -12,7 +12,8 @@ import { Location } from '@angular/common';
   selector: 'app-addpost',
   templateUrl: './addpost.component.html',
   styleUrls: ['./addpost.component.css'],
-  providers:[UserService,MessageService]
+  providers: [UserService, MessageService],
+  
 
 })
 export class AddpostComponent {
@@ -22,7 +23,9 @@ export class AddpostComponent {
   selectedFile: File | null = null;
     imageFile!: File;
   submitted = false;
+  
   constructor(private location: Location,private postService: PostService, public dialog: MatDialog,private router: Router,private messageService:MessageService, private userService:StorageService) { }
+
 
 ngOnInit(){
 this.user = this.userService.getUser();

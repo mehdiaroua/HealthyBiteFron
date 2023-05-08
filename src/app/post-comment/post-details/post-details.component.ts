@@ -24,7 +24,8 @@ ngOnInit(){
   );
   console.log(this.post);
 
-}
+  }
+  
 
   
   postImageURL(imageData: string): string {

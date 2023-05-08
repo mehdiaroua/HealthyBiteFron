@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Post } from './Models/PostComment/Post';
+import { LikeType, Post } from './Models/PostComment/Post';
 import { StorageService } from './service/storage.service';
 import { User } from './Class/user';
 
@@ -15,6 +15,7 @@ export class PostService {
   listPost: Post[] = [];
     private baseUrl = 'http://localhost:8080'; 
   user!: any;
+  
   constructor(private httpClient: HttpClient,private storage: StorageService) {}
 
   // addPost(formData: FormData): Observable<Post> {
@@ -57,11 +58,14 @@ export class PostService {
   //   );
   // }
 
-  updatePostAndImage(id: number, title: string, content: string, image?: File): Observable<Post> {
+  updatePostAndImage(id: number, title: string, content: string,  userId: number, image?: File): Observable<Post> {
+    
   const formData = new FormData();
   formData.append('id', id.toString());
   formData.append('title', title);
-  formData.append('content', content);
+    formData.append('content', content);
+      formData.append('userId', userId.toString()); // Add userId to the FormData
+
   if (image) {
     formData.append('image', image, image.name);
   }
@@ -91,4 +95,17 @@ return this.httpClient.put<Post>(`${environment.api}test/updatePostWithImg`, for
   getPostByUserId() {
     return this.httpClient.get<Post>(environment.api + 'test/getPostByUserId');
   }
+
+
+
+  toggleLikesP(postId: number, likeType: string, user: number): Observable<Post> {
+    const url = `${this.baseUrl}/api/test/posts/${postId}?likeType=${likeType}&user=${user}`;
+    return this.httpClient.put<Post>(url, null);
+  }
+
+  toggleLikesC(commentId: number, likeType: LikeType, userId: number): Observable<Comment> {
+    return this.httpClient.put<Comment>(`${this.baseUrl}/api/test/comments/${commentId}/likes`, { likeType, userId });
+  }
+
+  
 }

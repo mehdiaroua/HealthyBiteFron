@@ -125,6 +125,7 @@ import { ToastrModule } from 'ngx-toastr';
     EditReponseComponent,
     EditReclamationComponent,
     ReclamationUserComponent
+    
   ],
   imports: [
     BrowserModule,
