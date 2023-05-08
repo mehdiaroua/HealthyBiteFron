@@ -79,6 +79,9 @@ import { PasswordModule } from 'primeng/password';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.component';
 import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
+import { EditorModule } from "@tinymce/tinymce-angular";
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,6 +166,10 @@ import { ReclamationUserComponent } from './reclamation-user/reclamation-user.co
     InputTextModule,
     InputNumberModule,
     MatCardModule,
+    EditorModule,
+    ToastrModule.forRoot()
+    
+    
     
   ],
 

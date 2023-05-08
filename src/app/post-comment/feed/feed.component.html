@@ -6,6 +6,7 @@
 
 
     <div class="home">
+        <p-toast></p-toast>
         <div class="container">
             <div class="home-weapper">
                 <div class="home-left">
@@ -132,11 +133,11 @@
                                     <div class="post-title">
                                         <img src="/assets/images/user2.jpg" alt="user picture">
                                         <ul>
-                                               <li>
-                                                <h3>{{post.user.username}} <span> . 2 hours ago</span></h3>
+                                            <li>
+                                                <h3>{{post.user.username}}</h3>
                                             </li>
-                                            <li><span>{{post.addedDate}}</span></li>
-                                        
+                                            <li><span style="font-size: small;">{{post.addedDate}}</span></li>
+
                                         </ul>
                                         <p style="  font-weight: bold;">{{post.title}}
 
@@ -157,9 +158,9 @@
                                     <div class="like-comment">
                                         <ul>
                                             <li>
-                                                <img src="/assets/images/love.png" alt="love">
-                                                <img src="/assets/images/like.png" alt="like">
-                                                <span>22k like</span>
+                                                <img src="/assets/images/love.png" (click)="likeButtonClick()" alt="love">
+                                                <img src="/assets/images/dislike.png"  (click)="dislikeButtonClick()" alt="like">
+                                                <span>{{numberOfLikes}} Likes</span>
                                             </li>
                                             <li><i (click)="toggleClicked(post.id)" class="fa fa-comment"></i>
                                                 {{ isClicked(post.id) ? 'Hide Comments' : 'Show Comments' }}
@@ -192,8 +193,8 @@
                                                         <div class="comment-content">
                                                             <p>{{ comment?.content }}</p>
                                                         </div>
-                                                        <ul class="comments-list reply-list" >
-                                <!-- <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
+                                                        <ul class="comments-list reply-list">
+                                                            <!-- <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
                                     <div class="form-group">
                                         <label for="content">Add a comment:</label>
                                         <input type="text" class="form-control" name="content" #content ngModel required>
