@@ -18,8 +18,17 @@ export class RepasProduitService {
   listRepas:Repas[]=[];
   listProduit:Produit[]=[];
    id!:number
+
+   private apiKey = 'YOUR_API_KEY_HERE';
+   private apiUrl = `https://openexchangerates.org/api/latest.json?app_id=${this.apiKey}`;
+
 user!: any;
   constructor(private httpClient: HttpClient,private userService:UserService, private storage: StorageService) { }
+
+  public getExchangeRate(baseCurrency: string, targetCurrency: string): Observable<any> {
+    const url = `${this.apiUrl}&base=${baseCurrency}&symbols=${targetCurrency}`;
+    return this.httpClient.get(url);
+  }
 
 
   addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File): Observable<Repas> {

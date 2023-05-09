@@ -1,0 +1,96 @@
+.img-holder {
+  position: relative;
+}
+.img-holder #link {
+  position: absolute;
+  top: 0px; /*your button position*/
+  right: 10px; /*your button position*/
+}
+.recette-list-marge {
+  margin-top: 6em;
+}
+
+.card-hendi {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 20rem;
+  border-radius: 8px;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: transform 0.2s;
+  cursor: pointer;
+  height: fit-content;
+}
+
+.card-hendi:hover path {
+  animation: dash 3s linear forwards;
+}
+.card-hendi:hover .path-extra-long {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+}
+.card-hendi:hover .path-long {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+.card-hendi:hover .path-short {
+  stroke-dasharray: 150;
+  stroke-dashoffset: 150;
+}
+.card-hendi:hover {
+  transform: translateY(-10px);
+}
+
+.fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;
+  -o-animation: fadeIn ease 2s;
+  -ms-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

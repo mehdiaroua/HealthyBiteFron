@@ -1,0 +1,225 @@
+<div class="container h-100 recette-list-marge">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <p-button
+          icon="pi pi-arrow-left"
+          styleClass="p-button-outlined p-button-secondary p-button"
+          (click)="back()"
+        ></p-button>
+      </div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Details de la Recette</h3>
+      </div>
+      <div class="col-3">
+        <p-button
+          icon="pi pi-plus"
+          styleClass="p-button-outlined p-button-success p-button"
+          label="Ajouter Ingredients"
+          type="button"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <form
+        class="approval-form"
+        [formGroup]="ingredientForm"
+        (ngSubmit)="onSubmitIngredient()"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <h3>Ajouter Ingredient</h3>
+            </h5>
+            <button
+              #closeModal
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="nom"
+                  placeholder="Nom"
+                />
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="calories"
+                  placeholder="Nombre de calories :"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="quantite"
+                  placeholder="Quantite"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <p-button
+              icon="pi pi-check"
+              styleClass="p-button-rounded p-button-success p-button-text p-button-raised"
+              type="submit"
+            ></p-button>
+
+            <p-button
+              icon="pi pi-times"
+              styleClass="p-button-rounded p-button-danger  p-button-text p-button-raised"
+              (click)="onCancelAddIngredient()"
+            ></p-button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="blog__item__text">
+      <span *ngIf="recette && recette.nom">
+        <p-chip
+          [label]="recette.nom"
+          image="../../assets/img/blog/blog-2.jpg"
+        ></p-chip>
+      </span>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Liste des ingredients</h3>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
+
+  <div class="container fade-in">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-3 mt-3" *ngFor="let ingredient of recette.ingredients">
+        <p-card [header]="ingredient.nom !== undefined ? ingredient.nom : ''">
+          <p class="m-0">Calories: {{ ingredient.calories }}</p>
+          <p class="m-0">Quantite: {{ ingredient.quantite }}</p>
+          <ng-template pTemplate="footer">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-outlined p-button-success mr-1"
+              data-toggle="modal"
+              data-target="#exampleModal1"
+              (click)="onShowEditIngredient(ingredient.id)"
+            ></button>
+
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-outlined p-button-danger"
+              (click)="deleteIngredient(ingredient.id)"
+            ></button>
+          </ng-template>
+        </p-card>
+      </div>
+    </div>
+    <!-- ModalEditIngredient -->
+    <div
+      class="modal fade"
+      id="exampleModal1"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <h3>Modifier Ingredient</h3>
+            </h5>
+            <button
+              #closeModal1
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateIngredient.nom"
+                  placeholder="Nom"
+                />liste des ingredients
+              </div>
+              <div class="col-6">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateIngredient.calories"
+                  placeholder="Nombre de calories :"
+                />
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-12">
+                <input
+                  type="number"
+                  class="form-control"
+                  [(ngModel)]="subjectForUpdateIngredient.quantite"
+                  placeholder="Quantite"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <p-button
+              icon="pi pi-check"
+              styleClass="p-button-rounded p-button-success p-button-text p-button-raised"
+              type="submit"
+              (click)="editIngredient()"
+            ></p-button>
+
+            <p-button
+              icon="pi pi-times"
+              styleClass="p-button-rounded p-button-danger  p-button-text p-button-raised"
+              (click)="onCancelAddIngredient()"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

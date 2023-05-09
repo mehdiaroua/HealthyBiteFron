@@ -1,0 +1,25 @@
+.recette-list-marge {
+  margin-top: 6em;
+}
+.inputmezyen {
+  position: relative;
+  width: 40ch;
+  height: 3rem;
+  padding-left: 1.5rem;
+  border-radius: 1.5rem;
+  background: #ffffff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: transform 200ms ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    box-shadow: 0 0.5rem 2rem -1rem rgba(0, 0, 100, 0.5);
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 300ms ease-in-out;
+  }
+}
