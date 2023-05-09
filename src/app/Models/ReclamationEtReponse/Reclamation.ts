@@ -1,7 +1,9 @@
 import { User } from "src/app/Class/user";
-import { Repas } from "../RepasProduit/Repas";
-import { Notification } from "./Notification";
 import { ReponseReclamation } from "./ReponseReclamation";
+import { Repas } from "../Repas";
+
+
+
 
 export class Reclamation {
     idReclamation!: number;
