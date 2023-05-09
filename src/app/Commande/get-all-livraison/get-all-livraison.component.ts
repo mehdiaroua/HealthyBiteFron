@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/AppService';
+import { LivraisonService } from 'src/app/LivraisonService';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class GetAllLivraisonComponent implements OnInit {
   Livraisons: any[] | undefined
   url: string = "http://localhost:8080/api/";
 
-  constructor(private service: AppService, private router: Router) { 
+  constructor(private service: LivraisonService, private router: Router) { 
    
   }
 

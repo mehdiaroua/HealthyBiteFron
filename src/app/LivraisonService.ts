@@ -4,21 +4,26 @@ import { Observable } from 'rxjs';
 import { Livraison } from './Models/Livraison';
 import { EtatCommande } from './Models/EtatCommande';
 import { AdresseLivraison } from './Models/AdresseLivraison';
+import { StorageService } from './service/storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+export class LivraisonService {
   readonly URL = "http://localhost:8080/api/test/"
+  user!: any;
+  constructor(private httpClient: HttpClient, private storage: StorageService) { }
 
-  constructor(private httpClient: HttpClient) { }
 
-
-  addLivraison(etat : EtatCommande, adresse: AdresseLivraison, date: string ): Observable<any> {
+  addLivraison(etat : EtatCommande, adresse: AdresseLivraison, date: string , collectionPoint:string): Observable<any> {
+    this.user = this.storage.getUser();
     const livraison = {
       etat: etat,
       adresseLivraison: adresse,
-      dateLivraison: date
+      dateLivraison: date,
+      collectionPoint: collectionPoint,
+      user : this.user.id
+     
     };
           return this.httpClient.post<any>(`${this.URL}addLivraison`, livraison);
       }

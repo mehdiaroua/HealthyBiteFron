@@ -24,13 +24,14 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { RoleGuard } from './User/role.guard';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
-import { PaniierComponent } from './commande/paniier/paniier.component';
+import { CartComponent} from './Commande/Cart/cart.component';
 import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
 import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { PiechartComponent } from './piechart/piechart.component';
 import { ERole } from './Class/user';
+import { PanierComponent } from './Commande/panier/panier.component';
 
 
 
@@ -43,7 +44,9 @@ const routes: Routes = [
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},
   {path: "details", component:DetailsComponent},
-  {path: "panier", component:PaniierComponent},
+  {path: "panier", component:CartComponent},
+  {path: "cart", component:PanierComponent},
+  
   {path: "checkout", component:PaiementComponent},
   { path: 'livraisons', component: GetAllLivraisonComponent },
   { path: 'addlivraison', component: AddlivraisonComponent },
@@ -79,7 +82,7 @@ const routes: Routes = [
   {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
   {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
   {path: "details", component:DetailsComponent},
-  {path: "panier", component:PaniierComponent},
+  {path: "panier", component:CartComponent},
   {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
   {path: "dash", component:DashboardComponent,
   canActivate: [RoleGuard],

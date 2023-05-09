@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { AppService } from 'src/app/AppService';
 import { Livraison } from '../../Models/Livraison';
+import { LivraisonService } from 'src/app/LivraisonService';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class UpdateLivraisonComponent implements OnInit {
   data: any;
   form: any;
 
-  constructor(private service: AppService, private route: ActivatedRoute, private router : Router) { }
+  constructor(private service: LivraisonService, private route: ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.params['id'];

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Produit } from './Models/Produit';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Commande } from './Models/Commande';
 import { HttpClient } from '@angular/common/http';
+import { User } from './Class/user';
+import { EtatCommande } from './Models/EtatCommande';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +12,17 @@ import { HttpClient } from '@angular/common/http';
 export class CartServiceService {
   readonly URL = "http://localhost:8080/api/test/"
   private cartItems: Produit[] = [];
+ 
+
+  
   
 
   private cartItemsSubject: BehaviorSubject<Produit[]> = new BehaviorSubject<Produit[]>([]);
   private cartItemCount: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
+  user!: User;
+ 
   constructor(private httpClient: HttpClient) { }
+
 
   addToCart(item: Produit): void {
     const existingItem = this.cartItems.find((cartItem) => cartItem.id === item.id);
@@ -30,7 +37,10 @@ export class CartServiceService {
     this.cartItemsSubject.next(this.cartItems);
     this.cartItemCount.next(this.cartItemCount.value + 1);
   }
-
+ 
+  addCommande(commande: Commande): Observable<Commande> {
+    return this.httpClient.post<Commande>(`${this.URL}addCommande`, commande);
+  }
   
   addItem(item: Produit) {
     this.cartItems.push(item);
@@ -52,6 +62,7 @@ export class CartServiceService {
       this.removeItem(item);
     }
   }
+  
 
   getItems() {
     return this.cartItems;
@@ -60,6 +71,9 @@ export class CartServiceService {
   clear() {
     this.cartItems = [];
   }
+ 
+
+  
  
 
 }

@@ -10,7 +10,6 @@ import { ShopComponent } from './ProduitRepas/shop/shop.component';
 import { RecetteConseilComponent } from './recetteConseil/details-recette/recette-conseil/recette-conseil.component';
 import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
-import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule,FormGroup, FormControl } from '@angular/forms';
@@ -43,7 +42,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
-import { PaniierComponent } from './commande/paniier/paniier.component';
+import { CartComponent } from './Commande/Cart/cart.component';
 
 
 import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
@@ -57,6 +56,9 @@ import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutri
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
+import { PaiementComponent } from './Commande/paiement/paiement.component';
+
+
 Chart.register(...registerables);
 
 
@@ -86,7 +88,7 @@ Chart.register(...registerables);
     AddrepasComponent,
     AddproduitComponent,
     RepasRestaurantComponent,
-    PaniierComponent,
+    CartComponent,
 GetAllLivraisonComponent,
     AddnutritionComponent,
     AddNutrRepasComponent,
@@ -97,7 +99,8 @@ GetAllLivraisonComponent,
     UnauthorizedComponent,
     DashboardComponent,
    
-    RepasRestaurantComponent
+    RepasRestaurantComponent,
+
 
 
 
@@ -118,7 +121,8 @@ GetAllLivraisonComponent,
     DynamicDialogModule,
     ConfirmDialogModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+   
     
   ],
 

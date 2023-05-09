@@ -3,11 +3,11 @@ import { Produit } from 'src/app/Models/Produit';
 import { CartServiceService } from 'src/app/cart-service.service';
 
 @Component({
-  selector: 'app-paniier',
-  templateUrl: './paniier.component.html',
-  styleUrls: ['./paniier.component.css']
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
 })
-export class PaniierComponent {
+export class CartComponent {
   cartItems: Produit[] = [];
 
   constructor(private cartService: CartServiceService) {
