@@ -75,7 +75,6 @@ import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.co
 import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { ToastrModule } from 'ngx-toastr';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { RecetteConseilComponent } from './recetteConseil/recette-conseil/recette-conseil.component';
 import { DetailsRecetteComponent } from './recetteConseil/recette/details-recette/details-recette.component';
 import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
@@ -94,6 +93,8 @@ import { RecommendationComponent } from './recetteConseil/recommendation/recomme
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 @NgModule({
   declarations: [
@@ -190,11 +191,10 @@ import { CardModule } from 'primeng/card';
     MatFormFieldModule,
     EditorModule,
     ToastrModule.forRoot(),
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     ToastrModule,
     ChipModule,
-    CardModule
+    CardModule,
+    AngularEditorModule
 
   ],
 

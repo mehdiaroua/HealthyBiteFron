@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="create-post">
-        <a href="#" class="close-button" (click)="closeModal($event)">&#10006;</a>
+    <a href="#" class="close-button" (click)="closeModal($event)">&#10006;</a>
     <h3 class="mini-heading">Create Post</h3>
     <form (submit)="onSubmit()" enctype="multipart/form-data">
         <div class="form-group">
@@ -9,13 +9,10 @@
                 required />
         </div>
         <div class="form-group">
-            <div class="comment-body"> Content :
-                <textarea id="content" for="content" name="content" [(ngModel)]="post.content" required
-                    placeholder="Write anything for before submit to post button"></textarea>
-            </div>
-            <!-- <div [froalaEditor]>Hello, Froala!</div> -->
+            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="post.content"
+                name="content"></angular-editor>
+                <div [innerHTML]="sanitizedContent"></div>
 
-       
         </div>
         <div class="post-icon">
             <label for="image-upload" class="icon-container gallery">

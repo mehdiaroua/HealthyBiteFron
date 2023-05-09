@@ -7,6 +7,8 @@ import { PostService } from 'src/app/post.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { UserService } from 'src/app/service/user.service';
 import { Location } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-addpost',
@@ -24,7 +26,7 @@ export class AddpostComponent {
     imageFile!: File;
   submitted = false;
   
-  constructor(private location: Location,private postService: PostService, public dialog: MatDialog,private router: Router,private messageService:MessageService, private userService:StorageService) { }
+  constructor(private sanitizer: DomSanitizer,private location: Location,private postService: PostService, public dialog: MatDialog,private router: Router,private messageService:MessageService, private userService:StorageService) { }
 
 
 ngOnInit(){
@@ -56,9 +58,14 @@ console.log(this.user);
 
 }
 
-   onSubmit() {
-    this.submitted = true;
+onSubmit() {
+  this.submitted = true;
+  if (this.post.title && this.post.content) {
     this.save();
+  }
+}
+ get sanitizedContent() {
+    return this.sanitizer.bypassSecurityTrustHtml(this.post.content);
   }
 
 onFileSelected(event: any) {

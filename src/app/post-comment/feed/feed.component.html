@@ -135,9 +135,9 @@
 
 
                                         <div class="post-images2">
-                                            <p>{{post.content}}
+<div class="post-content" [innerHTML]="post.content"></div>
 
-                                            </p>
+
                                             <img [src]="postImageURL(post.imageData)" alt="post images 04">
                                         </div>
                                     </div>
