@@ -1,0 +1,71 @@
+<div class="container h-50 recette-list-marge">
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-6">
+        <h3
+          class="d-flex justify-content-center"
+          *ngIf="!recette; else modidiferRecette"
+        >
+          Ajouter une Recette
+        </h3>
+        <ng-template #modidiferRecette>
+          <h3 class="d-flex justify-content-center">Modifier la Recette</h3>
+        </ng-template>
+      </div>
+      <div class="col">
+        <p-button
+          icon="pi pi-arrow-left"
+          styleClass="p-button-outlined p-button-secondary p-button"
+          (click)="back()"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center align-items-center">
+    <div class="blog__item__text">
+      <form
+        *ngIf="!recette; else updateForm"
+        class="approval-form"
+        [formGroup]="recetteForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="row justify-content-start align-items-start">
+          <input
+            type="text"
+            class="form-control inputmezyen"
+            formControlName="nom"
+            placeholder="Titre"
+          />
+          <button
+            pButton
+            pRipple
+            icon="pi pi-check"
+            class="p-button-rounded p-button-success p-button-raised ml-4"
+            type="submit"
+          ></button>
+        </div>
+      </form>
+      <ng-template #updateForm>
+        <div class="approval-form">
+          <div class="row justify-content-start align-items-start">
+            <input
+              type="text"
+              class="form-control inputmezyen"
+              [(ngModel)]="recette.nom"
+              placeholder="Titre"
+            />
+            <button
+              pButton
+              pRipple
+              icon="pi pi-check"
+              class="p-button-rounded p-button-success p-button-raised ml-4"
+              (click)="onUpdate()"
+            ></button>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './ProduitRepas/shop/shop.component';
-import { RecetteConseilComponent } from './recetteConseil/details-recette/recette-conseil/recette-conseil.component';
 import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
-import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
+
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
@@ -38,6 +37,14 @@ import { ReclamationDetailComponent } from './reclamation-detail/reclamation-det
 import { AddReclamationComponent } from './add-reclamation/add-reclamation.component';
 import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
 import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
+import { RecetteListComponent } from './recetteConseil/recette/recette-list/recette-list.component';
+import { RecetteFormComponent } from './recetteConseil/recette/recette-form/recette-form.component';
+import { DetailsRecetteComponent } from './recetteConseil/recette/details-recette/details-recette.component';
+import { ObjectifListComponent } from './recetteConseil/objectif/objectif-list/objectif-list.component';
+import { ObjectifDetailComponent } from './recetteConseil/objectif/objectif-detail/objectif-detail.component';
+import { ConseilListComponent } from './recetteConseil/conseil/conseil-list/conseil-list.component';
+import { ConseilDetailComponent } from './recetteConseil/conseil/conseil-detail/conseil-detail.component';
+import { RecetteConseilComponent } from './recetteConseil/recette-conseil/recette-conseil.component';
 
 
 
@@ -112,24 +119,24 @@ const routes: Routes = [
   { path: 'reclamationDetails/:param', component: ReclamationDetailComponent },
   { path: 'shop/AddReclamation/:id', component: AddReclamationComponent},
   { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent },
-  { path : 'reclamationUser', component : ReclamationUserComponent}
-
-
-
-
-
-
-
-
-
-
-
-
-
+  { path : 'reclamationUser', component : ReclamationUserComponent},
+  // recette
+  // { path: 'blogDetails', component: DetailsRecetteComponent },
+  { path: 'recette', component: RecetteListComponent },
+  { path: 'recette/add', component: RecetteFormComponent },
+  { path: 'recette/:id', component: DetailsRecetteComponent },
+  { path: 'recette/:id/edit', component: RecetteFormComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // recette end
+  // objectifs
+  { path: 'objectif', component: ObjectifListComponent },
+  { path: 'objectif/:id', component: ObjectifDetailComponent },
+  { path: 'conseil', component: ConseilListComponent },
+  { path: 'conseil/:id', component: ConseilDetailComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

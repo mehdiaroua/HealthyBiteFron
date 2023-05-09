@@ -1,0 +1,79 @@
+<div class="container h-100 recette-list-marge">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <p-button
+          icon="pi pi-arrow-left"
+          styleClass="p-button-outlined p-button-secondary p-button"
+          (click)="back()"
+        ></p-button>
+      </div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Conseils</h3>
+      </div>
+      <div class="col-3"></div>
+    </div>
+  </div>
+
+  <div
+    class="row mt-5 justify-content-center align-items-center"
+    *ngIf="conseilList.length == 0; else showConseilsList"
+  >
+    <p>Pas de conseil disponible pour l'instant</p>
+  </div>
+  <!-- <ng-template #showConseilsList>
+    <div class="row justify-content-start align-items-start mt-5">
+      <h3>Liste de conseils disponibles</h3>
+    </div>
+    <div class="container mb-5 mt-5 fade-in">
+      <div class="row justify-content-center align-items-center">
+        <div
+          class="col-3"
+          *ngFor="let conseil of conseilList"
+          style="margin-right: 2em"
+        >
+          <div class="card-hendi" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">{{ conseil.title }}</h5>
+              <p class="card-text">{{ conseil.description }}</p>
+              <a href="#" class="btn btn-primary">Plus de details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template> -->
+  <ng-template #showConseilsList>
+    <div class="container mb-5 mt-5 fade-in">
+      <div class="row justify-content-center align-items-center">
+        <div
+          class="col-3"
+          *ngFor="let conseil of conseilList"
+          style="margin-right: 2em"
+        >
+          <div class="card-hendi" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="../../assets/img/blog/blog-2.jpg"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ conseil.title }}
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-eye"
+                  class="p-button-rounded p-button-outlined mr-1"
+                  (click)="checkDetails(conseil.id)"
+                  style="float: right"
+                ></button>
+              </h5>
+              <h5 class="card-title">{{ conseil.description }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
