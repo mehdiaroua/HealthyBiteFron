@@ -1,4 +1,4 @@
-import { User } from './../Class/user';
+import { User } from '../Class/user';
 import { Injectable } from '@angular/core';
 const USER_KEY = 'auth-user';
 

@@ -5,8 +5,8 @@ import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { AddReclamationComponent } from 'src/app/add-reclamation/add-reclamation.component';
 
 import { RepasProduitService } from 'src/app/repasProduit.service';
-import { StorageService } from 'src/app/service/storage.service';
-import { UserService } from 'src/app/service/user.service';
+import { StorageService } from 'src/app/Service1/storage.service';
+import { UserService } from 'src/app/Service1/user.service';
 
 @Component({
   selector: 'app-shop',

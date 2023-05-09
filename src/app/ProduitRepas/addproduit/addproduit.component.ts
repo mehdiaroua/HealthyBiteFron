@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
 import { Produit } from 'src/app/Models/RepasProduit/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
-import { StorageService } from 'src/app/service/storage.service';
+import { StorageService } from 'src/app/Service1/storage.service';
 
 @Component({
   selector: 'app-addproduit',

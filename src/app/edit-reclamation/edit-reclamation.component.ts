@@ -1,4 +1,4 @@
-import { ReclamationService } from '../Service/reclamation.service';
+import { ReclamationService } from '../Service1/reclamation.service';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 

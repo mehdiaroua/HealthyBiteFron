@@ -7,8 +7,8 @@ import { AddrepasComponent } from '../addrepas/addrepas.component';
 import { Router } from '@angular/router';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { User } from 'src/app/Class/user';
-import { UserService } from 'src/app/service/user.service';
-import { StorageService } from 'src/app/service/storage.service';
+import { UserService } from 'src/app/Service1/user.service';
+import { StorageService } from 'src/app/Service1/storage.service';
 import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
 
 @Component({

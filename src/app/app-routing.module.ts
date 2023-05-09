@@ -45,6 +45,9 @@ import { ObjectifDetailComponent } from './recetteConseil/objectif/objectif-deta
 import { ConseilListComponent } from './recetteConseil/conseil/conseil-list/conseil-list.component';
 import { ConseilDetailComponent } from './recetteConseil/conseil/conseil-detail/conseil-detail.component';
 import { RecetteConseilComponent } from './recetteConseil/recette-conseil/recette-conseil.component';
+import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
+import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
+import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
 
 
 
@@ -124,6 +127,11 @@ const routes: Routes = [
   { path: 'recette/add', component: RecetteFormComponent },
   { path: 'recette/:id', component: DetailsRecetteComponent },
   { path: 'recette/:id/edit', component: RecetteFormComponent },
+  { path: 'livraisons', component: GetAllLivraisonComponent },
+  { path: 'addlivraison', component: AddlivraisonComponent },
+  { path: 'updateLiv/:id', component: UpdateLivraisonComponent },
+  {path: "cart", component:PanierComponent},
+  {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   // recette end
   // objectifs

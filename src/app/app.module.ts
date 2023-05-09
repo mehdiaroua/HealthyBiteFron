@@ -90,11 +90,13 @@ import { IngredientFormComponent } from './recetteConseil/ingredient/ingredient-
 import { IngredientListComponent } from './recetteConseil/ingredient/ingredient-list/ingredient-list.component';
 import { IngredientDetailComponent } from './recetteConseil/ingredient/ingredient-detail/ingredient-detail.component';
 import { RecommendationComponent } from './recetteConseil/recommendation/recommendation.component';
-import { TokenInterceptorService } from './service/token-interceptor.service';
+import { TokenInterceptorService } from './Service1/token-interceptor.service';
 import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
+import { CommonModule } from '@angular/common';
+import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
 
 @NgModule({
   declarations: [
@@ -139,8 +141,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     EditReponseComponent,
     EditReclamationComponent,
     ReclamationUserComponent,
-    //sabra
-    AddLivraisonComponent,
+  
+    AddlivraisonComponent,
     SecondaryNavbarComponent,
     LeftSideBarComponent,
     RecetteListComponent,
@@ -155,12 +157,12 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     IngredientListComponent,
     IngredientDetailComponent,
     RecommendationComponent,
-    //sabra end
   ],
   imports: [
     MatIconModule,
-    BrowserModule,
+    CommonModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     MatButtonModule,
