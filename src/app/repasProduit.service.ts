@@ -1,15 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Repas } from './Models/RepasProduit/Repas';
+import { Repas } from './Models/Repas';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Produit } from './Models/RepasProduit/Produit';
+import { Produit } from './Models/Produit';
 import { User } from './Class/user';
 import { UserService } from './service/user.service';
 import { StorageService } from './service/storage.service';
-import { CategProduit } from './Models/RepasProduit/CategProduit';
-import { Nutrition } from './Models/RepasProduit/Nutrition';
+import { CategProduit } from './Models/CategProduit';
+import { Nutrition } from './Models/Nutrition';
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,36 @@
+<div *ngIf="cartItems.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>prix</th>
+          <th>Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.nom }}</td>
+          <td>
+            <button (click)="decrementQuantity(item)">-</button>
+            {{ item.quantite }}
+            <button (click)="incrementQuantity(item)">+</button>
+          </td>
+          <td>{{ item.prix }}</td>
+          <td>{{ item.prix * item.quantite }}</td>
+          <td><button (click)="removeItem(item)">Remove</button></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"></td>
+          <td>Total: {{ calculateTotal() }}</td>
+          <td><button >Checkout</button></td> 
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div *ngIf="cartItems.length === 0">
+    Your cart is empty.
+  </div>
