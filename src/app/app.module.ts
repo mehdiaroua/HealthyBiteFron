@@ -28,7 +28,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
 import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
 import { LoginComponent } from './login/login.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
@@ -46,7 +45,6 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { registerables } from 'chart.js';
 import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-Chart.register(...registerables);
 import { MatMenuModule } from '@angular/material/menu';
 import { FeedComponent } from './post-comment/feed/feed.component';
 import {MatSelectModule} from '@angular/material/select';
@@ -93,7 +91,7 @@ import { IngredientDetailComponent } from './recetteConseil/ingredient/ingredien
 import { RecommendationComponent } from './recetteConseil/recommendation/recommendation.component';
 import { TokenInterceptorService } from './service/token-interceptor.service';
 import { ChipModule } from 'primeng/chip';
-import { CardModule } from 'primeng/card';
+Chart.register(...registerables);
 
 @NgModule({
   declarations: [
@@ -138,7 +136,6 @@ import { CardModule } from 'primeng/card';
     EditReponseComponent,
     EditReclamationComponent,
     ReclamationUserComponent,
-    //sabra
     AddLivraisonComponent,
     SecondaryNavbarComponent,
     LeftSideBarComponent,
@@ -154,7 +151,6 @@ import { CardModule } from 'primeng/card';
     IngredientListComponent,
     IngredientDetailComponent,
     RecommendationComponent,
-    //sabra end
   ],
   imports: [
     MatIconModule,
@@ -164,14 +160,12 @@ import { CardModule } from 'primeng/card';
     AppRoutingModule,
     MatButtonModule,
     MatDialogModule,
-    TableModule,
     TagModule,
     ToastModule,
     ToolbarModule,
     FileUploadModule,
     DynamicDialogModule,
     ConfirmDialogModule,
-    BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
     MenuModule,
@@ -190,11 +184,7 @@ import { CardModule } from 'primeng/card';
     MatFormFieldModule,
     EditorModule,
     ToastrModule.forRoot(),
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
-    ToastrModule,
-    ChipModule,
-    CardModule
+    ChipModule
 
   ],
 
