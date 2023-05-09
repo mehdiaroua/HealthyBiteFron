@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Notification } from '../Models/ReclamationEtReponse/Notification';
-import { NotificationService } from '../Service/notification.service';
+import { NotificationService } from '../service/notification.service';
 import { Router } from '@angular/router';
 
 @Component({

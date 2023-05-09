@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ReclamationService } from '../Service/reclamation.service';
+import { ReclamationService } from '../service/reclamation.service';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
 import { StorageService } from '../service/storage.service';
+
+
 
 @Component({
   selector: 'app-reclamation-user',

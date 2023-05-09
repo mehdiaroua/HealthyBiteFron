@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReponseReclamation } from '../Models/ReclamationEtReponse/ReponseReclamation';
-import { ReponseReclamationService } from '../Service/reponse-reclamation.service';
+import { ReponseReclamationService } from '../service/reponse-reclamation.service';
 
 @Component({
   selector: 'app-edit-reponse',

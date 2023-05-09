@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReclamationService } from '../Service/reclamation.service';
+import { ReclamationService } from '../service/reclamation.service';
 import { StorageService } from '../service/storage.service';
 
 @Component({

@@ -5,9 +5,6 @@ import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { AddrepasComponent } from '../addrepas/addrepas.component';
 import { Router } from '@angular/router';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { User } from 'src/app/Class/user';
-import { UserService } from 'src/app/service/user.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
 

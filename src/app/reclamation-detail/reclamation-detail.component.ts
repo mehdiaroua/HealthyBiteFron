@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
-import { ReclamationService } from '../Service/reclamation.service';
+import { ReclamationService } from '../service/reclamation.service';
 
 @Component({
   selector: 'app-reclamation-detail',

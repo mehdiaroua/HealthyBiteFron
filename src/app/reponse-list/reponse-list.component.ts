@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReponseReclamation } from '../Models/ReclamationEtReponse/ReponseReclamation';
-import { ReponseReclamationService } from '../Service/reponse-reclamation.service';
+import { ReponseReclamationService } from '../service/reponse-reclamation.service';
 import { Router } from '@angular/router';
 import { EditReponseComponent } from '../edit-reponse/edit-reponse.component';
 import { MatDialog } from '@angular/material/dialog';
