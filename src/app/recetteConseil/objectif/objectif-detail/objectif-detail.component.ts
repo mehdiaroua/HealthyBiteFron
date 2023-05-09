@@ -43,11 +43,6 @@ export class ObjectifDetailComponent implements OnInit {
   private loadData() {
     this.objectifService.getById(this.objectifId).subscribe((data) => {
       this.objectif = data;
-      // this.conseilService
-      //   .getConseilPerObjectif(this.objectifId)
-      //   .subscribe((data) => {
-      //     this.objectif.conseils = data;
-      //   });
     });
   }
   back() {
@@ -76,9 +71,14 @@ export class ObjectifDetailComponent implements OnInit {
   deleteConseil(id?: number) {
     this.conseilService.delete(id!).subscribe(() => {
       this.loadData();
+      // this.conseilService
+      //   .getConseilPerObjectif(this.objectifId)
+      //   .subscribe((data) => {
+      //     this.objectif.conseils = data;
+      //   });
     });
   }
-  onCancelAddConseil(){
+  onCancelAddConseil() {
     this.conseilForm.reset();
     this.conseilForm.markAsPristine();
     this.closeModal.nativeElement.click();

@@ -1,33 +1,29 @@
-<div class="container h-100">
-  <div class="card text-center mt-5 fade-in">
-    <div class="card-header">
-      <h3>Recommendations</h3>
+<div class="container h-100 mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+        <h3 class="d-flex justify-content-center">Recommendations</h3>
+      </div>
+      <div class="col-3"></div>
     </div>
-    <div class="card-body">
-      <h5
-        class="card-title"
-        *ngIf="
-          recommendations && recommendations.length == 0;
-          else showListConseils
-        "
-      >
-        Pas de recommendation pour l'instant
-      </h5>
+  </div>
+  <div class="container fade-in">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-5 mt-3" *ngFor="let conseil of recommendations">
+        <p-card [header]="conseil.title !== undefined ? conseil.title : ''">
+          <p class="m-0">{{ conseil.description }}</p>
+          <ng-template pTemplate="footer">
+            <button
+              pButton
+              pRipple
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-outlined mr-1"
+              (click)="checkConseilDetails(conseil.id)"
+            ></button>
+          </ng-template>
+        </p-card>
+      </div>
     </div>
-    <ng-template #showListConseils>
-      <ul
-        class="list-group list-group-flush"
-        *ngFor="let rec of recommendations"
-      >
-        <li class="list-group-item">
-          {{ rec.title }}
-          <span
-            style="cursor: pointer; float: right; margin-left: 5px"
-            class="icon_info"
-            (click)="checkConseilDetails(rec.id)"
-          ></span>
-        </li>
-      </ul>
-    </ng-template>
   </div>
 </div>
