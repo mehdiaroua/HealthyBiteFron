@@ -1,5 +1,5 @@
 import { EtatCommande } from "./EtatCommande"
-import { Produit } from "./Produit";
+import { Produit } from 'src/app/Models/RepasProduit/Produit';
 
 export class Commande {
     id!:number;
@@ -7,6 +7,6 @@ export class Commande {
     produit!:Produit;
     dateCommande!:  Date;
     quantite!: number ;
-     total!: number;
+    total!: number;
      
 }

@@ -65,7 +65,7 @@ const routes: Routes = [
  canActivate: [RoleGuard],
  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
   {path: "panier", component:PanierComponent},
-  {path: "checkout", component:PaiementComponent},
+  {path: "paiement", component:PaiementComponent},
   {path: "repas/addRepas", component:AddrepasComponent,
   canActivate: [RoleGuard],
   data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
@@ -105,7 +105,7 @@ const routes: Routes = [
     path: 'add',
     component: AdduserComponent,
     canActivate: [RoleGuard],
-    data: { requiredRoles: [ERole.ROLE_ADMIN] }// specify required roles here
+    data: { requiredRoles: [ERole.ROLE_ADMIN] }
   },
   {path: "pie", component:PiechartComponent},
   {path: "post/posts", component: FeedComponent,
