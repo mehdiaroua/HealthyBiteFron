@@ -1,5 +1,5 @@
+import { ObjectifType } from "../Models/ObjectifType";
 import { Post } from "../Models/PostComment/Post";
-import { ObjectifType } from "../Models/RepasProduit/ObjectifType";
 
 
 export class User {

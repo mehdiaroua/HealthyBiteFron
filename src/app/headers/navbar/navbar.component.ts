@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+ 
   constructor(private http: HttpClient, private UserService: UserService, private route:Router) {}
+
+
+  onSubmit(){
+    this.route.navigate(['/panier']);}
   logout() {
     this.UserService.logout();
     sessionStorage.removeItem('auth-user');

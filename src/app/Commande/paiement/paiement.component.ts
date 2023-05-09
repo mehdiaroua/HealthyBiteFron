@@ -3,10 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/AppService';
 import { User } from 'src/app/Class/user';
-
-
+import { Commande } from 'src/app/Models/Commande';
 import { StorageService } from 'src/app/service/storage.service';
-import { Commande } from '../models/Commande';
 
 @Component({
   selector: 'app-paiement',

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Repas } from 'src/app/Models/RepasProduit/Repas';
+import { Repas } from 'src/app/Models/Repas';
 import { AddReclamationComponent } from 'src/app/add-reclamation/add-reclamation.component';
-
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { UserService } from 'src/app/service/user.service';

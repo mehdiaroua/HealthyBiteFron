@@ -1,69 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Livraisons</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/add">Add livraison</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <!--Main Content-->
+
+
+<!--Main Content-->
     <div class="mt-5">
         <h1 class="text-center">View Livraisons</h1>
         <div class="container">
+          <div class="col-lg-3">
+            <div class="hero__categories">
+                <div class="hero__categories__all">
+                    <i class="fa fa-bars"></i>
+                    <span>All departments</span>
+                </div>
+                <ul>
+                  <li><a href="#" routerLink="/repas/restaurant">Restaurant</a></li>
+                  <li><a href="#" routerLink="/dash">User</a></li>
+                  <li><a href="#" routerLink="/produit/fournisseur">Fournisseur</a></li>
+                  <li><a href="#" routerLink="livraisons">Livraison</a></li>
+              
+                </ul>
+            </div>
+        </div>
             <!--Add livraison Button-->
             <div class="my-3">
-                <a href="/add"><button type="button" class="btn btn-primary">Add livraison</button></a>
+                <a href="/addlivraison"><button type="button" class="btn btn-primary">Add livraison</button></a>
             </div>
             <table class="table border" >
                 <thead>
                   <tr>
                    
-                    <th scope="col">adresse</th>
-                    <th scope="col">etat</th>
-                    <th scope="col">deliveryTimeSlot</th>
+                    <th>adresse</th>
+                    <th>etat</th>
+                    <th>deliveryTimeSlot</th>
+                    <th>collectionPoint</th>
+                    <th></th>
                  
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let livraison of Livraisons">
-                    
+                 
+                 
+                      <tr *ngFor="let livraison of Livraisons">
                     <td>{{livraison.adresse}}</td>
                     <td>{{livraison.etat}}</td>
                     <td>{{livraison.deliveryTimeSlot}}</td>
+                    <td>{{livraison.collectionPoint}}</td>
                   
                     <td>
                         <div class="d-inline mx-2">
-                            <button class="btn btn-warning" (click)="updatelivraison(livraison.id)" type="button">Update</button>
+                            <button class="btn btn-warning" (click)="updateLivraison(livraison.id)" type="button">Update</button>
                         </div>
                         <div class="d-inline">
                           <button class="btn btn-danger" (click)="deletelivraison(livraison.id)" type="button">Delete</button>
                         </div>
                     </td>
-                  </tr>
+                </tr>
                 </tbody>
+                
               </table>
         </div>
     </div>
-</body>
-</html>
 
-<router-outlet></router-outlet>
+ 

@@ -12,9 +12,13 @@ import { ShopComponent } from './ProduitRepas/shop/shop.component';
 import { RecetteConseilComponent } from './recetteConseil/details-recette/recette-conseil/recette-conseil.component';
 import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
-import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule,FormGroup, FormControl } from '@angular/forms';
+import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
+import { CommonModule } from '@angular/common';
+import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 import { TableModule } from 'primeng/table';
@@ -24,19 +28,21 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TagModule } from 'primeng/tag';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RouterModule } from '@angular/router';
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
 import { AddproduitComponent } from './ProduitRepas/addproduit/addproduit.component';
-import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
 import { LoginComponent } from './login/login.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+;
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { RegisterComponent } from './register/register.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
+import { CartComponent } from './Commande/Cart/cart.component';
+
+
 import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
 import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
@@ -49,6 +55,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { registerables } from 'chart.js';
 import { ShowProduitNutritionComponent } from './ProduitRepas/show-produit-nutrition/show-produit-nutrition.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+
+import { ProduitFournisseurComponent } from './ProduitRepas/produit-fournisseur/produit-fournisseur.component';
+import { PaiementComponent } from './Commande/paiement/paiement.component';
+
+
 Chart.register(...registerables);
 import { MatMenuModule } from '@angular/material/menu';
 
@@ -108,6 +119,14 @@ import { UpdateLivraisonComponent } from './Commande/update-livraison/update-liv
     ForgotpasswordComponent,
     ResetPasswordComponent,
     DashboardComponent,
+    AddlivraisonComponent,
+    RepasRestaurantComponent,
+    ProduitFournisseurComponent,
+    AddrepasComponent,
+    AddproduitComponent,
+    RepasRestaurantComponent,
+    CartComponent,
+GetAllLivraisonComponent,
     AddnutritionComponent,
     AddNutrRepasComponent,
     ProfileUserComponent,
@@ -137,6 +156,8 @@ import { UpdateLivraisonComponent } from './Commande/update-livraison/update-liv
     HttpClientModule,
     MatMenuModule,
     FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
     BrowserAnimationsModule,
     TableModule,
     ToastModule,
@@ -147,7 +168,7 @@ import { UpdateLivraisonComponent } from './Commande/update-livraison/update-liv
     DynamicDialogModule,
     ConfirmDialogModule,
     RouterModule,
-    ReactiveFormsModule,
+
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,

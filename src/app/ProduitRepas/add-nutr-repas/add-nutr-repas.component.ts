@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Nutrition } from 'src/app/Models/RepasProduit/Nutrition';
-import { Repas } from 'src/app/Models/RepasProduit/Repas';
+import { Nutrition } from 'src/app/Models/Nutrition';
+import { Repas } from 'src/app/Models/Repas';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { StorageService } from 'src/app/service/storage.service';
 

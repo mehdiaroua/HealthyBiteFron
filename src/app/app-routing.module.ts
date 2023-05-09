@@ -5,9 +5,12 @@ import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './ProduitRepas/shop/shop.component';
 import { RecetteConseilComponent } from './recetteConseil/details-recette/recette-conseil/recette-conseil.component';
 import { DetailsComponent } from './ProduitRepas/details/details.component';
-import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
 import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
+import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
+
+import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
+import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
@@ -21,6 +24,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { RoleGuard } from './User/role.guard';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { DashboardComponent } from './UserBack/dashboard.component';
+import { CartComponent} from './Commande/Cart/cart.component';
 import { AddnutritionComponent } from './ProduitRepas/addnutrition/addnutrition.component';
 import { AddNutrRepasComponent } from './ProduitRepas/add-nutr-repas/add-nutr-repas.component';
 import { ProfileUserComponent } from './profile-user/profile-user.component';
@@ -38,9 +42,8 @@ import { ReclamationDetailComponent } from './reclamation-detail/reclamation-det
 import { AddReclamationComponent } from './add-reclamation/add-reclamation.component';
 import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
 import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
-import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
-import { AddLivraisonComponent } from './Commande/add-livraison/add-livraison.component';
-import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
+import { PanierComponent } from './Commande/panier/panier.component';
+
 
 
 
@@ -54,10 +57,22 @@ const routes: Routes = [
   {path: "shop", component:ShopComponent},
   {path: "blog", component:RecetteConseilComponent},
   {path: "blogDetails", component:DetailsRecetteComponent},
+  {path: "details", component:DetailsComponent},
+  {path: "panier", component:CartComponent},
+  {path: "cart", component:PanierComponent},
+  
+  {path: "checkout", component:PaiementComponent},
+  { path: 'livraisons', component: GetAllLivraisonComponent },
+  { path: 'addlivraison', component: AddlivraisonComponent },
+  { path: 'updateLiv/:id', component: UpdateLivraisonComponent },
+  {path: "repas/addRepas", component:AddrepasComponent},
+  {path: "produit/addProduit", component:AddproduitComponent},
+  {path: "repas/restaurant", component:RepasRestaurantComponent},
+  {path: "paiement", component:PaiementComponent}, 
+  {path: "produit/fournisseur", component:ProduitFournisseurComponent},
  {path: 'shop/:id', component:DetailsComponent,
  canActivate: [RoleGuard],
  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
-  {path: "panier", component:PanierComponent},
   {path: "checkout", component:PaiementComponent},
   {path: "repas/addRepas", component:AddrepasComponent,
   canActivate: [RoleGuard],
@@ -81,7 +96,7 @@ const routes: Routes = [
   {path: "blog", component:RecetteConseilComponent,canActivate:[AuthGuard]},
   {path: "blogDetails", component:DetailsRecetteComponent,canActivate:[AuthGuard]},
   {path: "details", component:DetailsComponent},
-  {path: "panier", component:PanierComponent},
+  {path: "panier", component:CartComponent},
   {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
   {path: "dash", component:DashboardComponent,
   canActivate: [RoleGuard],
@@ -90,6 +105,7 @@ const routes: Routes = [
   {path: "register", component:RegisterComponent},
   {path: "forgot", component:ForgotpasswordComponent},
   {path: "reset", component:ResetPasswordComponent},
+  
   { path: 'add-nutrition/:id', component: AddnutritionComponent,
   canActivate: [RoleGuard],
   data: { requiredRoles: [ERole.ROLE_FOURNISSEUR] } },
@@ -117,12 +133,11 @@ const routes: Routes = [
   { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent },
   { path : 'reclamationUser', component : ReclamationUserComponent},
   { path: 'AllLiv', component: GetAllLivraisonComponent },
-  { path: 'addLiv', component: AddLivraisonComponent },
   { path: 'updateLiv/:id', component: UpdateLivraisonComponent }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+  
 })
 export class AppRoutingModule { }

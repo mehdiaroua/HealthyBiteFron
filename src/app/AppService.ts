@@ -1,42 +1,32 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
-import { Livraison } from './Commande/models/Livraison';
+import { Livraison } from './Models/Livraison';
+import { EtatCommande } from './Models/EtatCommande';
+import { AdresseLivraison } from './Models/AdresseLivraison';
+import { Commande } from './Models/Commande';
+import { User } from './Class/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-  readonly URL = "http://localhost:*/"
-
+  user!: User;
+  readonly URL = "http://localhost:8080/api/test/"
   constructor(private httpClient: HttpClient) { }
 
 
-///// NNNNNAAAAADDDDDAAAAA ccrrrrrruuuuuuudddddddd /////////
-  // Add Livraison - Create
-  addLivraison(livraison: Livraison): Observable<Livraison> {
-    return this.httpClient.post<Livraison>(`${this.URL}addLivraison`, livraison);
+  addCommande(etat : EtatCommande, Date: Date, total: number): Observable<any> {
+    const commande = {
+      etat: etat,
+      dateCommande:  Date,
+      user : this.user.id,
+      total: total,
+    };
+   
+    return this.httpClient.post<any>(`${this.URL}addCommande`, Commande);
   }
 
-  // Get Livraison by Id - Read
-  getLivraisonById(id: number): Observable<Livraison> {
-    return this.httpClient.get<Livraison>(`${this.URL}getLivraisonById/${id}`);
-  }
-
-  // Get All Livraison - Read
-  getAllLivraison(): Observable<Livraison[]> {
-    return this.httpClient.get<Livraison[]>(`${this.URL}getAllLivraison`);
-  }
-
-  // Update Livraison - Update
-  updateLivraison(id: number, livraison: Livraison): Observable<any> {
-    return this.httpClient.put<any>(`${this.URL}updateLivraison/${id}`, livraison);
-  }
-
-  // Delete Livraison - Delete
-  deleteLivraisonById(id: number): Observable<any> {
-    return this.httpClient.delete<any>(`${this.URL}deleteLivraisonById/${id}`);
-  }
-
+  
 
 }
