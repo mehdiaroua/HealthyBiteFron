@@ -52,22 +52,10 @@
 </div>
  -->
 
- <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Claiming List</title>
-	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="reclamation-list.component.css">
-</head>
-<body>
+
 	<section class="main-content">
 		<div class="container">
 			<h1>Claiming List</h1>
-			<br>
-			<br>
 
 			<table class="table">
 				<thead>
@@ -86,7 +74,7 @@
 							<td>
 							<div class="user-info">
 								<div class="user-info__basic">
-									<h5 class="mb-0"></h5>
+									<h5 class="mb-0">{{reclamation.user.username}}</h5>
 								</div>
 							</div>
 						</td>
@@ -94,19 +82,19 @@
 							<span class="btn btn-success">{{ reclamation.etatReclamation }}</span>
 						</td>
 						<td>
-							<small>{{ reclamation.dateReclamation }}</small>
+							<h4 class="mb-0">{{ reclamation.dateReclamation }}</h4>
 						</td>
 						<td>
-							<h6 class="mb-0"></h6>
+							<h4 class="mb-0">{{reclamation.repas.nom}}</h4>
 						</td>
 						<td>
-							<h6 class="mb-0">{{ reclamation.textReclamation }}</h6>
+							<h4 class="mb-0">{{ reclamation.textReclamation }}</h4>
 						</td>
             <td>
-							<h6 class="mb-0">{{ reclamation.archived }}</h6>
+							<h4 class="mb-0">{{ reclamation.archived }}</h4>
 						</td>
             <td>
-							<h6 class="mb-0">
+							<h4 class="mb-0">
                 <button mat-icon-button [matMenuTriggerFor]="menu"
                 aria-label="Example icon-button with a menu">
                 <mat-icon>more_vert</mat-icon>
@@ -117,21 +105,24 @@
                           (click)="deleteReclamation(reclamation)">delete_forever</mat-icon>
                       <span>delete</span>
                   </button>
-                  <a *ngIf="reclamation.etatReclamation === 'Non Traitee'" (click)="openUpdateDialog(reclamation.idReclamation)">
-                      <button mat-menu-item>
-                          <mat-icon class="edit-icon">edit</mat-icon>
-                          <span>edit</span>
-                      </button>
-                  </a>
+                  
 
-                  <a  (click)="showDetails(reclamation.idReclamation)" >
-                      <button mat-menu-item>
-                          <mat-icon class="show-icon">pageview</mat-icon>
-                          <span>show</span>
-                      </button>
-                  </a>
+                  <a href="/reclamationDetails/{{ reclamation.idReclamation }}">
+                             <button mat-menu-item>
+                            <mat-icon class="show-icon">pageview</mat-icon>
+                                <span>show</span>
+                                 </button>
+                            </a>
+
+                            
+                            <a *ngIf="reclamation.etatReclamation === 'Non Traitee'" (click)="repondre(reclamation.idReclamation)" >
+                             <button mat-menu-item>
+                            <mat-icon class="show-icon">edit</mat-icon>
+                                <span>Repondre</span>
+                                 </button>
+                            </a>
               </mat-menu>
-              </h6>
+              </h4>
 						</td>
 					</tr>
 				</tbody>
@@ -142,5 +133,3 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>

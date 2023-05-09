@@ -12,6 +12,9 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ReponseListComponent implements OnInit {
   listRponse: ReponseReclamation[] = [];
+  page: number = 1;
+  pageSize: number = 10;
+  searchText!: string;
 
   constructor(private R: Router, private reponseS: ReponseReclamationService , public dialog: MatDialog) { }
 
@@ -23,6 +26,7 @@ export class ReponseListComponent implements OnInit {
     if (confirm("Are you sure u want to delete ?")) {
       this.reponseS.deleteReponseReclamation(reponse).subscribe(data => {
         this.listRponse = data;
+         location.reload();
       });
     }
   }

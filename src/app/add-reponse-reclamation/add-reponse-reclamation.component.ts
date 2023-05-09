@@ -28,7 +28,9 @@ export class AddReponseReclamationComponent implements OnInit {
       data => console.log(data),
       error => console.log(error)
     );
+    
     this.R.navigate(['Reclamations']);
+    
 
     
   }

@@ -37,19 +37,7 @@ export class ReclamationListComponent implements OnInit {
     this.R.navigate(['reclamationDetails', idReclamation], { queryParams: { 'name': 'test' } });
   }
 
-  openUpdateDialog(id: any) {
-    const dialogRef = this.dialog.open(EditReclamationComponent, {
-      width: '400px',
-      data: {
-        id
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.ngOnInit();
-    });
-  }
+ 
 
   deleteReclamation(reclamation: Reclamation): void {
     if (confirm("Are you sure u want to delete ?")) {

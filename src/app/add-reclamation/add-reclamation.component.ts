@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReclamationService } from '../Service/reclamation.service';
 import { StorageService } from '../service/storage.service';
@@ -23,9 +22,12 @@ export class AddReclamationComponent implements OnInit{
     this.user =  this.user = this.userService.getUser().id;
     this.reclamationS.assignRepasToReclamation(this.reclamation,id,this.user).subscribe(
       data => console.log(data),
-      error => console.log(error)
+      error => console.log(error),
+      
     );
+
     this.reclamation = {};
+    
     this.R.navigate(['Reclamations']);
   }
 

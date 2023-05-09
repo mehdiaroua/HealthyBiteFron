@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ReclamationService } from '../Service/reclamation.service';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
 import { StorageService } from '../service/storage.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditReclamationComponent } from '../edit-reclamation/edit-reclamation.component';
 
 @Component({
   selector: 'app-reclamation-user',
@@ -13,7 +15,7 @@ export class ReclamationUserComponent implements OnInit {
   reclamations!: Reclamation[];
   user!:any;
 
-  constructor(private reclamationService: ReclamationService, private userService:StorageService) { }
+  constructor(private reclamationService: ReclamationService, private userService: StorageService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadReclamations();
@@ -24,6 +26,19 @@ export class ReclamationUserComponent implements OnInit {
     const userId = this.user= this.userService.getUser().id;
     this.reclamationService.getAllReclamationsByUser(userId).subscribe(data => {
       this.reclamations = data;
+    });
+  }
+   openUpdateDialog(id: any) {
+    const dialogRef = this.dialog.open(EditReclamationComponent, {
+      width: '400px',
+      data: {
+        id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ngOnInit();
     });
   }
 

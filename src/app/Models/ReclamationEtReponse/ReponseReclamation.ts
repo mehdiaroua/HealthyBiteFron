@@ -5,4 +5,5 @@ export class ReponseReclamation {
     reclamation!: Reclamation;
     textReponseReclamation!: string;
     dateReponseReclamation!: Date;
+    
 }

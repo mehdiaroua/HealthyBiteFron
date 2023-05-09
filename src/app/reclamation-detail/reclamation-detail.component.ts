@@ -11,10 +11,9 @@ import { ReclamationService } from '../Service/reclamation.service';
 export class ReclamationDetailComponent implements OnInit {
   reclamation!: any;
   constructor(private actR: ActivatedRoute,private rec :ReclamationService, private route: ActivatedRoute) { }
-  idReclamation!: number;
-  option = "";
+  
   ngOnInit(){
-    const id = +this.route.snapshot.params['id'];
+    const id = +this.route.snapshot.params['idReclamation'];
     this.rec.findById(id).subscribe(
       reclamation => this.reclamation = reclamation
 

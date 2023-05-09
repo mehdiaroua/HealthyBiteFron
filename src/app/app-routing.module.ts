@@ -105,7 +105,7 @@ const routes: Routes = [
   { path: "Notification", component: NotificationComponent },
   { path: "Reponses", component: ReponseListComponent },
   { path: "Reclamations", component: ReclamationListComponent },
-  { path: 'reclamationDetails/:param', component: ReclamationDetailComponent },
+  { path: 'reclamationDetails/:idReclamation', component: ReclamationDetailComponent },
   { path: 'shop/AddReclamation/:id', component: AddReclamationComponent},
   { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent },
   { path : 'reclamationUser', component : ReclamationUserComponent}
