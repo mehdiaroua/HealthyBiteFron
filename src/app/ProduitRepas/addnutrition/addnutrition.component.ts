@@ -39,7 +39,7 @@ constructor(private repasService:RepasProduitService,private router:Router,priva
 
 
 
-  addNutritionToProduit(nutrition: Nutrition, produitId: number) {
+  addNutritionToProduit(nutrition: Nutrition, produitId: number) { 
     this.repasService.addNutritionToProduit(nutrition, produitId)
       .subscribe(() => {
         this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content' });

@@ -2,21 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Produit } from 'src/app/Models/Produit';
+import { Produit } from 'src/app/Models/RepasProduit/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { AddproduitComponent } from '../addproduit/addproduit.component';
 import { UserService } from 'src/app/service/user.service';
 import { StorageService } from 'src/app/service/storage.service';
-import { CategProduit } from 'src/app/Models/CategProduit';
+import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
 import { AddnutritionComponent } from '../addnutrition/addnutrition.component';
-
-import { Nutrition } from 'src/app/Models/Nutrition';
+import {MatDialog} from '@angular/material/dialog';
+import { Nutrition } from 'src/app/Models/RepasProduit/Nutrition';
 
 @Component({
   selector: 'app-produit-fournisseur',
   templateUrl: './produit-fournisseur.component.html',
   styleUrls: ['./produit-fournisseur.component.css'],
-  providers:[MessageService,ConfirmationService,DialogService]
+  providers:[MessageService,ConfirmationService,DialogService,MatDialog]
 })
 export class ProduitFournisseurComponent implements OnInit{
   clonedProducts: { [s: string]: Produit } = {};
@@ -41,7 +41,7 @@ export class ProduitFournisseurComponent implements OnInit{
     id!:any;
     user!:any;
   currentUser!:any;
-    constructor(private repasService:RepasProduitService,private messageService: MessageService, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:StorageService){}
+    constructor(private repasService:RepasProduitService,private messageService: MessageService,private dialog:MatDialog, private confirmationService: ConfirmationService,public dialogService: DialogService,private router:Router,private userService:StorageService){}
 
     ngOnInit(): void {
       this.user= this.userService.getUser();
@@ -176,7 +176,7 @@ export class ProduitFournisseurComponent implements OnInit{
           }
         );
       } else {
-        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient,   produit.categProduit ,this.imageFile).subscribe(
+        this.repasService.updateProduitAndImage(produit.id,produit.nom, produit.description, produit.prix, produit.ingredient,   produit.categProduit,this.imageFile).subscribe(
           () => {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Produit is updated' });
           },

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { CategProduit } from 'src/app/Models/CategProduit';
-import { Produit } from 'src/app/Models/Produit';
+import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
+import { Produit } from 'src/app/Models/RepasProduit/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { StorageService } from 'src/app/service/storage.service';
 

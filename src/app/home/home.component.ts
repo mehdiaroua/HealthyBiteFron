@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { RepasProduitService } from '../repasProduit.service';
-import { Repas } from '../Models/Repas';
-import { RepasWithImageUrl } from '../Models/RepasWithImageUrl';
-import { Produit } from '../Models/Produit';
+import { Repas } from '../Models/RepasProduit/Repas';
+import { RepasWithImageUrl } from '../Models/RepasProduit/RepasWithImageUrl';
+import { Produit } from '../Models/RepasProduit/Produit';
 import { ProduitService } from '../produit.service';
-import { CartServiceService } from '../cart-service.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers:[RepasProduitService,CartServiceService]
+  providers:[RepasProduitService]
 })
 export class HomeComponent implements OnInit{
   repas!:Repas[];
   produit!:Produit[];
-  produits: Produit = new Produit();
-constructor(private repasProduit:RepasProduitService, private cartService:CartServiceService){}
+constructor(private repasProduit:RepasProduitService){}
 
   ngOnInit(){
 
@@ -33,8 +31,5 @@ constructor(private repasProduit:RepasProduitService, private cartService:CartSe
 
 
      }
-     addToCart(product: Produit) {
-      this.cartService.addItem(product);
-    }
 
 }
