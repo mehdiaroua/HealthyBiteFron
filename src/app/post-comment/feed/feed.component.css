@@ -655,6 +655,7 @@ nav ul li span:nth-child(4) {
   padding: 10px;
 }
 
+
 .comment .avatar {
   float: left;
   margin-right: 10px;
@@ -971,6 +972,29 @@ body {
     margin-top: 10px;
     transition: 0.4s;
 }
+
+.searchInput {
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  width: 200px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.searchButton {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
 
 
 

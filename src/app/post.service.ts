@@ -110,9 +110,9 @@ return this.httpClient.put<Post>(`${environment.api}test/updatePostWithImg`, for
     return this.httpClient.put<Post>(url, null);
   }
 
-  toggleLikesC(commentId: number, likeType: LikeType, userId: number): Observable<Comment> {
-    return this.httpClient.put<Comment>(`${this.baseUrl}/api/test/comments/${commentId}/likes`, { likeType, userId });
-  }
+  toggleLikesC(commentId: number, likeType: LikeType, user: number): Observable<Comment> {
+    const url = `${this.baseUrl}/api/test/posts/${commentId}?likeType=${likeType}&user=${user}`;
+    return this.httpClient.put<Comment>(url, null);  }
 
   
 }

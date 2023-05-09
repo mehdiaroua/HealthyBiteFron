@@ -18,16 +18,12 @@ import { LikeType } from 'src/app/Models/PostComment/Like';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Clipboard } from '@angular/cdk/clipboard';
-
-
-
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
   providers: [MessageService],
   styleUrls: ['./feed.component.css']
 })
-
 export class FeedComponent implements OnInit {
   comments: Comment[] = [];
   posts: Post[] = [];
@@ -44,13 +40,13 @@ export class FeedComponent implements OnInit {
   public user = this.storageService.getUser();
   numberOfLikes!: number;
   likeCount!: number;
-      private baseUrl = 'http://localhost:8080'; 
+  filteredPosts: Post[] = [];
+  searchQuery: string = '';
+  searchTerm: string = '';
 
 
-
-
+  private baseUrl = 'http://localhost:8080'; 
   constructor(private clipboard: Clipboard,private http: HttpClient,private messageService: MessageService, private postService: PostService, public dialog: MatDialog, private commentService: CommentService, private storageService: StorageService) { }
-
   ngOnInit() {
     this.postService.getAllPosts().subscribe(posts => {
       this.posts = posts.sort((a, b) => {
@@ -59,8 +55,6 @@ export class FeedComponent implements OnInit {
     });
     this.User = this.storageService.getUser();
   }
-
-
 getPostLikes(postId: string): Observable<number> {
   return this.http.get<Post>(`${this.baseUrl}api/test/posts/${postId}`).pipe(
     map(post => post.numberOfLikes),
@@ -76,11 +70,6 @@ getPostLikes(postId: string): Observable<number> {
      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Post Link Copied successfully!' });
 
   }
-  
-
-
-
-
   addComment(postId: number, content: string) {
     const newComment: Comment = {
       id: Date.now(),
@@ -103,20 +92,6 @@ getPostLikes(postId: string): Observable<number> {
     );
   }
 
-
-
-
-
-  //    addReply(commentId: number, content: string): void {
-
-  //      let reply = new Comment();
-  //      reply.content = content;
-
-  //      this.commentService.addReply
-  //  }
-
-
-
   deleteComment(id: number): void {
     if (confirm("Are you sure you want to delete this comment?")) {
       this.commentService.deleteComment(id)
@@ -132,8 +107,6 @@ getPostLikes(postId: string): Observable<number> {
         });
     }
   }
-
-
   postImageURL(imageData: string): string {
     return `data:image/jpeg;base64,${imageData}`;
   }
@@ -141,52 +114,38 @@ getPostLikes(postId: string): Observable<number> {
     this.currentPage++;
     window.scrollTo(0, 0);
   }
-
   previousPage() {
     this.currentPage--;
     window.scrollTo(0, 0);
   }
-
   openCreatePostModal() {
     this.dialog.open(AddpostComponent, {
       width: '500px'
     });
   }
-
-
-
-  getAllPosts() {
-    this.postService.getAllPosts().subscribe((data: Post[]) => {
-      this.posts = data.sort((a, b) => {
-        return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
-      });
+ getAllPosts(searchTerm: string = '') {
+  this.postService.getAllPosts().subscribe((data: Post[]) => {
+    this.posts = data.filter((post) =>
+      post.user.username.toLowerCase().includes(searchTerm.toLowerCase())
+    ).sort((a, b) => {
+      return new Date(b.addedDate).getTime() - new Date(a.addedDate).getTime();
     });
-  }
- 
+  });
+}
+
   toggleLikesP(postId: number, likeType: LikeType): void {
   const user = 6; // replace with actual user ID
   this.postService.toggleLikesP(postId, likeType, user).subscribe(post => {
     const updatedPosts = this.posts$.getValue().map((p: Post) => p.id === post.id ? post : p);
     this.posts$.next(updatedPosts);
               location.reload();
-
-  });
-    
+  });  
   }
-   
-
  canLike(post: Post): boolean {
 return post.likes.findIndex(l => l.user.id === this.user.id) === -1}
-
-
   canDislike(post: Post): boolean {
     return post.dislikes.findIndex(l => l.user.id === this.user) === -1;
   }
-
-  
-
-
-
   getCommentsByPost(postId: number) {
     this.commentService.getCommentsByPost(postId)
       .subscribe((data: Comment[]) => {
@@ -194,9 +153,6 @@ return post.likes.findIndex(l => l.user.id === this.user.id) === -1}
       });
 
   }
-
-
-
   deletePost(posts: Post): void {
     if (confirm("Are you sure you want to delete this post?")) {
       this.postService.deletePost(posts).subscribe(() => {
@@ -208,12 +164,9 @@ return post.likes.findIndex(l => l.user.id === this.user.id) === -1}
       });
     }
   }
-
-
   toggleComments() {
     this.showComments = !this.showComments;
   }
-  // toggle the clicked state for a post
   toggleClicked(postId: number) {
     if (this.clickedPosts.has(postId)) {
       this.clickedPosts.delete(postId);
@@ -221,9 +174,14 @@ return post.likes.findIndex(l => l.user.id === this.user.id) === -1}
       this.clickedPosts.add(postId);
     }
   }
-
-  // check if a post has been clicked
   isClicked(postId: number): boolean {
     return this.clickedPosts.has(postId);
+  }  
+    search(): void {
+    if (!this.searchQuery) {
+      this.filteredPosts = this.posts;
+    } else {
+      this.filteredPosts = this.posts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()));
+    }
   }
 }

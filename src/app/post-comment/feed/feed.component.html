@@ -75,9 +75,19 @@
                         <div class="fb-post1">
                             <div class="fb-post1-container">
                                 <div class="fb-post1-header">
+                                    
                                     <ul>
+                                      
                                         <li class="active">Feed</li>
+                                        <input type="text"  [(ngModel)]="searchTerm" placeholder="Search by username"
+                                            class="searchInput">
+                                        <button (click)="getAllPosts(searchTerm)" class="searchButton"><i class="fa fa-search"></i></button>
+                            
                                     </ul>
+
+                        
+
+
                                 </div>
                                 <div class="fb-p1-main"
                                     *ngFor="let post of posts.slice((currentPage-1)*postsPerPage, currentPage*postsPerPage)">
@@ -135,7 +145,7 @@
 
 
                                         <div class="post-images2">
-<div class="post-content" [innerHTML]="post.content"></div>
+                                            <div class="post-content" [innerHTML]="post.content"></div>
 
 
                                             <img [src]="postImageURL(post.imageData)" alt="post images 04">
