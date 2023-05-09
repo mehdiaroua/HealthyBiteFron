@@ -33,22 +33,28 @@ console.log(this.user);
 
 }
 
-  save() {
+ save() {
+  const badWords = ['badword1', 'badword2', 'badword3'];
+  if (badWords.some(word => this.post.content.includes(word))) {
+    this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Your post contains a bad word, please remove it before posting.' });
+    return;
+  }
   this.postService.addPost(this.post.title, this.post.content, this.imageFile)
     .subscribe(
       data => {
-        this.messageService.add({ severity: 'success',summary: 'Success Message', detail: 'Post Ajouté avec Succés' });
+        this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Post added successfully.' });
         this.post = new Post();
-           setTimeout(() => {
-          location.reload();
-        }, 1000); 
-        
+                     location.reload();
+
       },
-      error => console.log(error)
-    );
+      error => {
+        this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Failed to add post.' });
+        console.log(error);
+      }
+           
+   );
+
 }
-
-
 
    onSubmit() {
     this.submitted = true;

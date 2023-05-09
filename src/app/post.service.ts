@@ -28,17 +28,24 @@ export class PostService {
   //       })
   //     );
   // }
-
-    addPost(title:string, content: string, image: File): Observable<Post> {
+addPost(title:string, content: string, image: File): Observable<Post> {
     this.user = this.storage.getUser();
     const formData = new FormData();
     formData.append('title', title);
+
+    // Add the filter for bad words
+    const badWords = ['badword1', 'badword2', 'badword3'];
+    for (const word of badWords) {
+        content = content.replace(word, '***');
+    }
+
     formData.append('content', content);
     formData.append('image', image, image.name);
     formData.append('user', this.user.id.toString());
 
     return this.httpClient.post<Post>(`${environment.api}test/addPostWithImg`, formData);
-  }
+}
+
 
     getUserByPost(postId: number): Observable<User> {
     const url = `${this.baseUrl}/api/test/posts/${postId}/user`;
