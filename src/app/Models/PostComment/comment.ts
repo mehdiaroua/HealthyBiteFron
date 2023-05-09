@@ -1,6 +1,8 @@
+import { User } from "src/app/Class/user";
 import { Post } from "./Post";
 import { Tag } from "./Tag";
 import { Reply } from "./reply";
+import { Like, LikeType } from "./Like";
 
 export class Comment {
 //   id!: number;
@@ -23,5 +25,6 @@ export class Comment {
   commentId?: number;
   showReply!: boolean; // Add the showReply property here
 
+  
 
 }

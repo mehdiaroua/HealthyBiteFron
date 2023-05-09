@@ -1,4 +1,4 @@
-<p-toast></p-toast>
+
 <section class="hero">
   <div class="container">
       <div class="row">
@@ -9,24 +9,16 @@
                       <span>All departments</span>
                   </div>
                   <ul>
-                      <li><a href="#" routerLink="/repas/restaurant">Restaurant</a></li>
-                      <li><a href="#" routerLink="/dash">User</a></li>
-                      <li><a href="#" routerLink="/produit/fournisseur">Fournisseur</a></li>
-
+                    <li>
+                      <a href="#" routerLink="/repas/restaurant">Restaurant</a>
+                    </li>
+                    <li>
+                      <a href="#" routerLink="/produit/fournisseur">Fournisseur</a>
+                    </li>
                   </ul>
               </div>
           </div>
           <div class="col-lg-9">
-              <div class="hero__search">
-                  <div class="hero__search__form">
-                    <form>
-                      <div class="form-group">
-                      <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" >
-                      <button type="submit" class="site-btn" >SEARCH</button>
-                    </div>
-                    </form>
-                    </div>
-                  </div>
 
 
 
@@ -45,7 +37,8 @@
 
 
 
-<form (ngSubmit)="addNutritionToProduit(nutrition, selectedProduit.id)" #nutritionForm="ngForm">
+
+<!--<form (ngSubmit)="addNutritionToRepas(nutrition, selectedProduit.id)" #nutritionForm="ngForm">
   <div class="form-group">
       <label for="energies">Energies:</label>
       <input type="text" class="form-control" name="energies" [(ngModel)]="nutrition.energies" required>
@@ -84,6 +77,100 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+//////////////*******************************
+
+
+<form class="login-form" action="javascript:void(0);" (ngSubmit)="addNutritionToRepas(nutrition, selectedProduit.id)" #nutritionForm="ngForm">
+  <h1>Add Nutrition</h1>
+  <div class="form-input-material">
+    <input type="number" name="energies" id="energies" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.energies" required />
+    <label for="energies">Energies</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="acides" id="acides" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.acides" required />
+    <label for="acides">Acides</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="glucides" id="glucides" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.glucides" required />
+    <label for="glucides">Glucides</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="sucres" id="sucres" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.sucres" required />
+    <label for="sucres">Sucres</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="fibre" id="fibre" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.fibre" required />
+    <label for="fibre">Fibre</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="calories" id="calories" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.calories" required />
+    <label for="calories">Calories</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="proteines" id="proteines" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.proteines" required />
+    <label for="proteines">Proteines</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="lipides" id="lipides" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.lipides" required />
+    <label for="lipides">Lipides</label>
+  </div>
+  <div class="form-input-material">
+    <input type="number" name="sel" id="sel" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.sel" required />
+    <label for="sel">Sel</label>
+  </div>
+  <button type="submit" class="btn btn-primary btn-ghost">Save</button>
+</form>
+-->
+<div class="login-box">
+  <h2>Add Nutrition</h2>
+  <form (ngSubmit)="addNutritionToProduit(nutrition, selectedProduit.id)" #nutritionForm="ngForm">
+    <div class="user-box">
+      <input type="number" name="energies" id="energies" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.energies" required />
+    <label for="energies">Energies</label>
+    </div>
+    <div class="user-box">
+      <input type="number" name="acides" id="acides" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.acides" required />
+      <label for="acides">Acides</label>
+    </div>
+
+    <div class="user-box">
+      <input type="number" name="glucides" id="glucides" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.glucides" required />
+      <label for="glucides">Glucides</label>
+    </div>
+    <div class="user-box">
+      <input type="number" name="sucres" id="sucres" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.sucres" required />
+      <label for="sucres">Sucres</label>
+    </div>
+    <div class="user-box">
+      <input type="number" name="fibre" id="fibre" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.fibre" required />
+      <label for="fibre">Fibre</label>
+    </div>
+    <div class="user-box">
+      <input type="number" name="proteines" id="proteines" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.proteines" required />
+      <label for="proteines">Proteines</label>
+    </div>
+
+    <div class="user-box">
+      <input type="number" name="lipides" id="lipides" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.lipides" required />
+    <label for="lipides">Lipides</label>
+    </div>
+    <div class="user-box">
+      <input type="number" name="sel" id="sel" placeholder=" " autocomplete="off" class="form-control-material" [(ngModel)]="nutrition.sel" required />
+    <label for="sel">Sel</label>
+    </div>
+    <button type="submit" class="site-btn">
+     Save</button>
+
+  </form>
+</div>
+
+
+
+
+
+
+
 
 
 </div>

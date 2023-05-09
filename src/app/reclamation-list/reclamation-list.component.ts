@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReclamationService } from '../Service/reclamation.service';
+import { ReclamationService } from '../Service1/reclamation.service';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';

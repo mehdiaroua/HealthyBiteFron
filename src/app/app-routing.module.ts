@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ShopComponent } from './ProduitRepas/shop/shop.component';
-import { RecetteConseilComponent } from './recetteConseil/details-recette/recette-conseil/recette-conseil.component';
 import { DetailsComponent } from './ProduitRepas/details/details.component';
 import { PanierComponent } from './Commande/panier/panier.component';
 import { PaiementComponent } from './Commande/paiement/paiement.component';
-import { DetailsRecetteComponent } from './recetteConseil/details-recette/details-recette.component';
+
 import { AddrepasComponent } from './ProduitRepas/addrepas/addrepas.component';
 import { RepasRestaurantComponent } from './ProduitRepas/repas-restaurant/repas-restaurant.component';
 import { ProduitShopComponent } from './ProduitRepas/produit-shop/produit-shop.component';
@@ -38,6 +37,17 @@ import { ReclamationDetailComponent } from './reclamation-detail/reclamation-det
 import { AddReclamationComponent } from './add-reclamation/add-reclamation.component';
 import { AddReponseReclamationComponent } from './add-reponse-reclamation/add-reponse-reclamation.component';
 import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
+import { RecetteListComponent } from './recetteConseil/recette/recette-list/recette-list.component';
+import { RecetteFormComponent } from './recetteConseil/recette/recette-form/recette-form.component';
+import { DetailsRecetteComponent } from './recetteConseil/recette/details-recette/details-recette.component';
+import { ObjectifListComponent } from './recetteConseil/objectif/objectif-list/objectif-list.component';
+import { ObjectifDetailComponent } from './recetteConseil/objectif/objectif-detail/objectif-detail.component';
+import { ConseilListComponent } from './recetteConseil/conseil/conseil-list/conseil-list.component';
+import { ConseilDetailComponent } from './recetteConseil/conseil/conseil-detail/conseil-detail.component';
+import { RecetteConseilComponent } from './recetteConseil/recette-conseil/recette-conseil.component';
+import { UpdateLivraisonComponent } from './Commande/update-livraison/update-livraison.component';
+import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
+import { GetAllLivraisonComponent } from './Commande/get-all-livraison/get-all-livraison.component';
 
 
 
@@ -55,7 +65,7 @@ const routes: Routes = [
  canActivate: [RoleGuard],
  data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
   {path: "panier", component:PanierComponent},
-  {path: "checkout", component:PaiementComponent},
+  {path: "paiement", component:PaiementComponent},
   {path: "repas/addRepas", component:AddrepasComponent,
   canActivate: [RoleGuard],
   data: { requiredRoles: [ERole.ROLE_RESTAURANT] }},
@@ -95,11 +105,13 @@ const routes: Routes = [
     path: 'add',
     component: AdduserComponent,
     canActivate: [RoleGuard],
-    data: { requiredRoles: [ERole.ROLE_ADMIN] }// specify required roles here
+    data: { requiredRoles: [ERole.ROLE_ADMIN] }
   },
   {path: "pie", component:PiechartComponent},
-  { path: "post/posts", component: FeedComponent },
-  { path: 'posts/:id', component: PostDetailsComponent },
+  {path: "post/posts", component: FeedComponent,
+  canActivate: [RoleGuard],
+  data: { requiredRoles: [ERole.ROLE_ADMIN,ERole.ROLE_FOURNISSEUR,ERole.ROLE_RESTAURANT,ERole.ROLE_USER] }},
+  { path: 'posts/:id', component: PostDetailsComponent},
   { path: 'posts/update/:id', component: UpdatePostComponent },
   { path: 'posts/comments', component: CommentsComponent },
   { path: "Notification", component: NotificationComponent },
@@ -108,24 +120,29 @@ const routes: Routes = [
   { path: 'reclamationDetails/:idReclamation', component: ReclamationDetailComponent },
   { path: 'shop/AddReclamation/:id', component: AddReclamationComponent},
   { path: 'addReponse/:idReclamation', component: AddReponseReclamationComponent },
-  { path : 'reclamationUser', component : ReclamationUserComponent}
-
-
-
-
-
-
-
-
-
-
-
-
-
+  { path : 'reclamationUser', component : ReclamationUserComponent},
+  // recette
+  // { path: 'blogDetails', component: DetailsRecetteComponent },
+  { path: 'recette', component: RecetteListComponent },
+  { path: 'recette/add', component: RecetteFormComponent },
+  { path: 'recette/:id', component: DetailsRecetteComponent },
+  { path: 'recette/:id/edit', component: RecetteFormComponent },
+  { path: 'livraisons', component: GetAllLivraisonComponent },
+  { path: 'addlivraison', component: AddlivraisonComponent },
+  { path: 'updateLiv/:id', component: UpdateLivraisonComponent },
+  {path: "cart", component:PanierComponent},
+  {path: "checkout", component:PaiementComponent,canActivate:[AuthGuard]},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // recette end
+  // objectifs
+  { path: 'objectif', component: ObjectifListComponent },
+  { path: 'objectif/:id', component: ObjectifDetailComponent },
+  { path: 'conseil', component: ConseilListComponent },
+  { path: 'conseil/:id', component: ConseilDetailComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

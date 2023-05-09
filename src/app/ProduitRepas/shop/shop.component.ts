@@ -5,8 +5,8 @@ import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { AddReclamationComponent } from 'src/app/add-reclamation/add-reclamation.component';
 
 import { RepasProduitService } from 'src/app/repasProduit.service';
-import { StorageService } from 'src/app/service/storage.service';
-import { UserService } from 'src/app/service/user.service';
+import { StorageService } from 'src/app/Service1/storage.service';
+import { UserService } from 'src/app/Service1/user.service';
 
 @Component({
   selector: 'app-shop',
@@ -19,6 +19,11 @@ export class ShopComponent implements OnInit{
   ref!: DynamicDialogRef;
   repasProposes!: Repas[];
   user!:any;
+   exchangeRate: any;
+  selectedCurrency!: string;
+
+  public targetCurrency!: string;
+  public convertedPrice!: number;
 constructor(private repasProduit:RepasProduitService, private R:Router,public dialogService: DialogService, private userService:StorageService){}
   ngOnInit(){
     this.user = this.userService.getUser();
@@ -28,6 +33,21 @@ constructor(private repasProduit:RepasProduitService, private R:Router,public di
     });*/
     this.proposerRepasSelonObjectifEtActivite();
      }
+
+
+     public convertCurrency(targetCurrency: string) {
+      this.targetCurrency = targetCurrency;
+      this.repasProduit.getExchangeRate('TND', targetCurrency)
+        .subscribe(response => {
+          const exchangeRate = response.rates[targetCurrency];
+          // Remplacez '10' par le prix initial que vous souhaitez convertir
+          this.convertedPrice = 10 * exchangeRate;
+        });
+    }
+
+
+
+
 
      showDetails(id : number){
       this.R.navigate(['products/productDetails', id]);

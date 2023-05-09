@@ -1,4 +1,4 @@
-import { UserService } from 'src/app/service/user.service';
+import { UserService } from 'src/app/Service1/user.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

@@ -15,8 +15,8 @@ export class AddpostComponent {
 
 
   save() {
-    const { title, content } = this.post;
-    this.postService.addPost(title, content)
+    const { title, content , image} = this.post;
+    this.postService.addPost(title, content,image)
       .subscribe(data => console.log(data), error => console.log(error));
     this.post = new Post();
     this.router.navigate(['/post/posts']);

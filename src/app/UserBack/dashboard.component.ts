@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 import { ERole, Role, User } from '../Class/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CheckboxModule } from 'primeng/checkbox';
 
 import { Chart, ChartType } from 'chart.js';
-import { StorageService } from '../service/storage.service';
+import { StorageService } from '../Service1/storage.service';
 import { AdduserComponent } from '../adduser/adduser.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -70,6 +70,9 @@ items1!: any;
 
 
    }
+   gotoStat() {
+    this.router.navigate(['/pie']);
+  }
 
   ngOnInit(): void {
 this.user=this.storage.getUser();
@@ -85,7 +88,7 @@ console.log(this.user.id);
   }
 
   show(){
-    this.ref = this.dialogService.open(AdduserComponent, { header: 'Add a Product'});
+    this.ref = this.dialogService.open(AdduserComponent, { header: 'Add User'});
   }
 
   onUpdateRole(userId: number, roleName: string) {

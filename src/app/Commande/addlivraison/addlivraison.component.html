@@ -1,0 +1,82 @@
+<!--Main Content-->
+<div class="my-5">
+  <div class="mx-auto w-25 " style="max-width:100%;">
+    <h2 class="text-center mb-3">Add Livraison</h2>
+    <form [formGroup]="formLivraison">
+
+
+
+      <!--EtatLivraison-->
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="etat" class="form-label">Etat Livraison</label>
+          <select id="etat" type="text" name="etat" formControlName="etatCommande" class="form-control"
+            placeholder="Etat Livraison" required>
+            <option value="EN_COURS_LIVRAISON">EN_COURS_LIVRAISON</option>
+          </select>
+        </div>
+      </div>
+
+
+      <!--deliveryTimeSlot-->
+      <div class="row">
+        <div class="col-md-12 form-group mb-3">
+          <label for="deliveryTimeSlot" class="form-label">deliveryTimeSlot</label>
+          <textarea id="deliveryTimeSlot" type="text" name="deliveryTimeSlot" formControlName="deliveryTimeSlot"
+            class="form-control" placeholder=" Mon May 1 21:10:24 2023" rows="3" required></textarea>
+        </div>
+      </div>
+
+      <div>
+        <label>
+          <input type="radio" name="liv" value="pointRelais" (click)="livraisonPointrelais()"> Point relais </label>
+        <label>
+          <input type="radio" name="liv" value="adresse" (click)="livraisonAdresse()"> Adresse de livraison </label>
+      </div>
+
+      <div *ngIf="liv == 'pointRelais'">
+        <!--Adresse-->
+        <div class="row">
+          <div class="col-md-12 form-group mb-3">
+            <select id="collectionPoint" type="text" name="collectionPoint" formControlName="collectionPoint"
+              class="form-control" placeholder="collectionPoint" required>
+              <option value="{{ipAddress}}. You live in {{city}} in {{region}}, {{country}}"> {{ipAddress}}. You live in
+                {{city}} in {{region}}, {{country}}</option>
+            </select>
+
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="liv == 'adresse'">
+        <!--Adresse-->
+
+        <div class="row">
+          <div class="col-md-12 form-group mb-3">
+            <select id="collectionPoint" type="text" name="collectionPoint" formControlName="collectionPoint"
+              class="form-control" placeholder="collectionPoint" required>
+              <option value="Carrefour Marsa">Carrefour Marsa</option>
+              <option value="Mall Of sousse">Mall Of sousse</option>
+              <option value="Tunisia Mall">Tunisia Mall</option>
+
+
+            </select>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <input (click)="onSubmit()" routerLink="/paiement" class="btn btn-primary w-100" type="submit" value="Submit">
+        </div>
+      </div>
+
+      <div>
+
+      </div>
+    </form>

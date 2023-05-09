@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReponseReclamationService } from '../Service/reponse-reclamation.service';
+import { ReponseReclamationService } from '../Service1/reponse-reclamation.service';
 import { ReponseReclamation } from '../Models/ReclamationEtReponse/ReponseReclamation';
 
 @Component({

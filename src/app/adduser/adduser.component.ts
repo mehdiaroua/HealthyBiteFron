@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 import { ERole, User } from '../Class/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -40,6 +40,7 @@ export class AdduserComponent {
         response => {
           console.log('User registered:', response);
           this.route.navigate(['/dash'], { queryParams: { id: response.id } });
+          location.reload();
         },
         error => {
           this.errorMessage = error.error.message;
