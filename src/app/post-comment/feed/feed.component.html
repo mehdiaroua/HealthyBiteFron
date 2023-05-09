@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+
+<body>
+
+
+
+    <div class="home">
+        <p-toast></p-toast>
+        <div class="container">
+            <div class="home-weapper">
+                <div class="home-left">
+                    <div class="profile">
+                        <img src="/assets/images/user.jpg" alt="user" class="">
+                        <h3>{{User.username}}</h3>
+                    </div>
+
+                    <div class="pages">
+                        <h4 class="mini-headign">Pages</h4>
+                        <label>
+                            <img src="/assets/images/marketplace.png" alt="messenger">
+                            <span>Shop</span>
+                        </label>
+                        <label>
+                            <img src="/assets/images/friends.png" alt="instagram">
+                            <span>Home</span>
+                        </label>
+                        <button class="see-more-btn">See more <i class="fa fa-angle-down"></i></button>
+                    </div>
+
+                    <div class="group">
+                        <h4 class="mini-headign">Group</h4>
+                        <label>
+                            <img src="/assets/images/gg.png" alt="group01">
+                            <span>Healthy Food Community</span>
+                        </label>
+                        <label>
+                            <img src="/assets/images/gg2.png" alt="group02">
+                            <span>HealthyBite</span>
+                        </label>
+
+                        <label>
+                            <img src="/assets/images/gg3.png" alt="group03">
+                            <span>Eya.Mastour</span>
+                        </label>
+                        <button class="see-more-btn">See more <i class="fa fa-angle-down"></i></button>
+                    </div>
+                    <div class="explore">
+                        <h4 class="mini-headign">Explore</h4>
+                        <a href="#"><i class="fa fa-group"></i> Group</a>
+                        <a href="#"><i class="fa fa-star"></i> Favorites</a>
+                        <a href="#"><i class="fa fa-bookmark"></i>Saves</a>
+                        <a href="#"><i class="fa fa-clock-o"></i> Events</a>
+                        <a href="#"><i class="fa fa-flag"></i> Pages</a>
+
+                        <button class="see-more-btn">See more <i class="fa fa-angle-down"></i></button>
+                    </div>
+
+                </div>
+
+
+                <div class="home-center">
+                    <div class="home-center-wrapper">
+                        <div class="createPost">
+                            <h3 class="mini-headign"></h3>
+                            <div class="post-text">
+                                <p placeholder="" (click)="openCreatePostModal()">What's on your mind?</p>
+                            </div>
+
+                            <div class="post-icon">
+                            </div>
+
+                        </div>
+
+                        <div class="fb-post1">
+                            <div class="fb-post1-container">
+                                <div class="fb-post1-header">
+                                    <ul>
+                                        <li class="active">Feed</li>
+                                    </ul>
+                                </div>
+                                <div class="fb-p1-main"
+                                    *ngFor="let post of posts.slice((currentPage-1)*postsPerPage, currentPage*postsPerPage)">
+                                    <button mat-icon-button [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button mat-menu-item *ngIf="post.user.id === user.id">
+                                            <mat-icon class="delete-icon"
+                                                (click)="deletePost(post)">delete_forever</mat-icon>
+                                            <span>delete</span>
+                                        </button>
+                                        <a [routerLink]="['/posts/update', post.id]">
+                                            <button mat-menu-item *ngIf="post.user.id === user.id">
+                                                <mat-icon class="edit-icon">edit</mat-icon>
+                                                <span>edit</span>
+                                            </button>
+                                        </a>
+
+                                        <a href="/posts/{{ post.id }}">
+                                            <button mat-menu-item>
+                                                <mat-icon class="show-icon">pageview</mat-icon>
+                                                <span>show</span>
+                                            </button>
+                                        </a>
+
+                                        <a (click)="copyLink(post)">
+                                            <button mat-menu-item>
+                                                <mat-icon class="file_copy">file_copy</mat-icon>
+                                                <span>Copy Link</span>
+                                            </button>
+                                        </a>
+
+
+                                    </mat-menu>
+
+                                    <div class="post-title">
+                                        <img src="/assets/images/user2.jpg" alt="user picture">
+                                        <ul>
+                                            <li>
+                                                <h3>{{post.user.username}}</h3>
+                                            </li>
+                                            <li><span style="font-size: small;"> Posted in : {{ post.addedDate |
+                                                    date }} 
+                                                </span></li>
+
+                                        </ul>
+                                        <p style="  font-weight: bold;">{{post.title}}
+
+                                        </p>
+
+                                    </div>
+                                    <div class="post-images">
+
+
+                                        <div class="post-images2">
+                                            <p>{{post.content}}
+
+                                            </p>
+                                            <img [src]="postImageURL(post.imageData)" alt="post images 04">
+                                        </div>
+                                    </div>
+
+                                    <div class="like-comment">
+                                        <ul>
+                                            <li>
+                                                <img src="/assets/images/love.png"
+                                                    (click)="toggleLikesP(post.id, LikeType.LIKE)" alt="love">
+                                                <img src="/assets/images/dislike.png"
+                                                    (click)="toggleLikesP(post.id, LikeType.DISLIKE)" alt="like">
+                                            </li>
+                                            <li>
+                                                <p>Number of likes: {{ post.likeCount }}</p>
+                                            </li>
+                                            <li (click)="toggleClicked(post.id)"><i class="fa fa-comment"></i>
+                                                {{ isClicked(post.id) ? 'Hide Comments' : 'Show Comments' }}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+
+                                    <!-- Contenedor Principal -->
+                                    <div *ngIf="isClicked(post.id)" class="comments-container">
+                                        <ul id="comments-list" class="comments-list">
+                                            <li *ngFor="let comment of post.comments">
+                                                <div class="comment-main-level">
+                                                    <!-- Avatar -->
+                                                    <div class="comment-avatar"><img src="/assets/images/us3.png"
+                                                            alt=""></div>
+                                                    <!-- Contenedor del Comentario -->
+                                                    <div class="comment-box">
+                                                        <div class="comment-head">
+                                                            <h6 class="comment-name by-author"><a
+                                                                    href="http://creaticode.com/blog">{{user.username}}</a>
+                                                            </h6>
+                                                            <i class="fa fa-trash" style="color: red;"
+                                                                (click)="deleteComment(comment.id)"></i>
+                                                            <!-- <button mat-menu-item>
+                                                                    <mat-icon (click)="deleteComment(comment.id)">delete_forever</mat-icon>
+                                                                </button> -->
+                                                            <!-- <i class="fa fa-heart"></i> -->
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <p>{{ comment?.content }}</p>
+                                                        </div>
+                                                        <ul class="comments-list reply-list">
+                                                            <!-- <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
+                                    <div class="form-group">
+                                        <label for="content">Add a comment:</label>
+                                        <input type="text" class="form-control" name="content" #content ngModel required>
+                                    </div>
+                                    <button type="submit" class="add-comment">Submit</button>
+                                </form> -->
+
+                                                            <li *ngFor="let reply of comment.replies">
+                                                                <!-- Avatar -->
+                                                                <div class="comment-avatar"><img
+                                                                        src="/assets/images/us4.png" alt=""></div>
+                                                                <div class="comment-box">
+                                                                    <div class="comment-head">
+                                                                        <h6 class="comment-name"><a
+                                                                                href="http://creaticode.com/blog">Lorena
+                                                                                Rojero</a></h6>
+                                                                        <i class="fa fa-reply"></i>
+                                                                        <button
+                                                                            (click)="deleteComment(comment.id)">Delete</button>
+
+                                                                        <i class="fa fa-heart"></i>
+                                                                    </div>
+                                                                    <div class="comment-content">
+                                                                        <p>{{ reply.content }}</p>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <form (ngSubmit)="addComment(post.id, content.value); content.value=''">
+                                            <div class="form-group">
+                                                <label for="content">Add a comment:</label>
+                                                <input type="text" class="form-control" name="content" #content ngModel
+                                                    required>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pagination-buttons">
+                                <button (click)="previousPage()" [disabled]="currentPage == 1">Previous</button>
+                                <button (click)="nextPage()"
+                                    [disabled]="(currentPage * postsPerPage) >= posts.length">Next</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <script>
+        var darkButton = document.querySelector(".darkTheme");
+
+        darkButton.onclick = function () {
+            darkButton.classList.toggle("button-Active");
+            document.body.classList.toggle("dark-color")
+        }
+
+    </script>
+</body>

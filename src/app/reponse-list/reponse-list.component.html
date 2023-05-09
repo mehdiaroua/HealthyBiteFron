@@ -1,0 +1,40 @@
+<div class=" container-fluid">	
+							<div>
+								<h1>Reponses
+								</h1>
+							</div>
+     
+              
+            
+    <table class="table" >
+  <thead>
+    <tr>
+      
+      <th>Date</th>
+      <th>Reponse</th>
+      
+      
+      <th style="text-align : center">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let reponse of listRponse">
+     
+      <td>{{ reponse.dateReponseReclamation }}</td>
+      <td>{{ reponse.textReponseReclamation }}</td>
+     
+
+      
+      <td> <button class="btn btn-danger" (click)="deleteReponseReclamation(reponse)">Supprimer</button>
+        &nbsp; &nbsp;
+      <button style="background-color: #2eca6a" 
+              class="btn-primary btn" (click)="openUpdateDialog(reponse.idReponseReclamation)" >
+        edit </button>
+      </td>
+      
+      
+    </tr>
+  </tbody>
+</table>
+   </div>

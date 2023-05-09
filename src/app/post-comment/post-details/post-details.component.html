@@ -1,0 +1,40 @@
+<!-- 
+
+<div id="container">
+    <div class="product-details">
+
+        <h1 >{{ post.title }}</h1>
+
+    </div>
+    <div class="product-image">
+
+                <img [src]="postImageURL(post.imageData)" alt="{{ post.title }}" *ngIf="post.imageData">
+        <div class="info">
+            <h2>The Description</h2>
+            <ul>
+                <li><strong>{{ post.content }}</strong></li>
+            </ul>
+        </div>
+    </div>
+
+
+</div> -->
+
+<body>
+    <div class="card-hover">
+        <div class="card-hover__content">
+            <h3 class="card-hover__title" *ngIf="post && post.title">{{ post.title }}</h3>
+            <p class="card-hover__text" *ngIf="post?.content">{{ post.content }}</p>
+            <a href="#" class="card-hover__link">
+                <span >Back to Forum</span>
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+        </div>
+        <div class="card-hover__extra">
+            <h4>Interact <span>with</span> the <span> others </span> more!</h4>
+        </div>
+<img *ngIf="post && post.imageData" [src]="postImageURL(post.imageData)" alt="{{ post.title }}">
+    </div>
+</body>
