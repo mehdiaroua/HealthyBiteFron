@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Nutrition } from 'src/app/Models/RepasProduit/Nutrition';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repasProduit.service';
-import { StorageService } from 'src/app/service/storage.service';
+import { StorageService } from 'src/app/Service1/storage.service';
 
 @Component({
   selector: 'app-add-nutr-repas',

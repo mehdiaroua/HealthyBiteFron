@@ -6,8 +6,8 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Produit } from './Models/RepasProduit/Produit';
 import { User } from './Class/user';
-import { UserService } from './service/user.service';
-import { StorageService } from './service/storage.service';
+import { UserService } from './Service1/user.service';
+import { StorageService } from './Service1/storage.service';
 import { CategProduit } from './Models/RepasProduit/CategProduit';
 import { Nutrition } from './Models/RepasProduit/Nutrition';
 

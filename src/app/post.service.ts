@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { LikeType, Post } from './Models/PostComment/Post';
-import { StorageService } from './service/storage.service';
+import { StorageService } from './Service1/storage.service';
 import { User } from './Class/user';
 
 @Injectable({

@@ -1,7 +1,6 @@
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS, HttpErrorResponse } from '@angular/common/http';
 import { Injectable,Injector } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { UserService } from './user.service';
 import { StorageService } from './storage.service';
 import { EventBusService } from './event-bus.service';
 import { EventData } from './event';

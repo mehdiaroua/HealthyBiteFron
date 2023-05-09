@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Post } from 'src/app/Models/PostComment/Post';
 import { PostService } from 'src/app/post.service';
-import { StorageService } from 'src/app/service/storage.service';
-import { UserService } from 'src/app/service/user.service';
+import { StorageService } from 'src/app/Service1/storage.service';
+import { UserService } from 'src/app/Service1/user.service';
 import { Location } from '@angular/common';
 
 @Component({

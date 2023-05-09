@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { ReclamationService } from '../Service/reclamation.service';
-import { StorageService } from '../service/storage.service';
+import { ReclamationService } from '../Service1/reclamation.service';
+import { StorageService } from '../Service1/storage.service';
 
 @Component({
   selector: 'app-add-reclamation',

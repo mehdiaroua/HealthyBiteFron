@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'src/app/Models/PostComment/Post';
 import { PostService } from 'src/app/post.service';
-import { StorageService } from 'src/app/service/storage.service';
+import { StorageService } from 'src/app/Service1/storage.service';
 
 @Component({
   selector: 'app-update-post',

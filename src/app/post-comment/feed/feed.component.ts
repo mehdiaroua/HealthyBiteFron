@@ -11,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Reply } from 'src/app/Models/PostComment/reply';
-import { StorageService } from 'src/app/service/storage.service';
+import { StorageService } from 'src/app/Service1/storage.service';
 import { User } from 'src/app/Class/user';
 import { MessageService } from 'primeng/api';
 import { LikeType } from 'src/app/Models/PostComment/Like';

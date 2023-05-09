@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from '../Class/user';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 
 @Component({
   selector: 'app-reset-password',

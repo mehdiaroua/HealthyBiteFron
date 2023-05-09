@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 import { Router } from '@angular/router';
 import { ERole, User } from '../Class/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { StorageService } from '../service/storage.service';
+import { StorageService } from '../Service1/storage.service';
 import { MessageService } from 'primeng/api';
 
 @Component({

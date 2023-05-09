@@ -1,4 +1,4 @@
-import { UserService } from './../../service/user.service';
+import { UserService } from '../../Service1/user.service';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';

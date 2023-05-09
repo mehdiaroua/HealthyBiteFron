@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StorageService } from '../service/storage.service';
-import { UserService } from '../service/user.service';
+import { StorageService } from '../Service1/storage.service';
+import { UserService } from '../Service1/user.service';
 import { User } from '../Class/user';
 import { RepasProduitService } from '../repasProduit.service';
 import { MessageService } from 'primeng/api';

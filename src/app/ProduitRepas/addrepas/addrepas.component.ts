@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repasProduit.service';
-import { StorageService } from 'src/app/service/storage.service';
-import { UserService } from 'src/app/service/user.service';
+import { StorageService } from 'src/app/Service1/storage.service';
+import { UserService } from 'src/app/Service1/user.service';
 
 @Component({
   selector: 'app-addrepas',
