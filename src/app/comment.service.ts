@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Comment } from './Models/PostComment/comment';
+import { Reply } from './Models/PostComment/reply';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +28,8 @@ export class CommentService {
     return this.http.delete<void>(url);
   }
 
-  addReply(commentId: number, comment: Comment): Observable<Comment> {
-  return this.http.post<Comment>(`${this.baseUrl}/api/test/${commentId}/replies`, comment)
+  addReply(commentId: number, reply: Reply): Observable<Comment> {
+  return this.http.post<Comment>(`${this.baseUrl}/api/test/${commentId}/replies`, reply)
 }
 
 }

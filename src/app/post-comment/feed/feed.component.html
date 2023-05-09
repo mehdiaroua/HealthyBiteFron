@@ -122,7 +122,7 @@
                                                 <h3>{{post.user.username}}</h3>
                                             </li>
                                             <li><span style="font-size: small;"> Posted in : {{ post.addedDate |
-                                                    date }} 
+                                                    date }}
                                                 </span></li>
 
                                         </ul>
@@ -185,16 +185,9 @@
                                                             <p>{{ comment?.content }}</p>
                                                         </div>
                                                         <ul class="comments-list reply-list">
-                                                            <!-- <form (ngSubmit)="addReply(comment.id,content.value); content.value=''">
-                                    <div class="form-group">
-                                        <label for="content">Add a comment:</label>
-                                        <input type="text" class="form-control" name="content" #content ngModel required>
-                                    </div>
-                                    <button type="submit" class="add-comment">Submit</button>
-                                </form> -->
+
 
                                                             <li *ngFor="let reply of comment.replies">
-                                                                <!-- Avatar -->
                                                                 <div class="comment-avatar"><img
                                                                         src="/assets/images/us4.png" alt=""></div>
                                                                 <div class="comment-box">
@@ -251,13 +244,4 @@
 
 
     </div>
-    <script>
-        var darkButton = document.querySelector(".darkTheme");
-
-        darkButton.onclick = function () {
-            darkButton.classList.toggle("button-Active");
-            document.body.classList.toggle("dark-color")
-        }
-
-    </script>
 </body>

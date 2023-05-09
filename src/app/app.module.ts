@@ -81,7 +81,7 @@ import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.co
 import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { ToastrModule } from 'ngx-toastr';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 @NgModule({
   declarations: [
     AppComponent,
@@ -168,7 +168,9 @@ import { ToastrModule } from 'ngx-toastr';
     InputNumberModule,
     MatCardModule,
     EditorModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
     
     
     
