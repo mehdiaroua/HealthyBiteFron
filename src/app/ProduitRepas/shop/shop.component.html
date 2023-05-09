@@ -417,6 +417,19 @@
                         <div class="featured__item__text">
                             <h6><a href="#">{{rep.nom}}</a></h6>
                             <h5>${{rep.prix}}</h5>
+                            <p>Exchange rate: {{ exchangeRate }}</p>
+                            <form #currencyForm="ngForm" (ngSubmit)="convertCurrency(currencyForm.value.currency)">
+                              <label for="currency">Currency:</label>
+                              <select id="currency" name="currency" ngModel>
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                                <!-- Ajoutez d'autres devises selon vos besoins -->
+                              </select>
+                              <button type="submit">Convert</button>
+                            </form>
+                            <p *ngIf="convertedPrice">Price in {{ targetCurrency }}: {{ convertedPrice }}</p>
+
                         </div>
                     </div>
                 </div>
