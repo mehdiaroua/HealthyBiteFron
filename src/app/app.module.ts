@@ -71,7 +71,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { PasswordModule } from 'primeng/password';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { EditReclamationComponent } from './edit-reclamation/edit-reclamation.component';
-import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
+
 import { EditorModule } from "@tinymce/tinymce-angular";
 import { ToastrModule } from 'ngx-toastr';
 import { RecetteConseilComponent } from './recetteConseil/recette-conseil/recette-conseil.component';
@@ -96,6 +96,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { CommonModule } from '@angular/common';
 import { AddlivraisonComponent } from './Commande/addlivraison/addlivraison.component';
+import { ReclamationUserComponent } from './reclamation-user/reclamation-user.component';
 
 @NgModule({
   declarations: [

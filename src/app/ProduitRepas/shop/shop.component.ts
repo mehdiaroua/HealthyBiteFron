@@ -7,6 +7,8 @@ import { AddReclamationComponent } from 'src/app/add-reclamation/add-reclamation
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { StorageService } from 'src/app/Service1/storage.service';
 import { UserService } from 'src/app/Service1/user.service';
+import { Produit } from 'src/app/Models/RepasProduit/Produit';
+import { CartServiceService } from 'src/app/cart-service.service';
 
 @Component({
   selector: 'app-shop',
@@ -22,9 +24,10 @@ export class ShopComponent implements OnInit{
    exchangeRate: any;
   selectedCurrency!: string;
 
+
   public targetCurrency!: string;
   public convertedPrice!: number;
-constructor(private repasProduit:RepasProduitService, private R:Router,public dialogService: DialogService, private userService:StorageService){}
+constructor(private cartService:CartServiceService,private repasProduit:RepasProduitService, private R:Router,public dialogService: DialogService, private userService:StorageService){}
   ngOnInit(){
     this.user = this.userService.getUser();
    /* this.repasProduit.getAllRepas().subscribe(data => {
@@ -68,7 +71,12 @@ constructor(private repasProduit:RepasProduitService, private R:Router,public di
           error => {
             console.log(error);
           });
-    }
+  }
+  
+   addToCart(product: Produit) {
+    this.cartService.addItem(product);
+  }
+
 
 
 

@@ -1,25 +1,18 @@
-<!-- <div class="d-flex flex-column justify-content-center">
-  <label for="Description">Ajouter votre reclamation :</label>
-<form (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="Description">Description :</label>
-    <input type="textarea" class="form-control" id="textReclamation" [(ngModel)]="reclamation.textReclamation" name="textReclamation" required>
-  </div>
-  <button type="submit" class="btn btn-primary">Ajouter</button>
-</form>
-    </div> -->
-    <section id="contact">
+<p-toast></p-toast>
+  <section id="contact">
       <div class="sectionheader">	<h1>Reclamation</h1></div>
       <article>
       <p>Speak up! We want to hear your feedback</p>
 
           <label for="checkcontact" class="contactbutton"><div class="mail"></div></label><input id="checkcontact" type="checkbox">
 
-          <form (ngSubmit)="onSubmit()" action="" method="post" class="contactform">
+          <form (submit)="onSubmit()" action="" method="post" class="contactform">
             <p class="textarea_wrapper"><textarea name="textReclamation" id="textReclamation" placeholder="Your input is valuable to us, tell us how we can do better"
               [(ngModel)]="reclamation.textReclamation"
               required ></textarea></p>
-            <p class="submit_wrapper"><input type="submit" value="ENVOYER"></p>
+              <button  type="submit" style="background-color: #6a8a36;" >Submit</button>
+
           </form>
+
       </article>
     </section>
