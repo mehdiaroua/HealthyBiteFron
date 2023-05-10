@@ -25,6 +25,20 @@ export class LivraisonService {
    
     return this.httpClient.post<any>(`${this.URL}addLivraison`, livraison);
   }
+  
+  addAdresseLivraison(adresse: AdresseLivraison): Observable<any> {
+    return this.httpClient.post<any>(`${this.URL}addAdresselivraison`, adresse);
+  }
+
+  saveLivraison(livraison: Livraison, adresseLivraison: AdresseLivraison) {
+    this.addAdresseLivraison(adresseLivraison).subscribe(adresse => {
+      // Enregistrer la livraison avec l'ID de l'adresse enregistrée
+      this.addLivraison(livraison.etatCommande, adresse.id, livraison.deliveryTimeSlot, livraison.collectionPoint).subscribe(
+        data => console.log(data),
+        error => console.log(error)
+      );
+    });
+  }
    
   
  
