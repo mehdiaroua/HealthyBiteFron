@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ReclamationService } from '../Service1/reclamation.service';
 import { Reclamation } from '../Models/ReclamationEtReponse/Reclamation';
-import { StorageService } from '../service/storage.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditReclamationComponent } from '../edit-reclamation/edit-reclamation.component';
 import { StorageService } from '../Service1/storage.service';
+
 
 @Component({
   selector: 'app-reclamation-user',

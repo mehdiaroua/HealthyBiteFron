@@ -34,27 +34,34 @@
           <input type="radio" name="liv" value="adresse" (click)="livraisonAdresse()"> Adresse de livraison </label>
       </div>
 
-      <div *ngIf="liv == 'pointRelais'">
+      <div *ngIf="liv == 'adresse'">
         <!--Adresse-->
         <div class="row">
           <div class="col-md-12 form-group mb-3">
-            <select id="collectionPoint" type="text" name="collectionPoint" formControlName="collectionPoint"
-              class="form-control" placeholder="collectionPoint" required>
-              <option value="{{ipAddress}}. You live in {{city}} in {{region}}, {{country}}"> {{ipAddress}}. You live in
-                {{city}} in {{region}}, {{country}}</option>
-            </select>
-
+            
+            <div class="form-group">
+              <label for="rue">Rue:</label>
+              <input name="rue"  formControlName="rue" id="rue" type="text" class="form-control" value="{{ipAddress}}. You live in {{city}}">
+            </div>
+            <div class="form-group">
+              <label for="ville">Ville:</label>
+              <input name="ville" formControlName="ville" id="ville" type="text" class="form-control" value="{{ipAddress}}. You live in {{region}}">
+            </div>
+            <div class="form-group">
+              <label for="num">Numéro:</label>
+              <input name="num" formControlName="num" id="num" type="text" class="form-control" >
+            </div>
           </div>
         </div>
       </div>
 
-      <div *ngIf="liv == 'adresse'">
+      <div *ngIf="liv == 'pointRelais'">
         <!--Adresse-->
 
         <div class="row">
           <div class="col-md-12 form-group mb-3">
-            <select id="collectionPoint" type="text" name="collectionPoint" formControlName="collectionPoint"
-              class="form-control" placeholder="collectionPoint" required>
+            <select id="adresse" type="text" name="adresse" formControlName="adresse"
+              class="form-control" placeholder="adresse" required>
               <option value="Carrefour Marsa">Carrefour Marsa</option>
               <option value="Mall Of sousse">Mall Of sousse</option>
               <option value="Tunisia Mall">Tunisia Mall</option>

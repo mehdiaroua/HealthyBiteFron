@@ -3,6 +3,14 @@ export class AdresseLivraison {
     
     
   
+  idAdr!: Number;
+
+   rue!: String;
+
+   ville!: String;
+
+    num!: String;
+
 
    
     

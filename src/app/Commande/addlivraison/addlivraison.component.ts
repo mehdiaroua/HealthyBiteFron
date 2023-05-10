@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AppService } from 'src/app/AppService';
 import { LivraisonService } from 'src/app/LivraisonService';
+import { AdresseLivraison } from 'src/app/Models/AdresseLivraison';
 import { Livraison } from 'src/app/Models/Livraison';
 import { StorageService } from 'src/app/Service1/storage.service';
 
@@ -47,6 +48,9 @@ export class AddlivraisonComponent {
       etatCommande: ['', [Validators.required]],
       adresseLivraison: ['', [Validators.required]],
       deliveryTimeSlot: ['', [Validators.required]],
+      rue: ['', Validators.required],
+      ville: ['', Validators.required],
+      num: ['', Validators.required],
       collectionPoint: ['', [Validators.required]]})
 
   }
@@ -57,15 +61,17 @@ export class AddlivraisonComponent {
     homeAddressInput: ['']
   })}
   save() {
-    this.service.addLivraison(this.formLivraison.value.etatCommande, this.formLivraison.value.adresseLivraison, this.formLivraison.value.deliveryTimeSlot,this.formLivraison.value.collectionPoint)
-      .subscribe(
-        data => console.log(data),
-        error => console.log(error)
-      );
+    const adresseLivraison = new AdresseLivraison();
+    adresseLivraison.rue = this.formLivraison.value.rue;
+    adresseLivraison.ville = this.formLivraison.value.ville;
+    adresseLivraison.num = this.formLivraison.value.num;
   
-     this.livraison = new Livraison();
-    // this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
-    //  this.router.navigate(['/paiement']);
+    const livraison = new Livraison();
+    livraison.etatCommande = this.formLivraison.value.etatCommande;
+    livraison.deliveryTimeSlot = this.formLivraison.value.deliveryTimeSlot;
+    livraison.collectionPoint = this.formLivraison.value.collectionPoint;
+  
+    this.service.saveLivraison(livraison, adresseLivraison);
   }
   onSubmit() {
     this.submitted = true;
@@ -96,5 +102,6 @@ export class AddlivraisonComponent {
     });
 
   }
+  
 
 }
