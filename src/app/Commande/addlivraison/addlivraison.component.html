@@ -1,12 +1,10 @@
-<!--Main Content-->
-<div class="my-5">
+<!-- <div class="my-5">
   <div class="mx-auto w-25 " style="max-width:100%;">
     <h2 class="text-center mb-3">Add Livraison</h2>
     <form [formGroup]="formLivraison">
 
 
 
-      <!--EtatLivraison-->
       <div class="row">
         <div class="col-md-12 form-group mb-3">
           <label for="etat" class="form-label">Etat Livraison</label>
@@ -18,7 +16,6 @@
       </div>
 
 
-      <!--deliveryTimeSlot-->
       <div class="row">
         <div class="col-md-12 form-group mb-3">
           <label for="deliveryTimeSlot" class="form-label">deliveryTimeSlot</label>
@@ -35,7 +32,7 @@
       </div>
 
       <div *ngIf="liv == 'adresse'">
-        <!--Adresse-->
+        
         <div class="row">
           <div class="col-md-12 form-group mb-3">
             
@@ -56,7 +53,6 @@
       </div>
 
       <div *ngIf="liv == 'pointRelais'">
-        <!--Adresse-->
 
         <div class="row">
           <div class="col-md-12 form-group mb-3">
@@ -86,4 +82,77 @@
       <div>
 
       </div>
-    </form>
+    </form> -->
+
+    <div class="wrapper">
+      <div class="container">
+        <article class="part card-details">
+          <h1>
+            Add Livraison
+          </h1>
+          <form  [formGroup]="formLivraison" action="" if="cc-form" autocomplete="off">
+            <div class="group card-number">
+              <label for="etat">STATUS</label>
+              <select id="etat" type="text" name="etat" formControlName="etatCommande" class="form-control"
+                placeholder="Etat Livraison" required >
+                <option value="EN_COURS_LIVRAISON">EN_COURS_LIVRAISON</option>
+                </select>
+                    </div>
+            <div class="group card-name">
+              <label  for="deliveryTimeSlot">Delivery Time Slot</label>
+              <textarea id="deliveryTimeSlot" type="text" name="deliveryTimeSlot" formControlName="deliveryTimeSlot"
+                class="form-control" placeholder=" Mon May 1 21:10:24 2023" rows="3" required></textarea>
+            </div>
+            <label>
+              <input type="radio" name="liv" value="pointRelais" (click)="livraisonPointrelais()"> Point relais </label>
+            <label>
+              <input type="radio" name="liv" value="adresse" (click)="livraisonAdresse()"> Adresse de livraison </label>
+                  <div *ngIf="liv == 'adresse'">
+                    <div class="row">
+                      <div class="col-md-12 form-group mb-3">
+                    
+                        <div class="form-group">
+                          <label for="rue">Rue:</label>
+                          <input name="rue" formControlName="rue" id="rue" type="text" class="form-control"
+                            value="{{ipAddress}}. You live in {{city}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="ville">Ville:</label>
+                          <input name="ville" formControlName="ville" id="ville" type="text" class="form-control"
+                            value="{{ipAddress}}. You live in {{region}}">
+                        </div>
+                        <div class="form-group">
+                          <label for="num">Numéro:</label>
+                          <input name="num" formControlName="num" id="num" type="text" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngIf="liv == 'pointRelais'">
+                  
+                    <div class="row">
+                      <div class="col-md-12 form-group mb-3">
+                        <select id="adresse" type="text" name="adresse" formControlName="adresse" class="form-control"
+                          placeholder="adresse" required>
+                          <option value="Carrefour Marsa">Carrefour Marsa</option>
+                          <option value="Mall Of sousse">Mall Of sousse</option>
+                          <option value="Tunisia Mall">Tunisia Mall</option>
+                  
+                  
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+
+        
+            <div class="grup submit-group">
+              <span class="arrow"></span>
+              <input (click)="onSubmit()" routerLink="/paiement" type="submit" class="submit" value="Continue to payment">
+            </div>
+          </form>
+        </article>
+        <div class="part bg"></div>
+      </div>
+    </div>

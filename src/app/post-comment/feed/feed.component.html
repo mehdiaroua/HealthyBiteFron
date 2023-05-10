@@ -19,11 +19,11 @@
                         <h4 class="mini-headign">Pages</h4>
                         <label>
                             <img src="/assets/images/marketplace.png" alt="messenger">
-                            <span>Shop</span>
+                            <a  routerLink="/shop">Shop</a>
                         </label>
                         <label>
                             <img src="/assets/images/friends.png" alt="instagram">
-                            <span>Home</span>
+                            <a  routerLink="/home">Home</a>
                         </label>
                         <button class="see-more-btn">See more <i class="fa fa-angle-down"></i></button>
                     </div>
@@ -242,6 +242,21 @@
                                 <button (click)="previousPage()" [disabled]="currentPage == 1">Previous</button>
                                 <button (click)="nextPage()"
                                     [disabled]="(currentPage * postsPerPage) >= posts.length">Next</button>
+                            </div>
+                        </div>
+
+                        <div *ngIf="posts.length === 0" >
+                            <div class="containerr">
+                                <div class="gif">
+                                    <img src="https://i.postimg.cc/2yrFyxKv/giphy.gif" alt="gif_ing" />
+                                </div>
+                                <div class="contentt">
+                                    <h1 class="main-headingg">This page is gone.</h1>
+                                    <p>
+                                        ...maybe the page you're looking for is not found or never existed.
+                                    </p>
+                                   
+                                </div>
                             </div>
                         </div>
 
