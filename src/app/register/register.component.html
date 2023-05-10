@@ -1,80 +1,45 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-1yV0YAwYefP7VuwP+i5gzzZdM5XB5IaH5XpXl8yRdiCtYnHqc7G3tBk8t2d0nmpMcGtB3dhtvT8TcT/zY/qYgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<div class="head">
-<div class="page-header" filter-color="orange">
-  
-  <div class="page-header-image" style="background-image:url(assets/img/login.jpg)"></div>
-  <div class="container">
-      <div class="col-md-4 content-center">
-          <div class="card card-register card-plain">
               <form [formGroup]="signupForm" (ngSubmit)="signup()" class="form">
-                <header class="head-form">
-                  <h2>Sign Up</h2>
-                </header>
-                  <div class="header header-primary text-center">
-                      <div class="logo-container">
-                          <img src="assets/img/now-logo.png" alt="">
-                      </div>
-                  </div>
-                  <div class="content">
-                    <div class="input-group form-group-no-border input-lg" >
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
-                      </div>
-                      <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username...">
+                <div class="container">
+                  <div class="left">
+                    <div class="header">
+                      <h2 class="animation a1">Welcome</h2>
+                      <h4 class="animation a2">Sign up to your new account</h4>
+                    </div>
+                    <div class="form">
+                      <input type="type" id="username" formControlName="username" class="form-field animation a3" placeholder="Username"> <br/>
                       <div *ngIf="signupForm.controls['username'].errors?.['required'] && signupForm.controls['username'].touched" class="text-danger">
-                      
                         Please enter a username
                       </div>
-                    </div>
-                    
-                    <div class="input-group form-group-no-border input-lg" >
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
-                      </div>
-                      <input type="password" id="password" formControlName="password" placeholder="Password..."  class="form-control"/>
-                      <div *ngIf="signupForm.controls['password'].errors?.['required'] && signupForm.controls['password'].touched" class="text-danger">
-                        Please enter a password
-                      </div>
-                    </div>
-                    
-                    <div class="form-group">
-                      <input type="email" id="email" formControlName="email" placeholder="Email..."  class="form-control" />
-                      <div *ngIf="signupForm.controls['email'].errors?.['required'] && signupForm.controls['email'].touched" class="text-danger">
-                        Please enter an email address
-                      </div>
-                    </div>
-                    
-                    <div class="form-group">
-                      <input type="text" id="phone" formControlName="phone" placeholder="PhoneNumber..."  class="form-control" />
-                      <div *ngIf="signupForm.controls['phone'].errors?.['required'] && signupForm.controls['phone'].touched" class="text-danger">
-                        Please enter a phone number
-                      </div>
-                    </div>
-                    
+                      <input type="password" id="password" formControlName="password" class="form-field animation a4" placeholder="Password"> <br/>
+                        <div *ngIf="signupForm.controls['password'].errors?.['required'] && signupForm.controls['password'].touched"
+                          class="text-danger">
+                          Please enter a password
+                        </div>
+                        <input type="email" id="email" formControlName="email" class="form-field animation a4" placeholder="Email"> <br/>
+                        <div *ngIf="signupForm.controls['email'].errors?.['required'] && signupForm.controls['email'].touched"
+                          class="text-danger">
+                          Please enter an email address
+                        </div>
+                        <input type="number" id="phone" formControlName="phone" class="form-field animation a4" placeholder="Phone Number"> <br/>
+                        <div *ngIf="signupForm.controls['phone'].errors?.['required'] && signupForm.controls['phone'].touched"
+                          class="text-danger">
+                          Please enter a phone number
+                        </div>
+                        <div class="form-group">
+                          <select id="role" formControlName="role" class="form-field animation a4" required>
+                            <option value="" selected>Select Role...</option>
+                            <option value="user">User</option>
+                            <option value="restaurant">Restaurant</option>
+                            <option value="fournisseur">Fournisseur</option>
+                          </select>
+                        </div>
+                      <button class="animation a6">Sign up</button>
+                      <p class="animation a5"><a href="/login">Already have an Account ? </a></p>
 
-  <div class="form-group">
-    
-    <select id="role" formControlName="role" placeholder="Select Role..." class="form-control" required>
-      <option value="user">User</option>
-      <option value="admin">Admin</option>
-      <option value="mod">Moderator</option>
-      <option value="restaurant">Restaurant</option>
-      <option value="fournisseur">Fournisseur</option>
-    </select>
-  </div>
-                  <div class="footer text-center">
-                      <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">Register</button>
+                    </div>
                   </div>
-                  <div class="pull-left">
-                      <h6>
-                          <a href="/login" class="link">Already have an account?</a>
-                      </h6>
-                  </div>
-                  <div class="pull-right">
-                      <h6>
-                          <a href="#pablo" class="link">Need Help?</a>
-                      </h6>
-                  </div>
-            
+                  <div class="right"></div>
+                </div>
+
           

@@ -1,0 +1,18 @@
+<p-toast></p-toast>
+  <section id="contact">
+      <div class="sectionheader">	<h1>Reclamation</h1></div>
+      <article>
+      <p>Speak up! We want to hear your feedback</p>
+
+          <label for="checkcontact" class="contactbutton"><div class="mail"></div></label><input id="checkcontact" type="checkbox">
+
+          <form (submit)="onSubmit()" action="" method="post" class="contactform">
+            <p class="textarea_wrapper"><textarea name="textReclamation" id="textReclamation" placeholder="Your input is valuable to us, tell us how we can do better"
+              [(ngModel)]="reclamation.textReclamation"
+              required ></textarea></p>
+              <button  type="submit" style="background-color: #6a8a36;" >Submit</button>
+
+          </form>
+
+      </article>
+    </section>

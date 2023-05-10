@@ -6,8 +6,8 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Produit } from './Models/RepasProduit/Produit';
 import { User } from './Class/user';
-import { UserService } from './service/user.service';
-import { StorageService } from './service/storage.service';
+import { UserService } from './Service1/user.service';
+import { StorageService } from './Service1/storage.service';
 import { CategProduit } from './Models/RepasProduit/CategProduit';
 import { Nutrition } from './Models/RepasProduit/Nutrition';
 
@@ -18,8 +18,17 @@ export class RepasProduitService {
   listRepas:Repas[]=[];
   listProduit:Produit[]=[];
    id!:number
+
+   private apiKey = 'YOUR_API_KEY_HERE';
+   private apiUrl = `https://openexchangerates.org/api/latest.json?app_id=${this.apiKey}`;
+
 user!: any;
   constructor(private httpClient: HttpClient,private userService:UserService, private storage: StorageService) { }
+
+  public getExchangeRate(baseCurrency: string, targetCurrency: string): Observable<any> {
+    const url = `${this.apiUrl}&base=${baseCurrency}&symbols=${targetCurrency}`;
+    return this.httpClient.get(url);
+  }
 
 
   addRepasAndImage(nom: string, description: string, prix: number, ingredient: string, allergene: string, objectifType: string, categRepas: string, image: File): Observable<Repas> {
@@ -78,9 +87,14 @@ user!: any;
   return this.httpClient.post<Repas>(`${environment.api}test/addNutritionToRepas/${repasId}`, body, { headers });
 }
 
-calculerMaxCalories(user: User): Observable<number> {
-  return this.httpClient.post<number>(environment.api + 'test/maxCalories',  JSON.stringify(user));
+calculerMaxCalories(id: number): Observable<number> {
+  return this.httpClient.get<number>(environment.api+"test/maxCalories"+`/${id}`);
 }
+proposerRepasSelonObjectifEtActivite(id: number): Observable<Repas[]> {
+  const url = `${environment.api}test/proposer/${id}`;
+  return this.httpClient.get<Repas[]>(url);
+}
+
 
 
 

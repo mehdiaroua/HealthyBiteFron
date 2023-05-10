@@ -1,0 +1,16 @@
+
+    <section id="contact">
+      <div class="sectionheader">	<h1>Response</h1></div>
+      <article>
+      <p>Response</p>
+
+          <label for="checkcontact" class="contactbutton"><div class="mail"></div></label><input id="checkcontact" type="checkbox">
+
+          <form (ngSubmit)="ajouterReponseReclamation()" action="" method="post" class="contactform">
+            <p class="textarea_wrapper"><textarea name="reponse" id="textReclamation" placeholder="Your input is valuable to us, tell us how we can do better"
+              [(ngModel)]="reponseReclamation.textReponseReclamation"
+              required ></textarea></p>
+            <p class="submit_wrapper"><input type="submit" value="ENVOYER"></p>
+          </form>
+      </article>
+    </section>

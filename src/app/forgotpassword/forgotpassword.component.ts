@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 import { User } from '../Class/user';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -15,6 +15,7 @@ export class ForgotpasswordComponent {
   newPassword!: string;
   passwordReset = false;
   errorMessage = '';
+  showAdditionalInputs = false;
 
   user: User = new User();
   smsSent = false;
@@ -27,6 +28,7 @@ export class ForgotpasswordComponent {
         (result) => {
           this.user = result;
           this.smsSent = true;
+
           this.route.navigate(['/reset']); // navigate to reset page only if smsSent is true
         },
         (error) => {

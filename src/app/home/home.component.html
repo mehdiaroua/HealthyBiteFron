@@ -1,5 +1,5 @@
 <!-- Hero Section Begin -->
-<!-- <section class="hero">
+<section class="hero">
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
@@ -9,13 +9,10 @@
             <span>All departments</span>
           </div>
           <ul>
-            <li><a href="#">Petit Déjeuner</a></li>
-            <li><a href="#">Déjeuner</a></li>
-            <li><a href="#">Diner</a></li>
-            <li><a href="#">Dessert</a></li>
-            <li><a href="#">Protéine</a></li>
-            <li><a href="#">Bcaa</a></li>
-            <li><a href="#">Bcaa</a></li>
+            <li><a routerLink="/recette">Recette</a></li>
+            <li><a routerLink="/objectif">Objectifs</a>
+            <li><a routerLink="/conseil">Conseils</a>
+
 
           </ul>
         </div>
@@ -42,20 +39,18 @@
             </div>
           </div>
         </div>
-        <div class="hero__item set-bg"
-          style="background-image:
-          url(https://ochsner-craft.s3.amazonaws.com/blog/articles/_930x524_crop_center-center_75_none/healthy-food.jpg);">
+      <div class="hero__item set-bg" [style.background-image]="backgroundImage">
+
           <div class="hero__text">
             <span>FRUIT FRESH</span>
             <h2 style="color: aliceblue;">Vegetable <br />100% Organic</h2>
-            <p>Free Pickup and Delivery Available</p>
-            <a href="#" class="primary-btn">SHOP NOW</a>
+            <a routerLink="/shop" class="primary-btn">SHOP NOW</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section> -->
+</section>
 <!-- Hero Section End -->
 
 <!-- Categories Section Begin -->
@@ -114,7 +109,7 @@
       </div>
     </div>
     <div class="row featured__filter">
-      <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" *ngFor="let rep of repas">
+      <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat" *ngFor="let rep of repas | slice:0:4 ">
         <div class="featured__item">
           <div class="featured__item__pic set-bg" [style.background-image]="'url(data:image/jpeg;base64,' +
             rep.imageBase64 + ')'">
@@ -156,14 +151,15 @@
 <!-- Banner End -->
 
 <!-- Latest Product Section Begin -->
-<div class="container" >
-  <div id="demo" class="carousel slide" data-ride="carousel" >
+<div class="container">
+  <div id="demo" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item"  *ngFor="let produit of produit; let i = index" [class.active]="i == 0">
+      <div class="carousel-item" *ngFor="let produit of produit | slice:0:3" >
         <div class="card" style="background-color: rgb(255, 245, 244);">
           <div class="row" style="background-color: rgb(255, 245, 244);">
 
-              <img class="img-fluid" [src]="'data:image/jpeg;base64,' + produit.imageBase64" alt="hello" style="width: 50%;height: 50%;">
+            <img class="img-fluid" [src]="'data:image/jpeg;base64,' + produit.imageBase64" alt="hello"
+              style="width: 50%;height: 50%;">
 
             <div class="col-md-6 info">
               <div class="row title">
@@ -182,7 +178,7 @@
               </div>
               <div class="row price">
                 <label class="radio">
-                  <input type="radio" name="size{{i}}" value="small" checked>
+                  <input type="radio"  value="small" checked>
                   <span>
                     <div class="row"><b>1.5 oz.</b></div>
                     <div class="row">{{produit.prix}}</div>
@@ -198,7 +194,7 @@
               <a class="carousel-control-next" href="#demo" data-slide="next"><i class="fa fa-arrow-right"></i></a>
             </div>
             <div class="col text-right align-self-center">
-              <button class="btn" style="background-color: rgb(48, 74, 45);">Shop Now</button>
+              <button routerLink="/shop" class="btn" style="background-color: rgb(48, 74, 45);">Shop Now</button>
             </div>
           </div>
         </div>
@@ -216,60 +212,28 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="section-title from-blog__title">
-          <h2>From The Blog</h2>
+          <h2>From The Forum</h2>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-6">
+      <div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let post of posts | slice:0:3">
         <div class="blog__item">
           <div class="blog__item__pic">
-            <img src="../../assets/img/blog/blog-1.jpg" alt="">
+            <img [src]="postImageURL(post.imageData)" alt="{{ post.title }}">
           </div>
           <div class="blog__item__text">
             <ul>
-              <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-              <li><i class="fa fa-comment-o"></i> 5</li>
+              <li><i class="fa fa-calendar-o"></i> {{ post.addedDate | date }}</li>
+              <li><i class="fa fa-comment-o"></i> {{ post.comments.length }}</li>
             </ul>
-            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-            <p>Sed quia non numquam modi tempora indunt ut labore et dolore
-              magnam aliquam quaerat </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-6">
-        <div class="blog__item">
-          <div class="blog__item__pic">
-            <img src="../../assets/img/blog/blog-2.jpg" alt="">
-          </div>
-          <div class="blog__item__text">
-            <ul>
-              <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-              <li><i class="fa fa-comment-o"></i> 5</li>
-            </ul>
-            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-            <p>Sed quia non numquam modi tempora indunt ut labore et dolore
-              magnam aliquam quaerat </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-6">
-        <div class="blog__item">
-          <div class="blog__item__pic">
-            <img src="../../assets/img/blog/blog-3.jpg" alt="">
-          </div>
-          <div class="blog__item__text">
-            <ul>
-              <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-              <li><i class="fa fa-comment-o"></i> 5</li>
-            </ul>
-            <h5><a href="#">Visit the clean farm in the US</a></h5>
-            <p>Sed quia non numquam modi tempora indunt ut labore et dolore
-              magnam aliquam quaerat </p>
+            <h5><a href="#">{{ post.title }}</a></h5>
+            <p>{{ post.content }}</p>
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- Blog Section End -->
+<!-- Forum Section End -->

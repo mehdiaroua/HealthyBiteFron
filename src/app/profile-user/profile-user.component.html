@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="container">
   <div class="main-body">
 
@@ -123,10 +124,10 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Objectif Poids</h6>
+                      <h6 class="mb-0">Max Calories</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      {{user.objectif_Poids}}
+                      {{maxCalories}}
                     </div>
                   </div>
                   <hr>
@@ -143,8 +144,9 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="">Edit</a>
-                      <button class="btn btn-success " target="__blank" (click)="calculerMaxCalories()"> Calories à consommé</button>
+                 
+
+                      <button type="button" pButton pRipple (click)="calculerMaxCalories()" label="Maxm Calories" class="p-button-success"></button>
                     </div>
                   </div>
                 </div>

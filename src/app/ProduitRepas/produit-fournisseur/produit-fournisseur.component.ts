@@ -5,14 +5,14 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Produit } from 'src/app/Models/RepasProduit/Produit';
 import { RepasProduitService } from 'src/app/repasProduit.service';
 import { AddproduitComponent } from '../addproduit/addproduit.component';
-import { UserService } from 'src/app/service/user.service';
-import { StorageService } from 'src/app/service/storage.service';
+import { UserService } from 'src/app/Service1/user.service';
+import { StorageService } from 'src/app/Service1/storage.service';
 import { CategProduit } from 'src/app/Models/RepasProduit/CategProduit';
 import { AddnutritionComponent } from '../addnutrition/addnutrition.component';
 import {MatDialog} from '@angular/material/dialog';
 import { Nutrition } from 'src/app/Models/RepasProduit/Nutrition';
 
-@Component({ 
+@Component({
   selector: 'app-produit-fournisseur',
   templateUrl: './produit-fournisseur.component.html',
   styleUrls: ['./produit-fournisseur.component.css'],

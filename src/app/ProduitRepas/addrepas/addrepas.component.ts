@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Repas } from 'src/app/Models/RepasProduit/Repas';
 import { RepasProduitService } from 'src/app/repasProduit.service';
-import { StorageService } from 'src/app/service/storage.service';
-import { UserService } from 'src/app/service/user.service';
+import { StorageService } from 'src/app/Service1/storage.service';
+import { UserService } from 'src/app/Service1/user.service';
 
 @Component({
   selector: 'app-addrepas',
@@ -27,14 +27,20 @@ console.log(this.user);
 }
 save() {
   this.repasService.addRepasAndImage(this.repas.nom, this.repas.description, this.repas.prix, this.repas.ingredient, this.repas.allergene, this.repas.objectifType,this.repas.categorieRepas, this.imageFile)
-    .subscribe(data => console.log(data), error => console.log(error));
+    .subscribe(data => this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' }), error =>     this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Produit n est pas ajouter' }));
+
   this.repas = new Repas();
-  this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'repas Ajouté avec Succés' });
+
+  location.reload();
+  this.router.navigate(['/repas/restaurant']);
+
 }
 
 onSubmit() {
   this.submitted = true;
+ // this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Produit Ajouté avec Succés' });
   this.save();
+  //location.reload();
   this.router.navigate(['/repas/restaurant']);
 }
 

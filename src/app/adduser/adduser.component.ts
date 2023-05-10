@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 import { ERole, User } from '../Class/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -25,8 +25,8 @@ export class AdduserComponent {
       role: [[{ id: 1, name: ERole.ROLE_ADMIN }], Validators.required]
     });
    }
-   
-  
+
+
 
    onSubmit(): void {
     this.user.username = this.signupForm.value.username;
@@ -34,17 +34,18 @@ export class AdduserComponent {
     this.user.password = this.signupForm.value.password;
     this.user.phone = this.signupForm.value.phone;
     this.user.role = [this.signupForm.value.role];
-  
+
     this.http.post<any>('http://localhost:8080/api/test/add', this.user)
       .subscribe(
         response => {
           console.log('User registered:', response);
           this.route.navigate(['/dash'], { queryParams: { id: response.id } });
+          location.reload();
         },
         error => {
           this.errorMessage = error.error.message;
         }
       );
   }
-  
+
 }

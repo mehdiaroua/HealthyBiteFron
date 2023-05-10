@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Conseil } from 'src/app/Models/RepasProduit/Models/RecetteConseil/conseil.model';
-import { StorageService } from 'src/app/service/storage.service';
+import { StorageService } from 'src/app/Service1/storage.service';
 import { ConseilService } from 'src/app/services/conseil.service';
+
 
 @Component({
   selector: 'app-recommendation',

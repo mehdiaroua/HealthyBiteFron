@@ -14,5 +14,7 @@ export class Produit {
     image_data!:ArrayBuffer;
     imageUrl!: string;
     imageBase64!:String;
+    quantite!:number;
+    subtotal!:number;
 
 }

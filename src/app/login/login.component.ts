@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 import { Router } from '@angular/router';
 import { ERole, User } from '../Class/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { StorageService } from '../service/storage.service';
+import { StorageService } from '../Service1/storage.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [MessageService]
 })
 export class LoginComponent implements OnInit {
   form: any = {
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
   userService: any;
 
 
-    constructor(private service:UserService, private route:Router, private formBuilder: FormBuilder,private http: HttpClient, private storageService: StorageService) {
+    constructor(private service:UserService, private route:Router, private formBuilder: FormBuilder,private http: HttpClient, private storageService: StorageService, private messageService:MessageService) {
 
     }
    /* getCurrentUser() {
@@ -101,13 +103,16 @@ export class LoginComponent implements OnInit {
           this.storageService.saveUser(data);
           this.isLoginFailed = false;
           this.isLoggedIn = true;
+          this.messageService.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content' });
           this.roles = this.storageService.getUser().roles;
           this.navigateToUserRole(this.roles)
 
         },
         error: (err: { error: { message: string; }; }) => {
+          this.messageService.add({ severity: 'error', summary: 'Error Message', detail: 'Bad Credentials' });
           this.errorMessage = err.error.message;
           this.isLoginFailed = true;
+
         }
       });
     }

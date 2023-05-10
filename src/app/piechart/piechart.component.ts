@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BubbleDataPoint, Chart, ChartTypeRegistry, Point ,registerables } from 'chart.js';
 import { Observable } from 'rxjs';
-import { AnimationSpec, AnimationEvent } from 'chart.js';
-import { UserService } from '../service/user.service';
+import { UserService } from '../Service1/user.service';
 
 Chart.register(...registerables);
 

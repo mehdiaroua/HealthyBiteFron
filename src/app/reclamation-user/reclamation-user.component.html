@@ -1,0 +1,26 @@
+<section class="page-contain">
+  <div class="data-card" *ngFor="let rec of reclamations">
+    
+    <h4> {{"Repas:"}} {{rec.repas.nom}}</h4> 
+    
+    <h5>{{rec.dateReclamation}} </h5>
+    <p> {{"Reclamation:"}} {{rec.textReclamation}}</p>
+   <p> {{"Rseponse:"}} {{rec.reponseReclamation.textReponseReclamation}}</p>
+
+   <h5>{{"Archived:"}} {{rec.archived}} | {{"Etat:"}} {{rec.etatReclamation}}</h5>
+   <p></p>
+   <button *ngIf="rec.etatReclamation === 'Non Traitee'" (click)="openUpdateDialog(rec.idReclamation)">
+  <span class="shadow"></span>
+  <span class="edge"></span>
+  <span class="front text"> edit
+  </span>
+</button>
+   
+                      
+                    </div>
+
+</section>
+
+
+
+

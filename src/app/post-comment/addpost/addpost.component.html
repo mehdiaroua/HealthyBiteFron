@@ -1,0 +1,30 @@
+<p-toast></p-toast>
+<div class="create-post">
+    <a href="#" class="close-button" (click)="closeModal($event)">&#10006;</a>
+    <h3 class="mini-heading">Create Post</h3>
+    <form (submit)="onSubmit()" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" placeholder="Give a title to your post!" [(ngModel)]="post.title"
+                required />
+        </div>
+        <div class="form-group">
+            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="post.content"
+                name="content"></angular-editor>
+                <div [innerHTML]="sanitizedContent"></div>
+
+        </div>
+        <div class="post-icon">
+            <label for="image-upload" class="icon-container gallery">
+                <i class="fa fa-camera"></i>Gallery
+            </label>
+            <h5>Upload an image to your post here ⬅️</h5>
+            <input id="image-upload" type="file" accept="image/*" style="display:none"
+                (change)="onFileSelected($event)">
+            <img *ngIf="imageSrc" [src]="imageSrc" alt="Selected Image" width="300" height="auto">
+        </div>
+
+        <button>Add a new post!</button>
+
+    </form>
+</div>
